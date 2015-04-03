@@ -2,7 +2,7 @@
  	<div class="col-md-12">
         <div class="navbar-header">
 
-          <a href="#" class="navbar-brand">Bootstrap</a>
+          <a href="{{ route("home") }}" class="navbar-brand">Campus Guru</a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
           <i class="glyphicon glyphicon-search"></i>
           </button>
@@ -18,7 +18,7 @@
               </div>
           </form>
           <ul class="nav navbar-nav navbar-right">
-             <li><a href="http://www.bootply.com" target="_ext">Bootply+</a></li>
+             <li><a href="{{ route("profile") }}" >Profile</a></li>
              <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
                 <ul class="dropdown-menu">

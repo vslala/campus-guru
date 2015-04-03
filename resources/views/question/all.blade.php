@@ -1,5 +1,5 @@
 <?php
-    $pageHeader = "Ask Question";
+    $pageHeader = "All Questions";
     if(count($questions) <= 0)
     {
         $questions = null;
@@ -22,10 +22,10 @@
         <div class="col-md-10">
             <div class="panel panel-default">
                     <div class="panel-heading" style="color: crimson; font-weight: bold;">
-                        All the questions<span class="glyphicon glyphicon-question-sign"></span> asked by you
+                        All questions<span class="glyphicon glyphicon-question-sign"></span>
                     </div>
                     <div class="panel-body">
-                        <p>These are the list of all the questions asked by you uptill now.
+                        <p>These are the list of all the questions being asked by people around the globe.
 
                         </p>
                         <hr>
@@ -33,7 +33,12 @@
                             <ul class="nav nav-stacked">
                             @if(isset($questions))
                                 @foreach($questions as $q)
-                                    <li><span class="glyphicon glyphicon-question-sign"><a href="{{ route('show', $q->id) }}" id="question_link">{{ $q->title }} ?</a> </span></li>
+                                    <li>
+
+                                        <a href="{{ route('show', $q->id) }}" id="question_link">
+                                        {!! Html::image($q->image_url, $q->image_name, ['class'=>'img img-responsive img-thumbnail profile_pic']) !!}
+                                        {{ $q->title }} ?</a>
+                                    </li>
                                 @endforeach
                             @endif
                             </ul>
@@ -46,6 +51,5 @@
 
     </div>
 @include("_postsModal")
-
 </div>
 @endsection

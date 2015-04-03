@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
+use League\Flysystem\Exception;
+use PDO;
 
 class HomeController extends Controller {
 
@@ -39,12 +41,28 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
+        //latest blog
+//        DB::setFetchMode(PDO::FETCH_ASSOC);
+        $blog = DB::table("blogs")
+            ->leftJoin("display_pictures", "blogs.username","=","display_pictures.username")
+            ->select(['blogs.id', 'blogs.username','blogs.heading', 'blogs.created_at', 'display_pictures.image_url', 'display_pictures.image_name'])
+            ->take(1)
+            ->orderBy('blogs.created_at','desc')
+            ->get();
+//        dd($blog);
+        // status in descending order
         $status = DB::table('statuses')
             ->join('display_pictures', 'statuses.username', '=', 'display_pictures.username')
+            ->take(5)
             ->orderBy('statuses.created_at', 'desc')
             ->get();
+        $questions = DB::table("questions")
+            ->leftJoin("display_pictures", "questions.username", "=","display_pictures.username")
+            ->select(['questions.id','questions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->get();
+//        dd($questions);
 //        dd($status);
-		return view('home', compact('status'));
+		return view('home', compact('status','questions','blog'));
 	}
 
     public function profile()
@@ -252,6 +270,20 @@ class HomeController extends Controller {
     {
         Blog::find($id)->delete();
         return redirect(route('blog'));
+    }
+
+    public function latestBlog()
+    {
+        $response = DB::table("blogs")
+            ->leftJoin("display_pictures", "blogs.username","=","display_pictures.username")
+            ->select(['blogs.id', 'blogs.username','blogs.heading', 'blogs.created_at', 'display_pictures.image_url', 'display_pictures.image_name'])
+            ->take(1)
+            ->orderBy('desc')
+            ->get();
+
+        return json_encode($response);
+
+
     }
 
 }

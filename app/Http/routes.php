@@ -90,6 +90,11 @@ Route::get('/user/delete/blog/{id}', [
     'uses'=>"HomeController@blogDelete",
     "as"=>"blogDelete"
 ]);
+Route::get('/user/show/blog/{id}', [
+    'uses'=>"HomeController@showBlog",
+    "as"=>"showSingleBlog"
+]);
+
 
 /*
  * DiscussionController starts here
@@ -122,4 +127,37 @@ Route::get('/user/show/question', [
 Route::get('/user/show/question/{id}', [
     'uses'=>"QuestionController@show",
     "as"=>"show"
+]);
+Route::get('/user/show/five/question/', [
+    'uses'=>"QuestionController@recentlyAskedQuestions",
+    "as"=>"showAllQuestions"
+]);
+Route::get('/user/view/all/question/', [
+    'uses'=>"QuestionController@viewAllQuestions",
+    "as"=>"viewAllQuestions"
+]);
+
+/*
+ * Answers route here
+ */
+Route::put('/user/submit/answer', [
+    'uses'=>"QuestionController@addAnswer",
+    "as"=>"addAnswer"
+]);
+// Comment start here
+Route::put('/user/submit/comment', [
+    'uses'=>"CommentController@store",
+    "as"=>"addComment"
+]);
+
+/*
+ * likes and dislike routes
+ */
+Route::get('/user/answer/like/{qId}/{ansId}', [
+    'uses'=>"LikeController@storeLikes",
+    "as"=>"storeLikes"
+]);
+Route::get('/user/answer/dislike/{qId}/{ansId}', [
+    'uses'=>"LikeController@storeDislikes",
+    "as"=>"storeDislikes"
 ]);

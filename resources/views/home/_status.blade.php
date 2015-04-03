@@ -1,3 +1,4 @@
+@if(count($p) > 0)
 @foreach($status as $s)
                             <ul class="nav nav-pills list-inline">
                                 <li>
@@ -16,4 +17,5 @@
 
                                 <hr>
                             </ul>
-                        @endforeach
+@endforeach
+@endif

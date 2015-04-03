@@ -1,8 +1,12 @@
 <?php namespace App\Http\Controllers;
 
+use App\Answer;
+use App\Comment;
+use App\DislikedAnswer;
 use App\DisplayPicture;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\LikedAnswer;
 use DB;
 use App\Question;
 use App\QuestionTag;
@@ -79,9 +83,45 @@ class QuestionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function addAnswer(Request $request)
 	{
-		//
+		if($request->ajax())
+        {
+            $username = Auth::user()->username;
+            $q_id = $request->get('q_id');
+            $answer = $request->get('answer');
+            $q = new Answer();
+            $thisAnswer = $q->addAnswer($q_id, $answer, $username);
+
+            if($thisAnswer)
+            {
+                $image = new DisplayPicture();
+                $image = $image->where("username", $username)->get()->toArray();
+                $imageUrl = $image[0]['image_url'];
+                $imageName = $image[0]['image_name'];
+
+                $response = ["imageUrl"=>$imageUrl, "imageName"=>$imageName, "answer"=>$thisAnswer];
+                $response = json_encode($response);
+                return $response;
+
+            }
+            else
+                return false;
+        }
+
+        if($request->isMethod('put'))
+        {
+            $username = Auth::user()->username;
+            $q_id = $request->get('q_id');
+            $answer = $request->get('answer');
+            $q = new Answer();
+            $flag = $q->addAnswer($q_id, $answer, $username);
+
+            if($flag)
+                return Redirect::back();
+            else
+                return false;
+        }
 	}
 
 	/**
@@ -92,14 +132,32 @@ class QuestionController extends Controller {
 	 */
     public function show($id)
     {
+        $likes = new LikedAnswer();
+        $likes = $likes->get();
+        $dislikes = new DislikedAnswer();
+        $dislikes = $dislikes->get();
         $question = new Question();
         $question = $question->find($id);
-        return view('question.single', compact('question'));
+        //fetching al answers with their user image
+        $answers = DB::table('answers')
+            ->leftJoin('display_pictures', 'answers.username', '=', 'display_pictures.username')
+            ->select('answers.id', 'answers.q_id','answers.username','answers.answer','answers.created_at','display_pictures.image_name','display_pictures.image_url')
+            ->get();
+        // fetch all comments with their user image
+        $comments = DB::table('comments')
+            ->leftJoin('display_pictures', 'comments.username', '=', 'display_pictures.username')
+            ->select('comments.id', 'comments.ans_id','comments.comment','comments.username','comments.created_at','display_pictures.image_name','display_pictures.image_url')
+            ->get();
+//        dd($comments);
+//        dd($answers);
+        $image = DisplayPicture::where("username", Auth::user()->username)->get();
+        return view('question.single', compact('question','answers','image', 'comments','likes','dislikes'));
     }
 	public function showQuestionsByUsername()
 	{
         $questions = new Question();
         $questions = $questions->where("username", Auth::user()->username)->get();
+//        dd($questions);
         $image = new DisplayPicture();
         $image = $image->where("username", Auth::user()->username)->get()->toArray();
 		return view('question.userQuestions', compact('questions', 'image'));
@@ -111,9 +169,15 @@ class QuestionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function recentlyAskedQuestions()
 	{
-		//
+        $response = DB::table("questions")
+            ->leftJoin("display_pictures", "questions.username", "=","display_pictures.username")
+            ->take(5)
+            ->select(['questions.id','questions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->get();
+
+        return json_encode($response);
 	}
 
 	/**
@@ -122,9 +186,14 @@ class QuestionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function viewAllQuestions()
 	{
-		//
+        $questions = DB::table("questions")
+            ->leftJoin("display_pictures", "questions.username", "=","display_pictures.username")
+            ->select(['questions.id','questions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->get();
+//        dd($questions);
+		return view('question.all', compact('questions'));
 	}
 
 	/**
@@ -137,5 +206,7 @@ class QuestionController extends Controller {
 	{
 		//
 	}
+
+
 
 }

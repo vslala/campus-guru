@@ -62,11 +62,26 @@ body{
 }
 
 #heading-panel{
-    color: crimson;
+    color: #000000;
     font-family: cursive, "Lobster";
+    font-size: x-large;
 }
 
 #question_link{
+    color: darkblue;
+    font-family: cursive, "Lobster";
+}
+
+#question_link_home{
+    color: #843534;
+    font-family: cursive, "Lobster";
+}
+
+#lobster_font{
+    font-family: cursive, "Lobster";
+}
+
+#comments{
     color: darkblue;
     font-family: cursive, "Lobster";
 }

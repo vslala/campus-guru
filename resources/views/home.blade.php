@@ -14,12 +14,18 @@
    <div class="row">
    <div class="col-md-4 col-sm-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Recently Asked Questions</h4></div>
+          <div class="panel-heading"><a href="{{ route("viewAllQuestions") }}" class="pull-right">View all</a> <h4>Recently Asked Questions</h4></div>
    			<div class="panel-body">
-              <div class="list-group">
-                <a href="http://bootply.com/tagged/modal" class="list-group-item">Modal / Dialog</a>
-                <a href="http://bootply.com/tagged/datetime" class="list-group-item">Datetime Examples</a>
-                <a href="http://bootply.com/tagged/datatable" class="list-group-item">Data Grids</a>
+
+   			<input type="hidden" id="fetchQuestionUrl" value="{{ route("showAllQuestions") }}" />
+
+              <div class="list-group" id="list_of_questions">
+              @foreach($questions as $q)
+                <a href="{{ route("show", $q->id) }}" class="list-group-item">
+                    {!! Html::image($q->image_url,$q->image_name, ['class'=>'img img-responsive img-thumbnail', 'style'=>'width:50px;']) !!}
+                    <span id="question_link_home">{{ $q->title }}</span>
+                </a>
+              @endforeach
               </div>
             </div>
    		</div>
@@ -67,11 +73,19 @@
       	 <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Latest Blog</h4></div>
    			<div class="panel-body">
-              <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Username</a></p>
+              <p>
+              @foreach($blog as $b)
+              @if(isset($b->image_url))
+               {!! Html::image($b->image_url,$b->image_name,['class'=>'img-circle pull-right', 'style'=>'height:150px; width:150px;']) !!}
+              @else
+               <img src="//placehold.it/150x150" class="img-circle pull-right">
+              @endif
+                <a href="{{ route('profileVisit', $b->username) }}">{{ $b->username or 'User' }}</a></p>
               <div class="clearfix"></div>
               <hr>
-              The Lates Blog will be displayed here in this section of the user's home page.
+              <a href="{{ route('showSingleBlog', $b->id)}}">{{ $b->heading or 'Blog heading' }}</a>
             </div>
+            @endforeach
          </div>
 
   	</div>
@@ -171,19 +185,19 @@
     </div>
      <div class="col-md-4 col-sm-6">
     	<div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Inspiration</h4></div>
+           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Jokes</h4></div>
    			<div class="panel-body">
-              <img src="//placehold.it/150" class="img-circle pull-right"> <a href="#">Articles</a>
-              <div class="clearfix"></div>
-              <hr>
-              <div class="clearfix"></div>
-              <img src="http://placehold.it/120x90/3333CC/FFF" class="img-responsive img-thumbnail pull-right">
-              <p>The more powerful (and 100% fluid) Bootstrap 3 grid now comes in 4 sizes (or "breakpoints"). Tiny (for smartphones), Small (for tablets), Medium (for laptops) and Large (for laptops/desktops).</p>
-              <div class="clearfix"></div>
-              <hr>
-              <div class="clearfix"></div>
-              <img src="http://placehold.it/120x90/33CC33/FFF" class="img-responsive img-thumbnail pull-left" style="margin-right:5px;">
-              <p>Mobile first" is a responsive Web design practice that prioritizes consideration of smart phones and mobile devices when creating Web pages.</p>
+
+              <div id="quote">
+
+                {{--<iframe width="100%"--}}
+                  {{--height="100%"--}}
+                  {{--frameborder="0"--}}
+                  {{--scrolling="no"--}}
+                  {{--src="http://iheartquotes.com/api/v1/random?format=html&max_lines=4&max_characters=600&width=300&height=300">--}}
+
+                {{--</iframe>--}}
+              </div>
 
 
             </div>

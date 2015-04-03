@@ -33,6 +33,73 @@ $(document).ready(function(){
         $("#help_block").toggle(200);
     });
 
+    //$('form').submit( function (event) {
+    //    //alert();
+    //   event.preventDefault();
+    //    var url = $(this).attr('action');
+    //    var data = $(this).serialize();
+    //    var image = $(this).parent().siblings().find("#image");
+    //    var answer = $(this).parent().siblings().find("#answer");
+    //
+    //    console.log($(image).attr('class'));
+    //    $.ajax({
+    //        url : url,
+    //        type : "put",
+    //        data : data,
+    //        success : function(data){
+    //            data = $.parseJSON(data);
+    //            $(image).empty();
+    //            $(image).append("<a href='' <img class='img img-responsive img-thumbnail' src='http://localhost/campusguru/public/" + data.imageUrl + "'>");
+    //            $(answer).append("<p>" + data.answer +"</p>")
+    //            //$(image).html(data.image_url);
+    //            console.log(data);
+    //        },
+    //        error: function(xhr,status,msg){
+    //            alert("ERROR: "+ xhr.responseText);
+    //        }
+    //    })
+    //});
 
+    /**
+     * like counter
+     */
+    $('body').on("click","#likeBtn", function (event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var badge = $(this).find("#likeCount");
+        $.ajax({
+            url : url,
+            type : "GET",
+            success : function(data)
+            {
+                $(badge).html(data);
+            },
+            error : function(xhr,status,msg)
+            {
+                alert("ERROR: " + xhr.responseText);
+            }
+        })
+    });
+    /**
+     * dislike counter
+     */
+    $('body').on("click","#dislikeBtn", function (event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var badge = $(this).find("#dislikeCount");
+
+        $.ajax({
+            url : url,
+            type : "GET",
+            success : function(data)
+            {
+                $(badge).html(data);
+            },
+            error : function(xhr,status,msg)
+            {
+                alert("ERROR: " + xhr.responseText);
+            }
+        })
+    });
 
 });
