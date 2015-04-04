@@ -19,10 +19,10 @@ class CreateQuestionsTable extends Migration {
             $table->string('title', 500);
             $table->string('category');
             $table->string('description');
-            $table->string('image_name');
-            $table->string('image_type');
-            $table->string('image_url');
-            $table->integer('image_size')->unsigned();
+//            $table->string('image_name')->nullable();
+//            $table->string('image_type')->nullable();
+//            $table->string('image_url')->nullable();
+//            $table->integer('image_size')->unsigned()->nullable();
 			$table->timestamps();
 		});
 	}

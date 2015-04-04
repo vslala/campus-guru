@@ -22,15 +22,15 @@
              <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><span class="badge pull-right">40</span>Link</a></li>
-                  <li><a href="#"><span class="badge pull-right">2</span>Link</a></li>
-                  <li><a href="#"><span class="badge pull-right">0</span>Link</a></li>
-                  <li><a href="#"><span class="label label-info pull-right">1</span>Link</a></li>
-                  <li><a href="#"><span class="badge pull-right">13</span>Link</a></li>
+                  <li><a href="{{ route('askQuestion') }}" class="dropdown_link"><span class="glyphicon glyphicon-question-sign pull-right"></span>Ask Question</a></li>
+                  <li><a href="{{ route('startDiscussion') }}" class="dropdown_link"><span class="glyphicon glyphicon-plus-sign pull-right"></span>Start Discussion</a></li>
+                  <li><a href="{{ route('viewAllQuestions') }}" class="dropdown_link"><span class="badge pull-right"></span>All Questions</a></li>
+                  <li><a href="{{ route('askQuestion') }}" class="dropdown_link"><span class="label label-info pull-right"></span>All Discussions</a></li>
+                  <li><a href="{{ route('askQuestion') }}" class="dropdown_link"><span class="badge pull-right"></span>Link</a></li>
                 </ul>
              </li>
              <li><a href="#" id="btnToggle"><i class="glyphicon glyphicon-th-large"></i></a></li>
-             <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
+             <li><a href="{{ route('logout') }}"><i class="glyphicon glyphicon-log-out"></i></a></li>
            </ul>
         </div>
      </div>

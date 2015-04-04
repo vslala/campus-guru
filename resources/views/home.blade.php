@@ -13,6 +13,16 @@
 <div class="container" id="main">
    <div class="row">
    <div class="col-md-4 col-sm-6">
+           <div class="well">
+                {!! Form::open(["route"=>["statusUpdate"], "method"=>"put", "class"=>"form-horizontal", "id"=>"status_form"]) !!}
+                 <h4>What's New</h4>
+                  <div class="form-group">
+                   <textarea name="status" class="form-control" placeholder="Update your status"></textarea>
+                 </div>
+                 <button class="btn btn-success pull-right" type="submit">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
+               {!! Form::close() !!}
+           </div>
+
         <div class="panel panel-default">
           <div class="panel-heading"><a href="{{ route("viewAllQuestions") }}" class="pull-right">View all</a> <h4>Recently Asked Questions</h4></div>
    			<div class="panel-body">
@@ -29,15 +39,7 @@
               </div>
             </div>
    		</div>
-        <div class="well">
-             {!! Form::open(["route"=>["statusUpdate"], "method"=>"put", "class"=>"form-horizontal", "id"=>"status_form"]) !!}
-              <h4>What's New</h4>
-               <div class="form-group">
-                <textarea name="status" class="form-control" placeholder="Update your status"></textarea>
-              </div>
-              <button class="btn btn-success pull-right" type="submit">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
-            {!! Form::close() !!}
-        </div>
+
 
 
 	</div>
@@ -89,6 +91,9 @@
          </div>
 
   	</div>
+  	</div>
+
+  	<div class="row">
   	<div class="col-md-4 col-sm-6">
          <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Latest Discussion Opened</h4></div>

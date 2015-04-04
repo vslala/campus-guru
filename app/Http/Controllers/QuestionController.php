@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Attachment;
 use App\Comment;
 use App\DislikedAnswer;
 use App\DisplayPicture;
@@ -39,13 +40,14 @@ class QuestionController extends Controller {
     }
 	public function create(Request $request)
 	{
+        $q = new Question();
         if($request->isMethod('put'))
         {
             $title = $request->get('title');
             $category = $request->get('category');
             $content = $request->get('content');
 
-            if($request->file('file')->isValid())
+            if($request->get('file') !== null) //if the file is valid
             {
                 $file = $request->file('file');
                 if($file->getClientMimeType() == 'exe')
@@ -58,21 +60,45 @@ class QuestionController extends Controller {
                     $dir = "images/" . Auth::user()->username . "/attachments";
                     $imageUrl = $dir . "/" . $imageName;
 
-                    $q = new Question();
-                    $q_id = $q->addQuestion(Auth::user()->username,$title,$content,$category,$imageName,$imageUrl,$imageSize,$imageType);
+                    // saving the question in the database
+                    $q_id = $q->addQuestion(Auth::user()->username,$title,$content,$category);
 
                     if($q_id)
                     {
+                        // instantiating the object of for the attachment.
+                        $f = new Attachment();
+                        $flag = $f->addFile($q_id,$imageName,$imageSize,$imageType,$imageUrl);
+                        if($flag)
+                        {
+                            $file->move($dir, $imageName);
+                        }
+                        // saving the tags inserted by the user
                         $tags = $request->get("tags");
                         $tagArray = $this->multiexplode([",","|"," "], $tags);
 //                        dd($tagArray);
+                        // instantiating new object for the tags
                         $q_tags = new QuestionTag();
                         $flag = $q_tags->addTags($tagArray, $q_id);
                         if($flag)
-                            return redirect(route('allQuestions'));
+                            return redirect(route('viewAllQuestions'));
                         else
                             return Redirect::back()->with("flash_message", "Tags are not inserted into the database.");
                     }
+                }
+            } else {
+                // saving the question into the database
+                $q_id = $q->addQuestion(Auth::user()->username,$title,$content,$category);
+                if($q_id)
+                {
+                    $tags = $request->get("tags");
+                    $tagArray = $this->multiexplode([",","|"," "], $tags);
+//                        dd($tagArray);
+                    $q_tags = new QuestionTag();
+                    $flag = $q_tags->addTags($tagArray, $q_id);
+                    if($flag)
+                        return redirect(route('viewAllQuestions'));
+                    else
+                        return Redirect::back()->with("flash_message", "Tags are not inserted into the database.");
                 }
             }
         }
@@ -138,10 +164,16 @@ class QuestionController extends Controller {
         $dislikes = $dislikes->get();
         $question = new Question();
         $question = $question->find($id);
+        $attachment = Attachment::where("q_id", $id)->get();
+        if(count($attachment) <= 0)
+            $attachment = null;
+//        dd($attachment);
         //fetching al answers with their user image
         $answers = DB::table('answers')
             ->leftJoin('display_pictures', 'answers.username', '=', 'display_pictures.username')
-            ->select('answers.id', 'answers.q_id','answers.username','answers.answer','answers.created_at','display_pictures.image_name','display_pictures.image_url')
+            ->select('answers.id', 'answers.q_id','answers.username','answers.answer','answers.created_at',
+                'display_pictures.image_name','display_pictures.image_url'
+            )
             ->get();
         // fetch all comments with their user image
         $comments = DB::table('comments')
@@ -151,7 +183,7 @@ class QuestionController extends Controller {
 //        dd($comments);
 //        dd($answers);
         $image = DisplayPicture::where("username", Auth::user()->username)->get();
-        return view('question.single', compact('question','answers','image', 'comments','likes','dislikes'));
+        return view('question.single', compact('question','answers','image', 'comments','likes','dislikes', 'attachment'));
     }
 	public function showQuestionsByUsername()
 	{
