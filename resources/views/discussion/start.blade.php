@@ -39,5 +39,6 @@
 
     </div>
 
+@include('_postsModal')
 </div>
 @endsection

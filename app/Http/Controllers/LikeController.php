@@ -1,8 +1,10 @@
 <?php namespace App\Http\Controllers;
 
 use App\DislikedAnswer;
+use App\DislikedDiscussion;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\LikedDiscussion;
 use DB;
 use App\LikedAnswer;
 use Illuminate\Http\Request;
@@ -73,27 +75,43 @@ class LikeController extends Controller {
         return $count;
     }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    public function storeLikesDiscussion($dId,$repId)
+    {
+        $l = new LikedDiscussion();
+        $likes = $l->where(['username'=>Auth::user()->username, 'd_id'=>$dId, "rep_id"=>$repId])->get();
+        if(count($likes) <= 0)
+        {
+            $l->username = Auth::user()->username;
+            $l->d_id = $dId;
+            $l->rep_id = $repId;
+            $l->save();
+        }
+        $likes = $l->where(['d_id'=>$dId, "rep_id"=>$repId])->get();
+        $count = count($likes);
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+//            dd($count);
+        if($count)
+            return $count;
+        else
+            return false;
+    }
+
+    public function storeDislikesDiscussion($dId,$repId)
+    {
+        $l = new DislikedDiscussion();
+        $dislikes = $l->where(['username'=>Auth::user()->username, 'd_id'=>$dId, "ans_id"=>$repId])->get();
+        if(count($dislikes) <= 0)
+        {
+            $l->username = Auth::user()->username;
+            $l->d_id = $dId;
+            $l->rep_id = $repId;
+            $l->save();
+        }
+        $dislikes = $l->where(['d_id'=>$dId, "rep_id"=>$repId])->get();
+        $count = count($dislikes);
+
+        return $count;
+    }
 
 	/**
 	 * Update the specified resource in storage.

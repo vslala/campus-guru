@@ -21,6 +21,8 @@
 
 @yield("content")
 
+@include('_postsModal')
+
 @yield("footer")
 </body>
 

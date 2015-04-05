@@ -27,7 +27,7 @@
                             <div class="form-group">
                                <label class="col-md-2">Description<span class="red">*</span> :</label>
                                  <div class="col-md-10">
-                                      {!! Form::textarea("question", null, ['class'=>'form-control']) !!}
+                                      {!! Form::textarea("description", null, ['class'=>'form-control']) !!}
                                       <span class="help-block">What is the discussion all about.</span>
                                  </div>
 

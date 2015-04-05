@@ -7,5 +7,4 @@ class LikedAnswer extends Model {
 
 	protected $table = "liked_answers";
 
-
 }

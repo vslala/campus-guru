@@ -32,6 +32,9 @@ $(document).ready(function(){
         });
     });
 
+    horoscope();
+
+
     ///* pagination */
     //$.fn.pageMe = function(opts){
     //    var $this = this,
@@ -148,3 +151,14 @@ $(document).ready(function(){
     //$('#items').pageMe({pagerSelector:'#myPager',childSelector:'tr',showPrevNext:true,hidePageNumbers:false,perPage:5});
     /****/
 });
+
+var horoscope = function(){
+    var div = $("#horoscope");
+    $(div).html("<img src='http://www.ajaxload.info/images/exemples/25.gif' >");
+    var sign = $("#rashi").html().toLowerCase();
+    blockspring.runParsed("daily-horoscope", { "sign": sign}, { "api_key": "" }, function(res){
+        //console.log(res.params);
+        //console.log(res.params.horoscope);
+        $(div).html(res.params.horoscope);
+    });
+}

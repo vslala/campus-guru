@@ -3,12 +3,15 @@
     {
         $dp[0]['image_url'] = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
     }
+
  ?>
 @extends('master')
 
 @section('links')
     {!! Html::style('css/profile.css') !!}
     {!! Html::script("js/profile.js") !!}
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://cdn.blockspring.com/blockspring.js"></script>
 @endsection
 
 @section('content')
@@ -54,7 +57,7 @@
                                         <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span>{{ $user[0]['created_at'] }}</li>
                                             <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span>
                                                 {{ $user[0]['name'] or 'Name nahi h database mai' }}</li>
-                                      <li class="list-group-item text-right"><span class="pull-left"><strong class="">Rashi: </strong></span> {{ $p[0]['rashi'] or 'Null' }}
+                                      <li class="list-group-item text-right"><span class="pull-left"><strong class="" >Rashi: </strong></span> <span id="rashi">{{ $p[0]['rashi'] or 'Null' }}</span>
 
                                               </li>
                                     </ul>
@@ -75,11 +78,11 @@
 
                     </li>
 
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> 13</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> {{ $totalLikes or '0' }}</li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> {{ $posts or '0' }}</li>
                             <li class="list-group-item text-right"><span class="pull-left"><strong class="">Discussions Started</strong></span> 78</li>
-                            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Questions Asked</strong></span> 78</li>
-                            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Questions Answered</strong></span> 78</li>
+                            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Questions Asked</strong></span> {{ $questionAsked or '0' }}</li>
+                            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Questions Answered</strong></span> {{ $questionAnswered or '0' }}</li>
                 </ul>
 
             </div>
@@ -91,6 +94,7 @@
 
                     </div>
                 </div>
+                <!-- Status Update Panel -->
                 <div class="panel panel-default target">
                     <div class="panel-heading" contenteditable="false">My Status Updates...</div>
                     <div class="panel-body">
@@ -104,7 +108,25 @@
 
                 </div>
 
+                <!--  -->
+                <div class="panel panel-default target">
+                    <div class="panel-heading" contenteditable="false">My Today's Horoscope</div>
+                    <div class="panel-body">
+                <div class="row">
+    				<div class="col-md-12">
+                        <div id="horoscope">
+
+                        </div>
+    				</div>
+
+                </div>
+                    </div>
+
+                </div>
+
             </div>
+
+
 
         </div>
 

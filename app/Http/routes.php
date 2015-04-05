@@ -104,11 +104,41 @@ Route::get('/user/start/discussion', [
     'uses'=>"DiscussionController@index",
     "as"=>"startDiscussion"
 ]);
+Route::get('/user/view/all/discussions', [
+    'uses'=>"DiscussionController@showAll",
+    "as"=>"viewAllDiscussion"
+]);
+Route::get('/user/view/user/discussions', [
+    'uses'=>"DiscussionController@showAllByUsername",
+    "as"=>"userDiscussions"
+]);
+Route::get('/user/view/single/discussions/{id}', [
+    'uses'=>"DiscussionController@show",
+    "as"=>"singleDiscussion"
+]);
 Route::put('/user/start/discussion', [
     'uses'=>"DiscussionController@create",
     "as"=>"createDiscussion"
 ]);
-
+Route::put('/user/like/discussion', [
+    'uses'=>"LikeController@storeLikesDiscussion",
+    "as"=>"likeDiscussion"
+]);
+Route::put('/user/dislike/discussion', [
+    'uses'=>"LikeController@storeDislikesDiscussion",
+    "as"=>"dislikeDiscussion"
+]);
+Route::get('/user/recent/discussion', [
+    'uses'=>"DiscussionController@recentlyStartedDiscussions",
+    "as"=>"recentDiscussions"
+]);
+/*
+ * Replies
+ */
+Route::put('/user/submit/reply', [
+    'uses'=>"DiscussionController@storeReply",
+    "as"=>"addReply"
+]);
 /*
  * Question Controller Starts here
  */
@@ -161,4 +191,12 @@ Route::get('/user/answer/like/{qId}/{ansId}', [
 Route::get('/user/answer/dislike/{qId}/{ansId}', [
     'uses'=>"LikeController@storeDislikes",
     "as"=>"storeDislikes"
+]);
+Route::get('/user/reply/like/{dId}/{repId}', [
+    'uses'=>"LikeController@storeLikesDiscussion",
+    "as"=>"storeLikesDiscussion"
+]);
+Route::get('/user/reply/dislike/{dId}/{repId}', [
+    'uses'=>"LikeController@storeDislikesDiscussion",
+    "as"=>"storeDislikesDiscussion"
 ]);

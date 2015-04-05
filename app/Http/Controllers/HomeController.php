@@ -1,8 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Blog;
 use App\DisplayPicture;
+use App\LikedAnswer;
 use App\Profile;
+use App\Question;
 use App\Status;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -60,13 +63,21 @@ class HomeController extends Controller {
             ->leftJoin("display_pictures", "questions.username", "=","display_pictures.username")
             ->select(['questions.id','questions.title','display_pictures.image_url','display_pictures.image_name'])
             ->get();
+        $discussions = DB::table("discussions")
+            ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")
+            ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->get();
 //        dd($questions);
 //        dd($status);
-		return view('home', compact('status','questions','blog'));
+		return view('home', compact('status','questions','blog','discussions'));
 	}
 
     public function profile()
     {
+        $totalLikes = count(LikedAnswer::where("username", Auth::user()->username)->get());
+        $questionAsked = count(Question::where("username", Auth::user()->username)->get());
+        $questionAnswered = count(Answer::where("username", Auth::user()->username)->get());
+        $posts = count(Status::where("username", Auth::user()->username)->get());
         $user = new Profile();
         $dp = new DisplayPicture();
         $status = new Status();
@@ -76,7 +87,7 @@ class HomeController extends Controller {
         $status = $status->where("username", Auth::user()->username)->get();
         $user = $u->where("username", Auth::user()->username)->get()->toArray();
 //        dd($p);
-        return view('home.profile', compact("p","dp","status","user"));
+        return view('home.profile', compact("p","dp","status","user", 'totalLikes', 'questionAsked', 'posts', 'questionAnswered'));
     }
     public function editProfile(Request $request)
     {

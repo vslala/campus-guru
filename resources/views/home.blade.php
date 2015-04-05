@@ -96,11 +96,19 @@
   	<div class="row">
   	<div class="col-md-4 col-sm-6">
          <div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Latest Discussion Opened</h4></div>
+           <div class="panel-heading"><a href="{{ route("viewAllDiscussion") }}" class="pull-right">View all</a> <h4>Latest Discussion Opened</h4></div>
    			<div class="panel-body">
-              <ul class="list-group">
-              <li class="list-group-item">Latest Discussion Opened</li>
-              </ul>
+   			<input type="hidden" id="fetchDiscussionUrl" value="{{ route("recentDiscussions") }}" />
+
+              <div class="list-group" id="list_of_discussions">
+              @foreach($discussions as $d)
+                <a href="{{ route("show", $d->id) }}" class="list-group-item">
+                    {!! Html::image($d->image_url,$d->image_name, ['class'=>'img img-responsive img-thumbnail', 'style'=>'width:50px;']) !!}
+                    <span id="discussion_link_home">{{ $d->title }}</span>
+                </a>
+              @endforeach
+              </div>
+
             </div>
    		</div>
 

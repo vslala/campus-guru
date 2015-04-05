@@ -49,6 +49,7 @@ $(document).ready(function(){/* jQuery toggle layout */
         });
     });
 
+    // Random jokes generator
     $("#quote").append("<img src='http://www.ajaxload.info/images/exemples/25.gif' >");
     setInterval(function(){
         $("#quote").append("<img src='http://www.ajaxload.info/images/exemples/25.gif' >");
@@ -78,6 +79,37 @@ $(document).ready(function(){/* jQuery toggle layout */
                 $(list_of_questions).empty();
                 $.each(data, function (key,value) {
                     $(list_of_questions).append("<a style='font-family: cursive,Lobster; " +
+                    "font-weight: bold; color: #843534;' class='list-group-item' " +
+                    "href='"+ base_url +"/user/show/question/"+ value.id +"'>" +
+                    "<img class='img img-responsive img-thumbnail' " +
+                    "style='width: 50px;' " +
+                    "src='"+base_url+value.image_url+"'>"+ value.title +"" +
+                    "<span class='glyphicon glyphicon-question-sign'></span>" +
+                    "</a>");
+                    //console.log(value.id + ":" + value.title);
+                });
+
+            },
+            error : function(xhr,status,msg){
+                alert("ERROR: We are working on it!");
+            }
+        });
+    }, 60000);
+
+    // Top 5 Discussions with images ajax
+    setInterval(function(){
+        var list_of_discussions = $("#list_of_discussions");
+        $(list_of_discussions).html("<img src='http://www.ajaxload.info/images/exemples/25.gif' >");
+        var url = $("#fetchDiscussionUrl").val();
+
+        $.ajax({
+            url : url,
+            type : "GET",
+            success : function(data){
+                data = $.parseJSON(data);
+                $(list_of_discussions).empty();
+                $.each(data, function (key,value) {
+                    $(list_of_discussions).append("<a style='font-family: cursive,Lobster; " +
                     "font-weight: bold; color: #843534;' class='list-group-item' " +
                     "href='"+ base_url +"/user/show/question/"+ value.id +"'>" +
                     "<img class='img img-responsive img-thumbnail' " +

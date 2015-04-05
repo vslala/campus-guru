@@ -1,9 +1,16 @@
 <?php namespace App\Http\Controllers;
 
+use App\Discussion;
+use App\DislikedDiscussion;
+use App\DisplayPicture;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\LikedDiscussion;
+use App\Reply;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class DiscussionController extends Controller {
 
@@ -22,9 +29,23 @@ class DiscussionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request)
 	{
-		//
+		if($request->isMethod("put"))
+        {
+            $title = $request->get("title");
+            $tags = $request->get("tags");
+            $category = $request->get("category");
+            $description = $request->get("description");
+
+            $d = new Discussion();
+            $flag = $d->addDiscussion(Auth::user()->username, $title,$description,$category, $tags);
+
+            if($flag)
+                return redirect(route("viewAllDiscussion"));
+            else
+                return Redirect::back()->with("flash_message", "Tags are not inserted into the database.");
+        }
 	}
 
 	/**
@@ -32,10 +53,47 @@ class DiscussionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function storeReply(Request $request)
 	{
-		//
-	}
+        if($request->ajax())
+        {
+            $username = Auth::user()->username;
+            $d_id = $request->get('d_id');
+            $reply = $request->get('reply');
+            $d = new Reply();
+            $thisReply = $d->addReply($d_id, $reply, $username);
+
+            if($thisReply)
+            {
+                $image = new DisplayPicture();
+                $image = $image->where("username", $username)->get()->toArray();
+                $imageUrl = $image[0]['image_url'];
+                $imageName = $image[0]['image_name'];
+
+                $response = ["imageUrl"=>$imageUrl, "imageName"=>$imageName, "reply"=>$thisReply];
+                $response = json_encode($response);
+                return $response;
+
+            }
+            else
+                return false;
+        }
+
+        if($request->isMethod('put'))
+        {
+            $username = Auth::user()->username;
+            $d_id = $request->get('d_id');
+            $reply = $request->get('reply');
+            $q = new Reply();
+            $flag = $q->addReply($d_id, $reply, $username);
+
+            if($flag)
+                return Redirect::back();
+            else
+                return false;
+        }
+    }
+
 
 	/**
 	 * Display the specified resource.
@@ -45,7 +103,20 @@ class DiscussionController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $likes = LikedDiscussion::all();
+        $dislikes = DislikedDiscussion::all();
+        $discussion = Discussion::find($id);
+
+        //fetching al answers with their user image
+        $replies = DB::table('replies')
+            ->leftJoin('display_pictures', 'replies.username', '=', 'display_pictures.username')
+            ->select('replies.id', 'replies.d_id','replies.username','replies.reply','replies.created_at',
+                'display_pictures.image_name','display_pictures.image_url'
+            )
+            ->get();
+//        dd($replies);
+        $image = DisplayPicture::where("username", Auth::user()->username)->get();
+        return view('discussion.single', compact('discussion','replies','image','likes','dislikes'));
 	}
 
 	/**
@@ -54,10 +125,21 @@ class DiscussionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function showAll()
 	{
-		//
+        $discussions = DB::table("discussions")
+            ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")
+            ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->get();
+//        dd($discussions);
+        return view('discussion.all', compact('discussions'));
 	}
+
+    public function showAllByUsername()
+    {
+        $discussions = Discussion::all();
+        return view("discussion.userDiscussions", compact('discussions'));
+    }
 
 	/**
 	 * Update the specified resource in storage.
@@ -69,6 +151,17 @@ class DiscussionController extends Controller {
 	{
 		//
 	}
+
+    public function recentlyStartedDiscussions()
+    {
+        $response = DB::table("discussions")
+            ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")
+            ->take(5)
+            ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->get();
+
+        return json_encode($response);
+    }
 
 	/**
 	 * Remove the specified resource from storage.

@@ -133,6 +133,6 @@
         <div class="col-md-1"></div>
 
     </div>
-
+@include('_postsModal')
 </div>
 @endsection

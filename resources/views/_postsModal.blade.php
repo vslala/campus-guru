@@ -26,7 +26,7 @@
                               <div class="h4">My Discussions</div>
                         </div>
                         <div class="panel-body text-center">
-                            <a href="#" class="btn btn-lg btn-primary">View All</a>
+                            <a href="{{ route("userDiscussions") }}" class="btn btn-lg btn-primary">View All</a>
                         </div>
                     </div>
                 </div>
