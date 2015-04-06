@@ -2,6 +2,7 @@
 
 use App\Answer;
 use App\Blog;
+use App\Discussion;
 use App\DisplayPicture;
 use App\LikedAnswer;
 use App\Profile;
@@ -55,10 +56,13 @@ class HomeController extends Controller {
 //        dd($blog);
         // status in descending order
         $status = DB::table('statuses')
-            ->join('display_pictures', 'statuses.username', '=', 'display_pictures.username')
+            ->leftJoin('display_pictures', 'statuses.username', '=', 'display_pictures.username')
             ->take(5)
             ->orderBy('statuses.created_at', 'desc')
-            ->get();
+            ->get(['statuses.id', 'statuses.username', 'statuses.status',
+                'display_pictures.image_name','display_pictures.image_url',
+                'statuses.likeCount', 'statuses.dislikeCount', 'statuses.created_at', 'statuses.updated_at'
+            ]);
         $questions = DB::table("questions")
             ->leftJoin("display_pictures", "questions.username", "=","display_pictures.username")
             ->select(['questions.id','questions.title','display_pictures.image_url','display_pictures.image_name'])
@@ -78,16 +82,20 @@ class HomeController extends Controller {
         $questionAsked = count(Question::where("username", Auth::user()->username)->get());
         $questionAnswered = count(Answer::where("username", Auth::user()->username)->get());
         $posts = count(Status::where("username", Auth::user()->username)->get());
-        $user = new Profile();
-        $dp = new DisplayPicture();
-        $status = new Status();
-        $u = new User();
-        $p = $user->where("username", Auth::user()->username)->get()->toArray();
-        $dp = $dp->where("username", Auth::user()->username)->get()->toArray();
-        $status = $status->where("username", Auth::user()->username)->get();
-        $user = $u->where("username", Auth::user()->username)->get()->toArray();
-//        dd($p);
-        return view('home.profile', compact("p","dp","status","user", 'totalLikes', 'questionAsked', 'posts', 'questionAnswered'));
+        $realName = Auth::user()->name;
+        $user = Profile::where("username", Auth::user()->username)->get()->toArray();
+        $userImage = DisplayPicture::where("username",  Auth::user()->username)->get()->toArray();
+        $status = Status::where('username',  Auth::user()->username)->get();
+        $discussionStarted = count(Discussion::where("username", Auth::user()->username)->get());
+
+        if(count($userImage) <= 0){
+            $userImage[0]['image_url'] = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
+            $userImage[0]['image_name'] = "No image";
+        }
+
+
+        return view('home.profile', compact("user","userImage","status", 'totalLikes', 'questionAsked',
+            'posts', 'questionAnswered', 'realName', 'discussionStarted'));
     }
     public function editProfile(Request $request)
     {
@@ -176,14 +184,14 @@ class HomeController extends Controller {
         if($request->ajax())
         {
             // For Put Request
-            $statuses = $request->get("status");
+            $status = $request->get("status");
             $s = new Status();
-            $flag = $s->createStatus(Auth::user()->username, $statuses);
+            $flag = $s->createStatus(Auth::user()->username, $status);
 
             if($flag)
             {
                 $status = DB::table('statuses')
-                    ->join('display_pictures', 'statuses.username', '=', 'display_pictures.username')
+                    ->leftJoin('display_pictures', 'statuses.username', '=', 'display_pictures.username')
                     ->orderBy('statuses.created_at', 'desc')
                     ->get();
                 $status = json_encode($status);
@@ -295,6 +303,28 @@ class HomeController extends Controller {
         return json_encode($response);
 
 
+    }
+
+    public function profileVisit($username)
+    {
+        $realName = User::where("username",$username)->get(['name']);
+        $user = Profile::where("username", $username)->get()->toArray();
+        $userImage = DisplayPicture::where("username", $username)->get()->toArray();
+        $totalLikes = count(LikedAnswer::where("username", Auth::user()->username)->get());
+        $questionAsked = count(Question::where("username", Auth::user()->username)->get());
+        $questionAnswered = count(Answer::where("username", Auth::user()->username)->get());
+        $posts = count(Status::where("username", Auth::user()->username)->get());
+        $status = Status::where("username", $username)->get();
+        $discussionStarted = count(Discussion::where("username", $username)->get());
+
+        if(count($userImage) <= 0){
+            $userImage[0]['image_url'] = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
+            $userImage[0]['image_name'] = "No image";
+        }
+//        dd($userImage);
+
+        return view('home.profileVisit', compact('user','realName', 'userImage', 'totalLikes',
+            'questionAsked','status', 'questionAnswered', 'posts', 'discussionStarted'));
     }
 
 }

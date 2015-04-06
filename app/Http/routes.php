@@ -120,6 +120,10 @@ Route::put('/user/start/discussion', [
     'uses'=>"DiscussionController@create",
     "as"=>"createDiscussion"
 ]);
+
+/*
+ * LikeController Starts from here
+ */
 Route::put('/user/like/discussion', [
     'uses'=>"LikeController@storeLikesDiscussion",
     "as"=>"likeDiscussion"
@@ -127,6 +131,14 @@ Route::put('/user/like/discussion', [
 Route::put('/user/dislike/discussion', [
     'uses'=>"LikeController@storeDislikesDiscussion",
     "as"=>"dislikeDiscussion"
+]);
+Route::get('/user/like/status/{id}', [
+    'uses'=>"LikeController@updateLikeStatus",
+    "as"=>"updateLikeStatus"
+]);
+Route::get('/user/dislike/status/{id}', [
+    'uses'=>"LikeController@updateDislikeStatus",
+    "as"=>"updateDislikeStatus"
 ]);
 Route::get('/user/recent/discussion', [
     'uses'=>"DiscussionController@recentlyStartedDiscussions",

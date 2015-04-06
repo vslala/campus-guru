@@ -20,6 +20,8 @@ class CreateDisplayPicturesTable extends Migration {
             $table->string("image_type");
             $table->string("image_url");
             $table->integer("image_size")->unsigned();
+            $table->integer("likeCount")->unsigned()->nullable();
+            $table->integer("dislikeCount")->unsigned()->nullable();
 			$table->timestamps();
 		});
 	}

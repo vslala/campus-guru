@@ -24,7 +24,11 @@ $(document).ready(function(){/* jQuery toggle layout */
                 $(statusSection).empty();
                 for(var i=0; i < data.length; i++)
                 {
-
+                    if(data[i]['image_url'] == null || data[i]['image_url'])
+                    {
+                        data[i]['image_url'] = "http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png";
+                        data[i]['image_name'] = "dp";
+                    }
                     $(statusSection).append(
                         '<ul class="nav nav-pills list-inline">' +
                         '<li>' +
@@ -115,7 +119,7 @@ $(document).ready(function(){/* jQuery toggle layout */
                     "<img class='img img-responsive img-thumbnail' " +
                     "style='width: 50px;' " +
                     "src='"+base_url+value.image_url+"'>"+ value.title +"" +
-                    "<span class='glyphicon glyphicon-question-sign'></span>" +
+                    "<span class='glyphicon glyphicon-cloud'></span>" +
                     "</a>");
                     //console.log(value.id + ":" + value.title);
                 });
@@ -126,6 +130,50 @@ $(document).ready(function(){/* jQuery toggle layout */
             }
         });
     }, 60000);
+
+    /*
+    status like count incrementer
+     */
+    $("body").on("click", "#statusLike", function (event) {
+        event.preventDefault();
+        var url = $(this).attr('href');
+        var badge = $(this).find('.badge');
+        console.log(url);
+
+        $.ajax({
+            url : url,
+            type : "GET",
+            success : function(data){
+                $(badge).html(data);
+                console.log(data);
+            },
+            error : function(xhr,status,msg){
+                alert("ERROR: "+ xhr.responseText);
+            }
+        });
+    });
+
+    /*
+     status dislike count incrementer
+     */
+    $("body").on("click", "#statusDislike", function (event) {
+        event.preventDefault();
+        var url = $(this).attr('href');
+        var badge = $(this).find('.badge');
+        console.log(url);
+
+        $.ajax({
+            url : url,
+            type : "GET",
+            success : function(data){
+                $(badge).html(data);
+                console.log(data);
+            },
+            error : function(xhr,status,msg){
+                alert("ERROR: "+ xhr.responseText);
+            }
+        })
+    })
 
 
 });

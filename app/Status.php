@@ -27,4 +27,6 @@ class Status extends Model {
         $s->delete();
     }
 
+
+
 }

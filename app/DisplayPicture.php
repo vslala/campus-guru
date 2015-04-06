@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class DisplayPicture extends Model {
 
@@ -49,6 +50,38 @@ class DisplayPicture extends Model {
         {
             return $this->addImage($username, $imageName, $imageType, $imageUrl, $imageSize);
         }
+    }
+
+    public function updateLikeCount($id)
+    {
+        $dp = DisplayPicture::find($id);
+        $likeCount = $dp->likeCount;
+        if($likeCount == null or $likeCount == '')
+        {
+            $likeCount = 1;
+        }else {
+            $likeCount++;
+        }
+        $dp->likeCount = $likeCount;
+        $dp->save();
+
+        return $likeCount;
+    }
+
+    public function updateDislikeCount($id)
+    {
+        $dp = DisplayPicture::find($id);
+        $dislikeCount = $dp->dislikeCount;
+        if($dislikeCount == null or $dislikeCount == '')
+        {
+            $dislikeCount = 1;
+        }else {
+            $dislikeCount++;
+        }
+        $dp->dislikeCount = $dislikeCount;
+        $dp->save();
+
+        return $dislikeCount;
     }
 
 }

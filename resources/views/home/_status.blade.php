@@ -1,11 +1,11 @@
-@if(count($p) > 0)
+@if(count($user) > 0 && count($status) > 0)
 @foreach($status as $s)
                             <ul class="nav nav-pills list-inline">
                                 <li>
                                     <a href="{{ route("profileVisit", [
-                                        $p[0]['username']
+                                        $user[0]['username']
                                     ]) }}" >
-                                        {!! Html::image($dp[0]['image_url'], $dp[0]['image_name'], ['class'=>'img img-thumbnail img-responsive', 'style'=>'height: 100px;']) !!}
+                                        {!! Html::image($userImage[0]['image_url'], $userImage[0]['image_name'], ['class'=>'img img-thumbnail img-responsive', 'style'=>'height: 100px;']) !!}
                                     </a>
 
 

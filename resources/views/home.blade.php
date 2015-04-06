@@ -52,9 +52,7 @@
                         @foreach($status as $s)
                             <ul class="nav nav-pills list-inline">
                                 <li>
-                                    <a href="{{ route("profileVisit", [
-                                        $s->username
-                                    ]) }}" >
+                                    <a href="{{ route("profileVisit", $s->username) }}" >
                                         {!! Html::image($s->image_url, $s->image_name, ['class'=>'img img-thumbnail img-responsive', 'style'=>'height: 100px;']) !!}
                                     </a>
 
@@ -63,6 +61,20 @@
                                 <li style="margin-top: 2%;"><span style="font-family: cursive,Lobster; font-weight: bold; color: #843534;">{{ $s->status or 'Status' }}</span>
                                     <br>
                                     <div class="help-block">created at: {{ $s->created_at }}</div>
+                                 </li>
+                                 <li>
+                                    <ul class="list-inline">
+                                        <a href="{{ route('updateLikeStatus', $s->id) }}" class="inline" id="statusLike">
+                                            <span class="badge">{{ $s->likeCount or '0' }}</span>
+                                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                                        </a>
+                                    &nbsp; | &nbsp;
+                                        <a href="{{ route('updateDislikeStatus', $s->id)}}" class="inline" id="statusDislike">
+                                            <span class="badge">{{ $s->dislikeCount or '0' }}</span>
+                                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                                        </a>
+                                    </ul>
+
                                  </li>
 
 

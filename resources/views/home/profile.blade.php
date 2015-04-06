@@ -1,7 +1,7 @@
 <?php
-    if(count($dp) <= 0)
+    if(count($userImage) <= 0)
     {
-        $dp[0]['image_url'] = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
+        $userImage[0]->image_url = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
     }
 
  ?>
@@ -24,9 +24,9 @@
         <div class="row first-row">
             <div class="col-sm-12">
             <div class="col-sm-2">
-            <a href="{{ route("profile") }}" class="pull-right">{!! Html::image($dp[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-thumbnail']) !!}
+            <a href="{{ route("profile") }}" class="pull-right">{!! Html::image($userImage[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-thumbnail']) !!}
              </a>
-                 <h1 class="col-sm-2">{{ $p[0]["username"] or 'Username'}}</h1>
+                 <h1 class="col-sm-2">{{ $user[0]['username'] or 'Username'}}</h1>
             </div>
           {{--<div class="col-sm-2"><a href="/users" class="pull-right">{!! Html::image($dp[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-circle']) !!}</a>--}}
                 <div class="col-sm-6 pull-right">
@@ -54,10 +54,10 @@
                     </div>
                     <ul class="list-group">
 
-                                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span>{{ $user[0]['created_at'] }}</li>
+                                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span>{{ $user[0]['created_at'] or 'null' }}</li>
                                             <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span>
-                                                {{ $user[0]['name'] or 'Name nahi h database mai' }}</li>
-                                      <li class="list-group-item text-right"><span class="pull-left"><strong class="" >Rashi: </strong></span> <span id="rashi">{{ $p[0]['rashi'] or 'Null' }}</span>
+                                                {{ $realName or 'Not Provided' }}</li>
+                                      <li class="list-group-item text-right"><span class="pull-left"><strong class="" >Rashi: </strong></span> <span id="rashi">{{ $user[0]['rashi'] or 'Null' }}</span>
 
                                               </li>
                                     </ul>
@@ -68,7 +68,7 @@
                     <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i>
 
                     </div>
-                    <div class="panel-body"><a href="{{ $p[0]['website'] or '' }}" class="">{{ $p[0]['website'] or '' }}</a>
+                    <div class="panel-body"><a href="http://{{ $user[0]['website'] or '' }}" class="">{{ $user[0]['website'] or '' }}</a>
 
                     </div>
                 </div>
@@ -80,7 +80,7 @@
 
                     <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> {{ $totalLikes or '0' }}</li>
                         <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> {{ $posts or '0' }}</li>
-                            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Discussions Started</strong></span> 78</li>
+                            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Discussions Started</strong></span> {{ $discussionStarted or '0' }}</li>
                             <li class="list-group-item text-right"><span class="pull-left"><strong class="">Questions Asked</strong></span> {{ $questionAsked or '0' }}</li>
                             <li class="list-group-item text-right"><span class="pull-left"><strong class="">Questions Answered</strong></span> {{ $questionAnswered or '0' }}</li>
                 </ul>
@@ -90,7 +90,7 @@
             <div class="col-sm-9" contenteditable="false" style="">
                 <div class="panel panel-default">
                     <div class="panel-heading">About Me</div>
-                    <div class="panel-body"> {{ $p[0]['about_me'] or '' }}
+                    <div class="panel-body"> {{ $user[0]['about_me'] or '' }}
 
                     </div>
                 </div>

@@ -2,9 +2,12 @@
 
 use App\DislikedAnswer;
 use App\DislikedDiscussion;
+use App\DislikedStatus;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\LikedDiscussion;
+use App\LikedStatus;
+use App\Status;
 use DB;
 use App\LikedAnswer;
 use Illuminate\Http\Request;
@@ -113,6 +116,52 @@ class LikeController extends Controller {
         return $count;
     }
 
+    public function updateLikeStatus($id)
+    {
+        $l = new LikedStatus();
+        $liked = $l->where(['username'=>Auth::user()->username, 'status_id'=>$id])->get();
+        if(count($liked) <= 0)
+        {
+            $l->username = Auth::user()->username;
+            $l->status_id = $id;
+            $l->save();
+
+            $lc = Status::find($id);
+            $likeCount = $lc->likeCount;
+            $likeCount++;
+            $lc->likeCount = $likeCount;
+            $lc->save();
+        }
+        $likeCount = new Status();
+        $count = $likeCount->where("id", $id)->get(['likeCount'])->toArray();
+        $count = $count[0]['likeCount'];
+
+        return $count;
+
+    }
+    public function updateDislikeStatus($id)
+    {
+        $dl = new DislikedStatus();
+        $disliked = $dl->where(['username'=>Auth::user()->username, 'status_id'=>$id])->get();
+        if(count($disliked) <= 0)
+        {
+            $dl->username = Auth::user()->username;
+            $dl->status_id = $id;
+            $dl->save();
+
+            $d = Status::find($id);
+            $dislikeCount = $d->dislikeCount;
+            $dislikeCount++;
+            $d->dislikeCount = $dislikeCount;
+            $d->save();
+        }
+        $dislikeCount = new Status();
+        $count = $dislikeCount->where("id", $id)->get(['dislikeCount'])->toArray();
+        $count = $count[0]['dislikeCount'];
+
+        return $count;
+
+    }
 	/**
 	 * Update the specified resource in storage.
 	 *
