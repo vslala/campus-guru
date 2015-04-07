@@ -24,6 +24,7 @@ $(document).ready(function(){
             type : "PUT",
             success : function(data){
                 alert(data);
+                location.reload(true);
                 //console.log(data);
             },
             error : function(xhr,status,msg){

@@ -102,4 +102,28 @@ $(document).ready(function(){
         })
     });
 
+    /*
+    Complain & Confession Report Abuse Ajax Delete
+     */
+    $("body").on("click", "#report_abuse", function (event) {
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var parent = $(this).parents("li");
+        //console.log($(parent).attr("class"));
+
+        $.ajax({
+            url : url,
+            type : "GET",
+            success : function(data){
+                console.log(data.message);
+                alert(data.message);
+                $(parent).remove();
+            },
+            error : function(xhr,status,msg){
+                console.log("ERROR: "+ xhr.responseText);
+            }
+        });
+    });
+
+
 });

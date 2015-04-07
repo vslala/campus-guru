@@ -219,3 +219,43 @@ Route::get('/user/reply/dislike/{dId}/{repId}', [
     'uses'=>"LikeController@storeDislikesDiscussion",
     "as"=>"storeDislikesDiscussion"
 ]);
+
+/*
+ * CCController Starte here
+ */
+Route::get('/complain/box', [
+    'uses'=>"CCController@complain",
+    "as"=>"complain"
+]);
+Route::get('/confession/box', [
+    'uses'=>"CCController@confession",
+    "as"=>"confession"
+]);
+Route::put('/store/complain', [
+    'uses'=>"CCController@storeComplain",
+    "as"=>"storeComplain"
+]);
+Route::get('/complains/all', [
+    'uses'=>"CCController@viewAllComplains",
+    "as"=>"viewAllComplains"
+]);
+Route::get('/complains/report/abuse/{id}', [
+    'uses'=>"CCController@deleteComplain",
+    "as"=>"deleteComplain"
+]);
+Route::put('/store/confession', [
+    'uses'=>"CCController@storeConfession",
+    "as"=>"storeConfession"
+]);
+Route::get('/confessions/all', [
+    'uses'=>"CCController@viewAllConfessions",
+    "as"=>"viewAllConfessions"
+]);
+Route::get('/confession/report/abuse/{id}', [
+    'uses'=>"CCController@deleteCofession",
+    "as"=>"deleteConfession"
+]);
+Route::get('/confession/report/abuse/{id}', [
+    'uses'=>"CCController@deleteConfession",
+    "as"=>"deleteConfession"
+]);

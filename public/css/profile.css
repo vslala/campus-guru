@@ -89,3 +89,13 @@ body{
     color: darkblue;
     font-family: cursive, "Lobster";
 }
+.complains{
+    font-family: cursive, "Lobster";
+    font-size: large;
+    color: darkblue;
+}
+.college{
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+    font-size: larger;
+    color: crimson;
+}

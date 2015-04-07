@@ -41,6 +41,11 @@
                             <a href="{{ route("startDiscussion") }}" class="btn btn-primary"> Start a Discussion</a>
                             <a href="{{ route("askQuestion") }}" class="btn btn-primary">Ask Question?</a>
                           </div>
+
+                          <div style="margin-top: 1em;">
+                            <a href="{{ route("complain") }}" class="btn btn-danger">Complain Box</a>
+                            <a href="{{ route("confession") }}" class="btn btn-warning">Confession Box</a>
+                          </div>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 
 @section('links')
 	<!-- script references -->
-      {!! Html::script("js/scripts.js") !!}
+
 @endsection
 
 @section('content')
