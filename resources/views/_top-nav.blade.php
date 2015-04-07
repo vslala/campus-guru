@@ -9,14 +9,17 @@
 
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse1">
-          <form class="navbar-form pull-left">
+          {!! Form::open(["route"=>["_searchUsername"], 'method'=>"PUT" ,'class'=>"navbar-form pull-left", 'id'=>"searchForm" ]) !!}
               <div class="input-group" style="max-width:470px;">
-                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                <input type="text" class="form-control" autocomplete="off" placeholder="Search" name="searchTerm" id="srch-term">
+                <div id="search_result" style="z-index: 9;">
+
+                </div>
                 <div class="input-group-btn">
-                  <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                  <button class="btn btn-default btn-primary" type="submit" id="submitBtn"><i class="glyphicon glyphicon-search"></i></button>
                 </div>
               </div>
-          </form>
+          {!! Form::close() !!}
           <ul class="nav navbar-nav navbar-right">
              <li><a href="{{ route("profile") }}" >Profile</a></li>
              <li>

@@ -162,16 +162,14 @@ class LikeController extends Controller {
         return $count;
 
     }
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+
+    public function mostLikedStatus()
+    {
+        $mostLiked = Status::whereRaw('likeCount = (select max(`likeCount`) from statuses)')->get();
+//        dd($mostLiked);
+        return json_encode($mostLiked);
+    }
+
 
 	/**
 	 * Remove the specified resource from storage.

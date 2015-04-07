@@ -8,7 +8,6 @@
 @section('content')
 
 @include('_top-nav')
-
 <!--main-->
 <div class="container" id="main">
    <div class="row">
@@ -64,13 +63,13 @@
                                  </li>
                                  <li>
                                     <ul class="list-inline">
-                                        <a href="{{ route('updateLikeStatus', $s->id) }}" class="inline" id="statusLike">
-                                            <span class="badge">{{ $s->likeCount or '0' }}</span>
+                                        <a href="{{ route("updateLikeStatus", $s->id) }}" class="inline" id="statusLike">
+                                            <span class="badge">{{ $s->likeCount or "0" }}</span>
                                             <span class="glyphicon glyphicon-thumbs-up"></span>
                                         </a>
                                     &nbsp; | &nbsp;
-                                        <a href="{{ route('updateDislikeStatus', $s->id)}}" class="inline" id="statusDislike">
-                                            <span class="badge">{{ $s->dislikeCount or '0' }}</span>
+                                        <a href="{{ route("updateDislikeStatus", $s->id)}}" class="inline" id="statusDislike">
+                                            <span class="badge">{{ $s->dislikeCount or "0" }}</span>
                                             <span class="glyphicon glyphicon-thumbs-down"></span>
                                         </a>
                                     </ul>
@@ -149,16 +148,19 @@
         <div class="panel panel-default">
           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Most Liked Status</h4></div>
    			<div class="panel-body">
-                Orange are orange, Apples are red and skies are blue. Woohoo!!!
+   			<input type="hidden" id="mostLikedStatusUrl" value="{{ route('mostLikedStatus')}}" />
+                <div class="most-liked" id="most_liked_status">
+
+                </div>
             </div>
    		</div>
 
 
       	 <div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Latest Questions Asked</h4></div>
+           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Complain Box</h4></div>
    			<div class="panel-body">
               <ul class="list-group">
-              <li class="list-group-item">Latest Question?</li>
+              <li class="list-group-item">Complain #1</li>
               </ul>
             </div>
    		 </div>

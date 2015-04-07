@@ -72,7 +72,13 @@ class HomeController extends Controller {
             ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
             ->get();
 //        dd($questions);
-//        dd($status);
+//        dd($status[0]->image_url);
+        foreach($status as $s)
+        {
+            if($s->image_url == null or $s->image_url == '')
+                $s->image_url = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
+        }
+
 		return view('home', compact('status','questions','blog','discussions'));
 	}
 
@@ -193,7 +199,10 @@ class HomeController extends Controller {
                 $status = DB::table('statuses')
                     ->leftJoin('display_pictures', 'statuses.username', '=', 'display_pictures.username')
                     ->orderBy('statuses.created_at', 'desc')
-                    ->get();
+                    ->get(['statuses.id', 'statuses.username', 'statuses.status',
+                'display_pictures.image_name','display_pictures.image_url',
+                'statuses.likeCount', 'statuses.dislikeCount', 'statuses.created_at', 'statuses.updated_at'
+                    ]);
                 $status = json_encode($status);
 
                 return $status;
@@ -326,5 +335,7 @@ class HomeController extends Controller {
         return view('home.profileVisit', compact('user','realName', 'userImage', 'totalLikes',
             'questionAsked','status', 'questionAnswered', 'posts', 'discussionStarted'));
     }
+
+
 
 }

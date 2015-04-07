@@ -2,6 +2,7 @@
 $(document).ready(function(){/* jQuery toggle layout */
 
     base_url = "http://localhost/campusguru/public/";
+    load_img = '<img src="http://www.ajaxload.info/images/exemples/25.gif" >';
     // Ajax Status Post
     /* Status Post */
     $("#status_form").submit(function (event) {
@@ -9,8 +10,10 @@ $(document).ready(function(){/* jQuery toggle layout */
 
         var url = $(this).attr("action");
         var data = $(this).serialize();
+        var updateLikeStatusLink = $("#statusLike").attr("href");
+        var updateDislikeStatusLink = $("#statusDislike").attr("href");
         var statusSection = $("#status_section");
-        $(statusSection).html("<img src='http://www.ajaxload.info/images/exemples/25.gif' >");
+        $(statusSection).html(load_img);
         //var imgLocation = "http://localhost/campusguru/public/";
         console.log(data);
         $.ajax({
@@ -18,9 +21,9 @@ $(document).ready(function(){/* jQuery toggle layout */
             type : "PUT",
             data : data,
             success : function(data){
-                console.log(data);
+                //console.log(data);
                 data = $.parseJSON(data);
-                console.log(data[0]['username']);
+                //console.log(data[0]['username']);
                 $(statusSection).empty();
                 for(var i=0; i < data.length; i++)
                 {
@@ -28,6 +31,14 @@ $(document).ready(function(){/* jQuery toggle layout */
                     {
                         data[i]['image_url'] = "http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png";
                         data[i]['image_name'] = "dp";
+                    }
+                    if(data[i]['likeCount'] == null)
+                    {
+                        data[i]['likeCount'] = 0;
+                    }
+                    if(data[i]['dislikeCount'] == null || data[i]['dislikeCount'] == '')
+                    {
+                        data[i]['dislikeCount'] == 0;
                     }
                     $(statusSection).append(
                         '<ul class="nav nav-pills list-inline">' +
@@ -41,6 +52,19 @@ $(document).ready(function(){/* jQuery toggle layout */
                         '<br>' +
                         '<div class="help-block">created at: ' + data[i]['created_at'] +''+
                     '</li>' +
+                        '<br>' +
+                        '<li>' +
+                        '<ul class="list-inline">' +
+                        '<a href="'+ updateLikeStatusLink +'class="inline" id="statusLike">' +
+                        '<span class="badge">'+ data[i]['likeCount'] +'</span>' +
+                        '<span class="glyphicon glyphicon-thumbs-up"></span>' +
+                        '</a>' +
+                        '<a href="'+ updateDislikeStatusLink +'class="inline" id="statusDislike">' +
+                        '<span class="badge">'+ data[i]['dislikeCount'] +'</span>' +
+                        '<span class="glyphicon glyphicon-thumbs-down"></span>' +
+                        '</a>' +
+                        '</ul>' +
+                        '</li>' +
                     '</ul>' +
                     '<hr>'
                 );
@@ -54,9 +78,9 @@ $(document).ready(function(){/* jQuery toggle layout */
     });
 
     // Random jokes generator
-    $("#quote").append("<img src='http://www.ajaxload.info/images/exemples/25.gif' >");
+    $("#quote").append(load_img);
     setInterval(function(){
-        $("#quote").append("<img src='http://www.ajaxload.info/images/exemples/25.gif' >");
+        $("#quote").append(load_img);
         $.ajax({
             url: "http://api.icndb.com/jokes/random",
             type: "GET",
@@ -72,7 +96,7 @@ $(document).ready(function(){/* jQuery toggle layout */
     // Top 5 Questions with images ajax
     setInterval(function(){
         var list_of_questions = $("#list_of_questions");
-        $(list_of_questions).html("<img src='http://www.ajaxload.info/images/exemples/25.gif' >");
+        $(list_of_questions).html(load_img);
         var url = $("#fetchQuestionUrl").val();
 
         $.ajax({
@@ -103,7 +127,7 @@ $(document).ready(function(){/* jQuery toggle layout */
     // Top 5 Discussions with images ajax
     setInterval(function(){
         var list_of_discussions = $("#list_of_discussions");
-        $(list_of_discussions).html("<img src='http://www.ajaxload.info/images/exemples/25.gif' >");
+        $(list_of_discussions).html(load_img);
         var url = $("#fetchDiscussionUrl").val();
 
         $.ajax({
@@ -172,10 +196,82 @@ $(document).ready(function(){/* jQuery toggle layout */
             error : function(xhr,status,msg){
                 alert("ERROR: "+ xhr.responseText);
             }
-        })
-    })
+        });
+    });
+
+
+    setInterval(function () {
+        var mostLikedStatus = $("#most_liked_status");
+        var url = $("#mostLikedStatusUrl").val();
+        $(mostLikedStatus).html(load_img);
+        $.ajax({
+            url : url,
+            type : "GET",
+            success : function(data){
+                data = $.parseJSON(data);
+                $(mostLikedStatus).html(data[0]['status'] + '<br>' + '' +
+                '<a class="active btn btn-primary btn-sm"><span class="badge">'+ data[0]['likeCount'] +'</span></a>' +
+                '' +
+                    '  |  ' +
+                    '<a class="active btn btn-danger btn-sm"><span class="badge badge-primary">'+ data[0]['dislikeCount'] +'</span></a>' +
+                    ''
+                );
+            },
+            error : function(xhr, status, msg){
+                console.log("ERROR: "+ xhr.responseText);
+            }
+        });
+    }, 60000);
+
+    /*
+    Search VIA username at the _top-nav
+     */
+    $("#srch-term").keyup(function(){
+        $("#submitBtn").click();
+    });
+    $("#searchForm").submit(function(event){
+        event.preventDefault();
+        var searchResult = $("#search_result");
+        var url = $(this).attr("action");
+        var data = $(this).serialize();
+        console.log(url);
+
+        $.ajax({
+            url : url,
+            type : "PUT",
+            data : data,
+            success : function(data){
+                data = $.parseJSON(data);
+                if(data == null || data.length <= 0)
+                {
+                    $(searchResult.html('<div class="help-block">No user found with this username</div>'));
+                } else {
+                    $(searchResult).html('<ul class="list-group">' +
+                    '<a style="text-decoration: none;" href="'+ base_url +'user/profile/visit/'+ data[0].username +'">' +
+                    '<li class="list-group-item">' +
+                    '<span class="glyphicon glyphicon-user"></span>' +
+                    '<span style="font-family: cursive, Lobster;' +
+                    'font-weight: bolder; font-size: large; color: black;">' +
+                    data[0].username+
+                    '</span>' +
+                    '</li>' +
+                    '</a>' +
+                    '</ul>');
+                }
+
+
+            },
+            error : function(xhr,status,msg){
+                console.log("ERROR: "+ xhr.responseText);
+            }
+        });
+
+        return false;
+    });
+
 
 
 });
+
 
 

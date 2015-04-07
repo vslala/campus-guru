@@ -41,7 +41,7 @@
                     </div>
                     <ul class="list-group">
 
-                                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span>{{ $user[0]['created_at'] }}</li>
+                                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span>{{ $user[0]['created_at'] or 'Not Provided' }}</li>
                                             <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span>
                                                 {{ $realName[0]->name or '------' }}</li>
                                       <li class="list-group-item text-right"><span class="pull-left"><strong class="" >Rashi: </strong></span> <span id="rashi">{{ $user[0]['rashi'] or "what's your Rashi?" }}</span>
@@ -55,7 +55,7 @@
                     <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i>
 
                     </div>
-                    <div class="panel-body"><a href="http://{{ $user[0]['website'] }}" class="">{{ $user[0]['website'] or 'No website Yet' }}</a>
+                    <div class="panel-body"><a href="http://{{ $user[0]['website'] or '#' }}" class="">{{ $user[0]['website'] or 'No website Yet' }}</a>
 
                     </div>
                 </div>

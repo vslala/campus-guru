@@ -36,7 +36,10 @@ Route::get('/auth/logout', [
     'uses'=>"WelcomeController@logout",
     "as"=>"logout"
 ]);
-
+Route::put('/user/search', [
+    'uses'=>"SearchController@_searchUsername",
+    "as"=>"_searchUsername"
+]);
 Route::get('/user/profile', [
     'uses'=>"HomeController@profile",
     "as"=>"profile"
@@ -139,6 +142,10 @@ Route::get('/user/like/status/{id}', [
 Route::get('/user/dislike/status/{id}', [
     'uses'=>"LikeController@updateDislikeStatus",
     "as"=>"updateDislikeStatus"
+]);
+Route::get('/user/most/liked/status', [
+    'uses'=>"LikeController@mostLikedStatus",
+    "as"=>"mostLikedStatus"
 ]);
 Route::get('/user/recent/discussion', [
     'uses'=>"DiscussionController@recentlyStartedDiscussions",
