@@ -35,6 +35,24 @@ $(document).ready(function(){
 
     horoscope();
 
+    $("#like_image_btn").click(function(event){
+        event.preventDefault();
+        var url = $(this).attr("href");
+        var likeCount = $("#like_count");
+
+        $.ajax({
+            url : url,
+            type : "GET",
+            success : function(data){
+                console.log(data);
+                $(likeCount).html(data);
+            },
+            error : function(xhr,status,msg){
+                console.log("ERROR: "+xhr.responseText);
+            }
+        })
+
+    });
 
     ///* pagination */
     //$.fn.pageMe = function(opts){

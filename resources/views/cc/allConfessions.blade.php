@@ -1,5 +1,6 @@
 <?php
-    $pageHeader = "Complains";
+    $pageHeader = "Confessions";
+    $title = "Confessions";
 ?>
 @extends('master')
 

@@ -147,6 +147,10 @@ Route::get('/user/most/liked/status', [
     'uses'=>"LikeController@mostLikedStatus",
     "as"=>"mostLikedStatus"
 ]);
+Route::get('/user/most/liked/image', [
+    'uses'=>"LikeController@mostLikedImage",
+    "as"=>"mostLikedImage"
+]);
 Route::get('/user/recent/discussion', [
     'uses'=>"DiscussionController@recentlyStartedDiscussions",
     "as"=>"recentDiscussions"
@@ -219,7 +223,10 @@ Route::get('/user/reply/dislike/{dId}/{repId}', [
     'uses'=>"LikeController@storeDislikesDiscussion",
     "as"=>"storeDislikesDiscussion"
 ]);
-
+Route::get('/user/like/dp/{id}', [
+    'uses'=>"LikeController@likeDisplayPicture",
+    "as"=>"likeDisplayPicture"
+]);
 /*
  * CCController Starte here
  */

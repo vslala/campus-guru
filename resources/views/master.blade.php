@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Campus Guru</title>
+  <title>{{ $title or '' }}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {!! Html::script("https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js") !!}

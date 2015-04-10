@@ -25,11 +25,17 @@
              <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
                 <ul class="dropdown-menu">
-                  <li><a href="{{ route('askQuestion') }}" class="dropdown_link"><span class="glyphicon glyphicon-question-sign pull-right"></span>Ask Question</a></li>
-                  <li><a href="{{ route('startDiscussion') }}" class="dropdown_link"><span class="glyphicon glyphicon-plus-sign pull-right"></span>Start Discussion</a></li>
+                  <li><a href="{{ route('askQuestion') }}" class="dropdown_link">Ask Question</a></li>
+                  <li class="nav-divider"></li>
+                  <li><a href="{{ route('startDiscussion') }}" class="dropdown_link">Start Discussion</a></li>
+                  <li class="nav-divider"></li>
                   <li><a href="{{ route('viewAllQuestions') }}" class="dropdown_link"><span class="badge pull-right"></span>All Questions</a></li>
+                  <li class="nav-divider"></li>
                   <li><a href="{{ route('askQuestion') }}" class="dropdown_link"><span class="label label-info pull-right"></span>All Discussions</a></li>
-                  <li><a href="{{ route('askQuestion') }}" class="dropdown_link"><span class="badge pull-right"></span>Link</a></li>
+                  <li class="nav-divider"></li>
+                  <li><a href="{{ route('viewAllComplains') }}" class="dropdown_link"><span class="badge pull-right"></span>All Complains</a></li>
+                  <li class="nav-divider"></li>
+                  <li><a href="{{ route('viewAllConfessions') }}" class="dropdown_link"><span class="badge pull-right"></span>All Confessions</a></li>
                 </ul>
              </li>
              <li><a href="#" id="btnToggle"><i class="glyphicon glyphicon-th-large"></i></a></li>

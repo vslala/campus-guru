@@ -2,6 +2,8 @@
 
 use App\Answer;
 use App\Blog;
+use App\Complain;
+use App\Confession;
 use App\Discussion;
 use App\DisplayPicture;
 use App\LikedAnswer;
@@ -71,6 +73,13 @@ class HomeController extends Controller {
             ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")
             ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
             ->get();
+        $mostLikedStatus = Status::whereRaw('likeCount = (select max(`likeCount`) from statuses)')->get();
+
+        $mostLikedImage = DisplayPicture::whereRaw('likeCount = (select max(`likeCount`) from display_pictures)')->get();
+
+        $complains = Complain::take(5)->orderBy('created_at', 'desc')->get(['complain', 'college', 'created_at']);
+
+        $confessions = Confession::take(5)->orderBy('created_at', 'desc')->get(['confession', 'college', 'created_at']);
 //        dd($questions);
 //        dd($status[0]->image_url);
         foreach($status as $s)
@@ -79,7 +88,8 @@ class HomeController extends Controller {
                 $s->image_url = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
         }
 
-		return view('home', compact('status','questions','blog','discussions'));
+		return view('home', compact('status','questions','blog','discussions',
+            'mostLikedStatus', 'complains', 'confessions', 'mostLikedImage'));
 	}
 
     public function profile()

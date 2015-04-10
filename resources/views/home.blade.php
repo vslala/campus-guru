@@ -1,3 +1,4 @@
+<?php $title="Home";?>
 @extends("master")
 
 @section('links')
@@ -23,7 +24,7 @@
            </div>
 
         <div class="panel panel-default">
-          <div class="panel-heading"><a href="{{ route("viewAllQuestions") }}" class="pull-right">View all</a> <h4>Recently Asked Questions</h4></div>
+          <div class="panel-heading"><a href="{{ route("viewAllQuestions") }}" class="pull-right">View all</a> <h4>questions</h4></div>
    			<div class="panel-body">
 
    			<input type="hidden" id="fetchQuestionUrl" value="{{ route("showAllQuestions") }}" />
@@ -35,6 +36,25 @@
                     <span id="question_link_home">{{ $q->title }}</span>
                 </a>
               @endforeach
+              </div>
+            </div>
+   		</div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><a href="{{ route("viewAllConfessions") }}" class="pull-right">View all</a> <h4>Confession Box</h4></div>
+   			<div class="panel-body">
+
+              <div class="list-group" id="list_of_questions">
+              @if(isset($confessions))
+                <ul class="list-group">
+                @foreach($confessions as $c)
+                    <li class="list-group-item" style='font-family: cursive, "Lobster"'>{{ $c->confession or ''}}
+                                          <div class="college" style="font-weight: bold;">{{ $c->college or ''}}</div>
+                                         <div class="help-block">{{ $c->created_at or ''}}</div> </li>
+                @endforeach
+                </ul>
+
+              @endif
               </div>
             </div>
    		</div>
@@ -106,6 +126,21 @@
 
   	<div class="row">
   	<div class="col-md-4 col-sm-6">
+  	<!-- Most Liked Display Picture -->
+        <div class="panel panel-default">
+          <div class="panel-heading"> <h4>Most Liked Image</h4></div>
+   			<div class="panel-body">
+   			<input type="hidden" id="mostLikedStatusUrl" value="{{ route('mostLikedStatus')}}" />
+                <div class="most-liked" id="most_liked_picture">
+                <input type="hidden" id="mostLikedImageUrl" value="{{ route("mostLikedImage") }}" />
+                    <img src="{{ $mostLikedImage[0]->image_url }}" class="img img-responsive img-thumbnail" />    <br>
+                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedImage[0]->likeCount or '0'}}</span></a>
+
+                </div>
+            </div>
+   		</div>
+
+  	<!-- Latest Discussions -->
          <div class="panel panel-default">
            <div class="panel-heading"><a href="{{ route("viewAllDiscussion") }}" class="pull-right">View all</a> <h4>Latest Discussion Opened</h4></div>
    			<div class="panel-body">
@@ -113,7 +148,7 @@
 
               <div class="list-group" id="list_of_discussions">
               @foreach($discussions as $d)
-                <a href="{{ route("show", $d->id) }}" class="list-group-item">
+                <a href="{{ route("singleDiscussion", $d->id) }}" class="list-group-item">
                     {!! Html::image($d->image_url,$d->image_name, ['class'=>'img img-responsive img-thumbnail', 'style'=>'width:50px;']) !!}
                     <span id="discussion_link_home">{{ $d->title }}</span>
                 </a>
@@ -150,17 +185,26 @@
    			<div class="panel-body">
    			<input type="hidden" id="mostLikedStatusUrl" value="{{ route('mostLikedStatus')}}" />
                 <div class="most-liked" id="most_liked_status">
-
+                    {{ $mostLikedStatus[0]->status or '' }}   <br>
+                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedStatus[0]->likeCount or '0'}}</span></a>
+                      |
+                    <a class="active btn btn-danger btn-sm"><span class="badge badge-primary">{{ $mostLikedStatus[0]->dislikeCount or '0'}}</span></a>
                 </div>
             </div>
    		</div>
 
 
       	 <div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Complain Box</h4></div>
+           <div class="panel-heading"><a href="{{ route("viewAllComplains") }}" class="pull-right">View all</a> <h4>Complain Box</h4></div>
    			<div class="panel-body">
-              <ul class="list-group">
-              <li class="list-group-item">Complain #1</li>
+              <ul class="list-group" id="complains">
+              @if(isset($complains))
+                @foreach($complains as $c)
+                     <li class="list-group-item" style='font-family: cursive, "Lobster"'>{{ $c->complain or ''}}
+                      <div class="college" style="font-weight: bold;">{{ $c->college or ''}}</div>
+                     <div class="help-block">{{ $c->created_at or ''}}</div> </li>
+                @endforeach
+              @endif
               </ul>
             </div>
    		 </div>

@@ -32,7 +32,7 @@
                 <div class="col-sm-6 pull-right">
                           <button type="button" id="edit_profile_btn" class="btn btn-success">Edit Profile</button>
                           <div class="edit-form jumbotron" style="display: none; position: absolute; z-index: 9;" id="edit_profile_form">
-                            @include('home._edit_profile_form');
+                            @include('home._edit_profile_form')
                           </div>
                             <button type="button" data-target="#uploadDP" data-toggle="modal" class="btn btn-info">Change Profile Picture</button>
 

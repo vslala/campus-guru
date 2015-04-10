@@ -3,9 +3,11 @@
 use App\DislikedAnswer;
 use App\DislikedDiscussion;
 use App\DislikedStatus;
+use App\DisplayPicture;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\LikedDiscussion;
+use App\LikedDisplayPicture;
 use App\LikedStatus;
 use App\Status;
 use DB;
@@ -102,7 +104,7 @@ class LikeController extends Controller {
     public function storeDislikesDiscussion($dId,$repId)
     {
         $l = new DislikedDiscussion();
-        $dislikes = $l->where(['username'=>Auth::user()->username, 'd_id'=>$dId, "ans_id"=>$repId])->get();
+        $dislikes = $l->where(['username'=>Auth::user()->username, 'd_id'=>$dId, "rep_id"=>$repId])->get();
         if(count($dislikes) <= 0)
         {
             $l->username = Auth::user()->username;
@@ -163,9 +165,39 @@ class LikeController extends Controller {
 
     }
 
+    public function likeDisplayPicture($id)
+    {
+        $l = new LikedDisplayPicture();
+        $liked = $l->where(['username'=>Auth::user()->username, 'dp_id'=>$id])->get();
+        if(count($liked) <= 0)
+        {
+            $l->username = Auth::user()->username;
+            $l->dp_id = $id;
+            $l->save();
+
+            $lc = DisplayPicture::find($id);
+            $likeCount = $lc->likeCount;
+            $likeCount++;
+            $lc->likeCount = $likeCount;
+            $lc->save();
+        }
+        $likeCount = new DisplayPicture();
+        $count = $likeCount->where("id", $id)->get(['likeCount'])->toArray();
+        $count = $count[0]['likeCount'];
+
+        return $count;
+    }
+
     public function mostLikedStatus()
     {
         $mostLiked = Status::whereRaw('likeCount = (select max(`likeCount`) from statuses)')->get();
+//        dd($mostLiked);
+        return json_encode($mostLiked);
+    }
+
+    public function mostLikedImage()
+    {
+        $mostLiked = DisplayPicture::whereRaw('likeCount = (select max(`likeCount`) from display_pictures)')->get();
 //        dd($mostLiked);
         return json_encode($mostLiked);
     }
