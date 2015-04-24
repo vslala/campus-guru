@@ -2,16 +2,18 @@
 
     <div class="form-group">
         <label class="col-sm-2">Heading: </label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 {{ $errors->has('heading') ? 'has-error': '' }}">
             {!! Form::text('heading', null, ['class'=>'form-control']) !!}
+            {!! $errors->first('heading', '<span class="help-block">:message</span> ') !!}
         </div>
     </div>
 
 
     <div class="form-group">
         <label class="col-sm-2">Content: </label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 {{ $errors->has('heading') ? 'has-error': '' }}">
             {!! Form::textarea('content', null, ['class'=>'form-control']) !!}
+            {!! $errors->first('content', '<span class="help-block">:message</span> ') !!}
         </div>
     </div>
 

@@ -12,8 +12,11 @@
           {!! Form::open(["route"=>["_searchUsername"], 'method'=>"PUT" ,'class'=>"navbar-form pull-left", 'id'=>"searchForm" ]) !!}
               <div class="input-group" style="max-width:470px;">
                 <input type="text" class="form-control" autocomplete="off" placeholder="Search" name="searchTerm" id="srch-term">
-                <div id="search_result" style="z-index: 9;">
+                <div class="help-block"  style="z-index: 9;" id="search_result_parent_div">
+                    <ul id="search_result" class="list-group">
 
+                    </ul>
+                    <!-- Ajax search contents will be loaded here -->
                 </div>
                 <div class="input-group-btn">
                   <button class="btn btn-default btn-primary" type="submit" id="submitBtn"><i class="glyphicon glyphicon-search"></i></button>

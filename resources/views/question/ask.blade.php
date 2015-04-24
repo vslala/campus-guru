@@ -5,7 +5,7 @@
 
 @section('links')
 {!! Html::style('css/profile.css') !!}
-
+{!! Html::script('js/scripts.js') !!}
 @endsection
 @section('content')
 

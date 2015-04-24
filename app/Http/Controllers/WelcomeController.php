@@ -41,6 +41,18 @@ class WelcomeController extends Controller {
 
     public function register(Request $request)
     {
+        /*
+         * Form Input validation
+         */
+        $this->validate($request, [
+            'name' => 'required|max:75',
+            'username' => 'required|max:20|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'college' => 'required|min:4',
+            'branch' => 'required|min:2'
+        ]);
+
         if($request->isMethod("put"))
         {
             $name = $request->get("name");

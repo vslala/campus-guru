@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class CCController extends Controller {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
 	public function complain()
     {
         $colleges  = User::all(['college']);

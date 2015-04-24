@@ -2,6 +2,7 @@
 
 use App\Answer;
 use App\Attachment;
+use App\Category;
 use App\Comment;
 use App\DislikedAnswer;
 use App\DisplayPicture;
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class QuestionController extends Controller {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -24,7 +28,8 @@ class QuestionController extends Controller {
 	 */
 	public function index()
 	{
-		return view('question.ask');
+        $categories = Category::all();
+		return view('question.ask', compact('categories'));
 	}
 
 	/**
@@ -40,6 +45,17 @@ class QuestionController extends Controller {
     }
 	public function create(Request $request)
 	{
+        /*
+         * Form Input validation
+         */
+        $v = $this->validate($request, [
+            'title' => 'required|max:500',
+            'category' => 'required',
+            'content' => 'required',
+            'tags' => 'required'
+        ]);
+
+
         $q = new Question();
         if($request->isMethod('put'))
         {

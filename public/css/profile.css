@@ -99,3 +99,10 @@ body{
     font-size: larger;
     color: crimson;
 }
+
+.message{
+    font-family: cursive, "Lobster";
+    font-size: large;
+    font-weight: 700;
+    color: green;
+}

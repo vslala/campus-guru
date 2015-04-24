@@ -9,6 +9,7 @@ class DiscussionTag extends Model {
     public function addTags($tags, $dId){
 
         try{
+            if(count($tags) > 0):
             for($i=0;$i < count($tags); $i++)
             {
                 $tag = new DiscussionTag();
@@ -16,6 +17,7 @@ class DiscussionTag extends Model {
                 $tag->tag = $tags[$i];
                 $tag->save();
             }
+            endif;
 
             return true;
         } catch(\PDOException $ex)

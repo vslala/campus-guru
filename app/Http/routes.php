@@ -69,6 +69,10 @@ Route::get('/user/profile/visit/{username}', [
     'uses'=>"HomeController@profileVisit",
     "as"=>"profileVisit"
 ]);
+Route::post('/user/send/message', [
+    'uses'=>"HomeController@sendMessage",
+    "as"=>"sendMessage"
+]);
 Route::get('/user/compose/blog', [
     'uses'=>"HomeController@composeBlog",
     "as"=>"composeBlog"
@@ -265,4 +269,24 @@ Route::get('/confession/report/abuse/{id}', [
 Route::get('/confession/report/abuse/{id}', [
     'uses'=>"CCController@deleteConfession",
     "as"=>"deleteConfession"
+]);
+
+/*
+ * Message Controller
+ */
+Route::get('/user/messages', [
+    'uses'=>"MessageController@messages",
+    "as"=>"messages"
+]);
+Route::get('/user/single/message/{id}', [
+    'uses'=>"MessageController@single",
+    "as"=>"singleMessage"
+]);
+Route::get('/user/single/message/delete/{id}', [
+    'uses'=>"MessageController@delete",
+    "as"=>"deleteMessage"
+]);
+Route::get('/user/sent/messages', [
+    'uses'=>"MessageController@sent",
+    "as"=>"sentMessages"
 ]);

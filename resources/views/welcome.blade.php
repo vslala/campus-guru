@@ -2,6 +2,7 @@
 @section('links')
 {!! Html::style('css/welcome.css') !!}
 {!! Html::script('js/myjs.js') !!}
+
 @endsection
 
 @section('content')
@@ -34,7 +35,7 @@
                 </div>
 
                 <div class="panel-body">
-                {!! Form::open(["route"=>["register"], "method"=>"put", "role"=>"form"]) !!}
+                {!! Form::open(["route"=>["register"], "method"=>"put", "role"=>"form", "id"=>"reg_form"]) !!}
                                         <div class="form-group">
                                             <label for="name">Full Name</label>
                                             <input type="text" name="name" class="form-control" id="name_input"

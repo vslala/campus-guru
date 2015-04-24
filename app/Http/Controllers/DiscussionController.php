@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Category;
 use App\Discussion;
 use App\DislikedDiscussion;
 use App\DisplayPicture;
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class DiscussionController extends Controller {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -21,9 +25,16 @@ class DiscussionController extends Controller {
 	 */
 	public function index()
 	{
-		return view('discussion.start');
+        $categories = Category::all();
+		return view('discussion.start', compact('categories'));
 	}
 
+    function multiexplode ($delimiters,$string) {
+
+        $ready = str_replace($delimiters, $delimiters[0], $string);
+        $launch = explode($delimiters[0], $ready);
+        return  $launch;
+    }
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -31,6 +42,15 @@ class DiscussionController extends Controller {
 	 */
 	public function create(Request $request)
 	{
+        /*
+         * Form Input validation
+         */
+        $v = $this->validate($request, [
+            'title' => 'required|max:500',
+            'category' => 'required',
+            'description' => 'required',
+            'tags' => 'required'
+        ]);
 		if($request->isMethod("put"))
         {
             $title = $request->get("title");
@@ -38,8 +58,9 @@ class DiscussionController extends Controller {
             $category = $request->get("category");
             $description = $request->get("description");
 
+            $tagArray = $this->multiexplode([",","|"," "], $tags);
             $d = new Discussion();
-            $flag = $d->addDiscussion(Auth::user()->username, $title,$description,$category, $tags);
+            $flag = $d->addDiscussion(Auth::user()->username, $title,$description,$category, $tagArray);
 
             if($flag)
                 return redirect(route("viewAllDiscussion"));

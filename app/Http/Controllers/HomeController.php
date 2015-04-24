@@ -9,11 +9,15 @@ use App\DisplayPicture;
 use App\LikedAnswer;
 use App\Profile;
 use App\Question;
+use App\SendMessage;
 use App\Status;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use League\Flysystem\Exception;
 use PDO;
 
@@ -73,20 +77,25 @@ class HomeController extends Controller {
             ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")
             ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
             ->get();
-        $mostLikedStatus = Status::whereRaw('likeCount = (select max(`likeCount`) from statuses)')->get();
+        $mostLikedStatus = Status::whereRaw('likeCount = (select max(`likeCount`) from statuses)')->get()->toArray();
 
-        $mostLikedImage = DisplayPicture::whereRaw('likeCount = (select max(`likeCount`) from display_pictures)')->get();
+        $mostLikedImage = DisplayPicture::whereRaw('likeCount = (select max(`likeCount`) from display_pictures)')->get()->toArray();
 
         $complains = Complain::take(5)->orderBy('created_at', 'desc')->get(['complain', 'college', 'created_at']);
 
         $confessions = Confession::take(5)->orderBy('created_at', 'desc')->get(['confession', 'college', 'created_at']);
+
 //        dd($questions);
 //        dd($status[0]->image_url);
-        foreach($status as $s)
-        {
-            if($s->image_url == null or $s->image_url == '')
-                $s->image_url = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
+        if(isset($status)){
+            foreach($status as $s)
+            {
+                if($s->image_url == null or $s->image_url == '')
+                    $s->image_url = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
+            }
         }
+
+//        dd($mostLikedStatus);
 
 		return view('home', compact('status','questions','blog','discussions',
             'mostLikedStatus', 'complains', 'confessions', 'mostLikedImage'));
@@ -272,6 +281,21 @@ class HomeController extends Controller {
     }
     public function createBlog(Request $request)
     {
+        /*
+         * Form Input validation
+         */
+        $v = $this->validate($request, [
+            'heading' => 'required|max:500',
+            'content' => 'required|max:3000',
+        ]);
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+
+        /*
+         * if the form inputs are valid then proceed below
+         */
         if($request->isMethod("put"))
         {
             $heading = $request->get("heading");
@@ -297,6 +321,18 @@ class HomeController extends Controller {
      */
     public function blogUpdate($id, Request $request)
     {
+        /*
+         * Form Input validation
+         */
+        $v = $this->validate($request, [
+            'heading' => 'required|max:500',
+            'content' => 'required|max:3000',
+        ]);
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+
         $blog = Blog::find($id);
         $blog->heading = $request->get("heading");
         $blog->content = $request->get("content");
@@ -346,6 +382,54 @@ class HomeController extends Controller {
             'questionAsked','status', 'questionAnswered', 'posts', 'discussionStarted'));
     }
 
+    public function sendMessage(Request $request){
+        if($request->isMethod("post")){
+            if($request->ajax()){
+                $sender = Auth::user()->username;
+                $reciever = $request->get("sentTo");
+                $message = $request->get("message");
+                if($request->file('file')->getClientSize() > 0){
+                    $file = $request->file('file');
+                    $fileUrl = "files/".Auth::user()->username ."/" .$file->getClientOriginalName();
+                    $m = new SendMessage();
+                    $flag = $m->sendMessage($sender,$reciever,$message,$file->getClientOriginalName(),$fileUrl);
+                    if($flag){
+                        return "Message sent successfully!";
+                    }else{
+                        return "Error sending the message!";
+                    }
+                }
+            }else {
 
+                $fileUrl = NULL;
+                $sender = Auth::user()->username;
+                $reciever = $request->get("sentTo");
+                $subject = $request->get("subject");
+                $message = $request->get("message");
+                if ($request->hasFile("file")) {
+                    $file = $request->file("file");
+                    $fileUrl = "files";
+                    $m = new SendMessage();
+                    $flag = $m->sendMessage($sender, $reciever, $subject, $message, $file->getClientOriginalName(), $fileUrl);
+                    if ($flag) {
+                        $file->move($fileUrl, $file->getClientOriginalName());
+                        return Redirect::back()->with("flash_message", "Message has been sent successfully!");
+                    } else {
+                        return Redirect::back()->with("flash_message", "Error Sending message!!");
+                    }
+                }
+
+                $m = new SendMessage();
+                $flag = $m->sendMessage($sender, $reciever, $subject, $message);
+                if ($flag) {
+                    return Redirect::back()->with("flash_message", "Message has been sent successfully!");
+                } else {
+                    return Redirect::back()->with("flash_message", "Error Sending message!!");
+                }
+            }
+
+
+        }
+    }
 
 }

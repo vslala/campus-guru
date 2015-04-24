@@ -2,28 +2,28 @@
                         <div class="form-group">
                             <label class="col-md-3">About Me:</label>
                             <div class="col-md-9">
-                                {!! Form::textarea("aboutMe", $user[0]['about_me'], ['class'=>"form-control", 'rows'=>'4']) !!}
+                                {!! Form::textarea("aboutMe", isset($user[0]) ? $user[0]['about_me'] : '', ['class'=>"form-control", 'rows'=>'4']) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3">Email Address:</label>
                             <div class="col-md-9">
-                                {!! Form::text("email", $user[0]['email'], ['class'=>'form-control']) !!}
+                                {!! Form::text("email", isset($user[0]) ? $user[0]['email'] : '', ['class'=>'form-control']) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3">Mobile</label>
                             <div class="col-md-9">
-                                {!! Form::text("mobile", $user[0]['mobile'], ['class'=>'form-control']) !!}
+                                {!! Form::text("mobile", isset($user[0]) ? $user[0]['mobile'] : '', ['class'=>'form-control']) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-3">Data of Birth:</label>
                             <div class="col-md-9">
-                                {!! Form::input("date","dob", $user[0]['dob'], ['class'=>'form-control']) !!}
+                                {!! Form::input("date","dob", isset($user[0]) ? $user[0]['dob'] : '', ['class'=>'form-control']) !!}
                             </div>
                         </div>
 
@@ -31,7 +31,7 @@
                             <label class="col-md-3">What's your Rashi?</label>
                             <div class="col-md-9">
                                 <select class="form-control" name="rashi">
-                                    <option value="">Select...</option>
+                                    <option value="">{{ isset($user[0]) ? $user[0]['rashi'] : 'Select...' }}</option>
                                     <option value="Aries">Aries</option>
                                     <option value="Taurus">Taurus</option>
                                     <option value="Gemini">Gemini</option>
@@ -51,20 +51,20 @@
                         <div class="form-group">
                             <label class="col-md-3">State:</label>
                             <div class="col-md-9">
-                                {!! Form::text("state", $user[0]['state'], ['class'=>'form-control']) !!}
+                                {!! Form::text("state", isset($user[0]) ? $user[0]['state'] : '', ['class'=>'form-control']) !!}
                             </div>
                         </div>
 
                          <div class="form-group">
                              <label class="col-md-3">City:</label>
                              <div class="col-md-9">
-                                 {!! Form::text("city", $user[0]['city'], ['class'=>'form-control']) !!}
+                                 {!! Form::text("city", isset($user[0]) ? $user[0]['city'] : '', ['class'=>'form-control']) !!}
                              </div>
                          </div>
                           <div class="form-group">
                               <label class="col-md-3">Website (if any):</label>
                               <div class="col-md-9">
-                                  {!! Form::text("website", $user[0]['website'], ['class'=>'form-control']) !!}
+                                  {!! Form::text("website", isset($user[0]) ? $user[0]['website'] : '', ['class'=>'form-control']) !!}
                               </div>
                           </div>
 

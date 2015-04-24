@@ -36,7 +36,7 @@
                     </div>
                     <div class="panel-body">
                         <p>
-                            {{ $question->description or 'description does not exists!' }}
+                            {!! $question->description or 'description does not exists!' !!}
                         </p>
                         <p>
 

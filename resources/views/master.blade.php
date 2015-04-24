@@ -17,6 +17,17 @@
   		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
           <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
   {{--{!! Html::script("js/myjs.js") !!}--}}
+
+  <!-- Bootstrap Validation Css File -->
+          {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/css/bootstrapvalidator.css') !!}
+
+          {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/css/bootstrapvalidator.min.css') !!}
+
+          <!-- Javascript files for Bootstrap Validation Plugin -->
+          {!! Html::script('http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.js') !!}
+
+          {!! Html::script('http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js') !!}
+
   @yield("links")
 
 </head>

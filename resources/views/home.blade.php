@@ -1,4 +1,5 @@
-<?php $title="Home";?>
+<?php $title="Home";
+?>
 @extends("master")
 
 @section('links')
@@ -30,12 +31,14 @@
    			<input type="hidden" id="fetchQuestionUrl" value="{{ route("showAllQuestions") }}" />
 
               <div class="list-group" id="list_of_questions">
+              @if(isset($questions))
               @foreach($questions as $q)
                 <a href="{{ route("show", $q->id) }}" class="list-group-item">
                     {!! Html::image($q->image_url,$q->image_name, ['class'=>'img img-responsive img-thumbnail', 'style'=>'width:50px;']) !!}
                     <span id="question_link_home">{{ $q->title }}</span>
                 </a>
               @endforeach
+              @endif
               </div>
             </div>
    		</div>
@@ -68,6 +71,7 @@
               <h4>News Feed</h4>
               <!-- List Of Status Updates will come here -->
                 <div class="status-section" id="status_section">
+                @if(isset($status))
                         @foreach($status as $s)
                             <ul class="nav nav-pills list-inline">
                                 <li>
@@ -100,6 +104,7 @@
                             </ul>
                             <hr>
                         @endforeach
+                @endif
                 </div>
           </div>
 
@@ -107,6 +112,8 @@
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Latest Blog</h4></div>
    			<div class="panel-body">
               <p>
+              @if(isset($blog))
+
               @foreach($blog as $b)
               @if(isset($b->image_url))
                {!! Html::image($b->image_url,$b->image_name,['class'=>'img-circle pull-right', 'style'=>'height:150px; width:150px;']) !!}
@@ -119,6 +126,7 @@
               <a href="{{ route('showSingleBlog', $b->id)}}">{{ $b->heading or 'Blog heading' }}</a>
             </div>
             @endforeach
+            @endif
          </div>
 
   	</div>
@@ -133,8 +141,8 @@
    			<input type="hidden" id="mostLikedStatusUrl" value="{{ route('mostLikedStatus')}}" />
                 <div class="most-liked" id="most_liked_picture">
                 <input type="hidden" id="mostLikedImageUrl" value="{{ route("mostLikedImage") }}" />
-                    <img src="{{ $mostLikedImage[0]->image_url }}" class="img img-responsive img-thumbnail" />    <br>
-                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedImage[0]->likeCount or '0'}}</span></a>
+                    <img src="{{ $mostLikedImage[0]['image_url'] or 'No Image Liked' }}" class="img img-responsive img-thumbnail" />    <br>
+                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedImage[0]['likeCount'] or '0'}}</span></a>
 
                 </div>
             </div>
@@ -147,12 +155,14 @@
    			<input type="hidden" id="fetchDiscussionUrl" value="{{ route("recentDiscussions") }}" />
 
               <div class="list-group" id="list_of_discussions">
+              @if(isset($discussions))
               @foreach($discussions as $d)
                 <a href="{{ route("singleDiscussion", $d->id) }}" class="list-group-item">
                     {!! Html::image($d->image_url,$d->image_name, ['class'=>'img img-responsive img-thumbnail', 'style'=>'width:50px;']) !!}
                     <span id="discussion_link_home">{{ $d->title }}</span>
                 </a>
               @endforeach
+              @endif
               </div>
 
             </div>
@@ -185,10 +195,10 @@
    			<div class="panel-body">
    			<input type="hidden" id="mostLikedStatusUrl" value="{{ route('mostLikedStatus')}}" />
                 <div class="most-liked" id="most_liked_status">
-                    {{ $mostLikedStatus[0]->status or '' }}   <br>
-                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedStatus[0]->likeCount or '0'}}</span></a>
+                    {{ $mostLikedStatus[0]['status'] or '' }}   <br>
+                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedStatus[0]['likeCount'] or '0'}}</span></a>
                       |
-                    <a class="active btn btn-danger btn-sm"><span class="badge badge-primary">{{ $mostLikedStatus[0]->dislikeCount or '0'}}</span></a>
+                    <a class="active btn btn-danger btn-sm"><span class="badge badge-primary">{{ $mostLikedStatus[0]['dislikeCount'] or '0'}}</span></a>
                 </div>
             </div>
    		</div>
@@ -214,19 +224,13 @@
   <hr>
 
   <div class="row">
-  	<div class="col-md-12"><h2>Posts</h2></div>
+  	<div class="col-md-12"><h2>RGPV Syllabus</h2></div>
     <div class="col-md-4 col-sm-6">
     	<div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Upgrade to Bootstrap 3</h4></div>
-   			<div class="panel-body">
-              <img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=70" class="img-circle pull-right"> <a href="#">Guidance and Tools</a>
-              <div class="clearfix"></div>
-              <hr>
-              <p>Migrating from Bootstrap 2.x to 3 is not a simple matter of swapping out the JS and CSS files.
-              Bootstrap 3 is a major overhaul, and there are a lot of changes from Bootstrap 2.x. <a href="http://bootply.com/bootstrap-3-migration-guide">This guidance</a> is intended to help 2.x developers transition to 3.
-              </p>
-              <h5><a href="http://google.com/+bootply">More on Upgrading from +Bootply</a></h5>
-
+           <div class="panel-heading"><a href="https://www.rgpv.ac.in/UploadContent/frm_ViewScheme.aspx" class="pull-right">View all</a> <h4>Syllabus</h4></div>
+   			<div class="panel-body" id="syllabus">
+              <!-- Syllabus will come here -->
+                @include('partials/csSyllabus')
             </div>
          </div>
     </div>
