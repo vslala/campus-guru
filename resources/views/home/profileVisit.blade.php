@@ -18,7 +18,7 @@
         <div class="row first-row">
             <div class="col-sm-12">
             <div class="col-sm-2">
-            <a href="#" class="pull-right">{!! Html::image($userImage[0]['image_url'],$userImage[0]['image_name'],['title'=>'profile_image', 'class'=>'img img-responsive img-thumbnail']) !!}
+            <a href="#" class="pull-right">{!! Html::image($userImage[0]['image_url'],$userImage[0]['image_name'],['title'=>'profile_image', 'class'=>'img img-responsive img-thumbnail', 'style'=>'width: 200px;']) !!}
              </a>
                  <h1 class="col-sm-2">{{ $user[0]['username'] or 'Username'}}</h1>
             </div>

@@ -130,9 +130,9 @@
          </div>
 
   	</div>
-  	</div>
 
-  	<div class="row">
+
+  	{{--<div class="row">--}}
   	<div class="col-md-4 col-sm-6">
   	<!-- Most Liked Display Picture -->
         <div class="panel panel-default">
@@ -219,8 +219,8 @@
             </div>
    		 </div>
     </div>
-  </div><!--/row-->
-
+  {{--</div><!--/row-->--}}
+  	</div>
   <hr>
 
   <div class="row">

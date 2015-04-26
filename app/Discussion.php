@@ -15,7 +15,6 @@ class Discussion extends Model {
         $d->category = $category;
         $d->save();
 
-        $tagArray = $this->multiexplode([",","|"," "], $tags);
 //                        dd($tagArray);
         // instantiating new object for the tags
         $tag = new DiscussionTag();
@@ -25,11 +24,6 @@ class Discussion extends Model {
         else
             return false;
     }
-    private function multiexplode ($delimiters,$string) {
 
-        $ready = str_replace($delimiters, $delimiters[0], $string);
-        $launch = explode($delimiters[0], $ready);
-        return  $launch;
-    }
 
 }

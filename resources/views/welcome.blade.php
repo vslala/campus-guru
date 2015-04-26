@@ -100,7 +100,7 @@
                                         								<div class="row">
                                         									<div class="center-block">
                                         										<img class="profile-img img-circle"
-                                        											src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+                                        											src="http://t2.ftcdn.net/jpg/00/15/54/19/240_F_15541951_9WSwjK2fUP2XDO2YA7qn5DesVT7ro2vo.jpg" alt="">
                                         									</div>
                                         								</div>
                                         								<div class="row">

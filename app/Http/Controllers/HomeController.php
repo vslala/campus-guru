@@ -288,10 +288,7 @@ class HomeController extends Controller {
             'heading' => 'required|max:500',
             'content' => 'required|max:3000',
         ]);
-        if ($v->fails())
-        {
-            return redirect()->back()->withErrors($v->errors());
-        }
+
 
         /*
          * if the form inputs are valid then proceed below
