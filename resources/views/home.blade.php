@@ -16,7 +16,7 @@
         <span class="message alert-info" id="message">{{ Session::get("flash_message")}}</span>
     @endif
    <div class="row">
-   <div class="col-md-4 col-sm-6">
+   <div class="col-md-4">
            <div class="well">
                 {!! Form::open(["route"=>["statusUpdate"], "method"=>"put", "class"=>"form-horizontal", "id"=>"status_form"]) !!}
                  <h4>What's New</h4>
@@ -68,7 +68,7 @@
 
 
 	</div>
-  	<div class="col-md-4 col-sm-6">
+  	<div class="col-md-4">
 
           <div class="well">
               <h4>News Feed</h4>
@@ -133,10 +133,10 @@
          </div>
 
   	</div>
-
+    </div>
 
   	{{--<div class="row">--}}
-  	<div class="col-md-4 col-sm-6">
+  	<div class="col-md-4">
   	<!-- Most Liked Display Picture -->
         <div class="panel panel-default">
           <div class="panel-heading"> <h4>Most Liked Image</h4></div>
@@ -506,7 +506,7 @@
     <hr>
 
   </div>
-</div><!--/main-->
+{{--</div><!--/main-->--}}
 
 <!--login modal-->
 {{--<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">--}}
