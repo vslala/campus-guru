@@ -28,6 +28,9 @@
 <div class="container-fluid">
         @include('_first_row')
     <div class="row">
+    @if(Session::get("flash_message"))
+        <div class="message alert-info" id="message">{{ Session::get("flash_message") }}</div>
+    @endif
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="panel panel-default" id="answer_panel">
@@ -40,12 +43,12 @@
                         </p>
                         <p>
 
-                            @if((isset($attachment)) && ($attachment[0]->image_type == "image/jpeg" ||
+                            @if((isset($attachment[0])) && ($attachment[0]->image_type == "image/jpeg" ||
                              $attachment[0]->image_type == "image/jpg" || $attachment[0]->image_type == "image/png"))
                                 {!! Html::image($attachment[0]->image_url,$attachment[0]->image_url, ['class'=>'img img-responsive img-rectangle']) !!}
 
                             @else
-                                <a href="http://localhost/campusguru/public/{{ $attachment[0]->image_url or 'NoAttachment'}}">{{ $attachment[0]->image_url or 'no attachment'}} <span class="glyphicon glyphicon-download"></span></a>
+                                <a href="http://localhost/campusguru/public/{{ $attachment[0]->image_url or 'no attachment'}}">{{ $attachment[0]->image_url or 'no attachment'}} <span class="glyphicon glyphicon-download"></span></a>
 
                             @endif
 

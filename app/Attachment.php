@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attachment extends Model {
 
     protected $table = "attachments";
+
 	public function addFile($qId,$imageName, $imageSize, $imageType, $imageUrl)
     {
         $file = new Attachment();

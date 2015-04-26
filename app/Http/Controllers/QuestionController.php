@@ -63,7 +63,7 @@ class QuestionController extends Controller {
             $category = $request->get('category');
             $content = $request->get('content');
 
-            if($request->get('file') !== null) //if the file is valid
+            if($request->hasFile('file')) //if the file is valid
             {
                 $file = $request->file('file');
                 if($file->getClientMimeType() == 'exe')
@@ -81,6 +81,7 @@ class QuestionController extends Controller {
 
                     if($q_id)
                     {
+//                        dd($imageName. " " . $imageSize ." " . $imageType. " " . $imageUrl);
                         // instantiating the object of for the attachment.
                         $f = new Attachment();
                         $flag = $f->addFile($q_id,$imageName,$imageSize,$imageType,$imageUrl);
