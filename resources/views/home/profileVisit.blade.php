@@ -25,9 +25,10 @@
           {{--<div class="col-sm-2"><a href="/users" class="pull-right">{!! Html::image($dp[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-circle']) !!}</a>--}}
                 <div class="col-sm-8">
                 <div class="pull-left">
+                @if(isset($userImage[0]['id']))
                     <a href="{{ route('likeDisplayPicture', $userImage[0]['id']) }}" class="btn btn-primary" id="like_image_btn"><span class="glyphicon glyphicon-thumbs-up"></span> </a>
                     <div class="badge" id="like_count">{{ $userImage[0]['likeCount'] or '0' }}</div>
-
+                @endif
                     <br><br>
                 <div class="pull-left">
 

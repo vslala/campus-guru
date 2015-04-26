@@ -87,6 +87,7 @@ class HomeController extends Controller {
 
         $randomUsers = DB::table("users")
             ->leftJoin("display_pictures", "users.username", "=", "display_pictures.username")
+            ->select(['users.id','users.name','users.username','users.created_at','display_pictures.image_name','display_pictures.image_url'])
             ->get();
         $randomUser = array_rand($randomUsers,1);
         $randomUser = $randomUsers[$randomUser];

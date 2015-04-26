@@ -65,7 +65,7 @@ class WelcomeController extends Controller {
             $password = Hash::make($password);
 
             $user = new User();
-            $flag = $user->addUser($name, $username, $email,$password,$college,$branch);
+            $flag = $user->addUser($name, trim($username, ' '), $email,$password,$college,$branch);
 
             if($flag)
             {
