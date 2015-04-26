@@ -25,6 +25,9 @@
                         All the questions<span class="glyphicon glyphicon-question-sign"></span> asked by you
                     </div>
                     <div class="panel-body">
+                    @if(Session::get("flash_message"))
+                        <span class="alert-success message" id="message">{{ Session::get("flashj_message") }}</span>
+                    @endif
                         <p>These are the list of all the questions asked by you uptill now.
 
                         </p>
@@ -33,7 +36,9 @@
                             <ul class="nav nav-stacked">
                             @if(isset($questions))
                                 @foreach($questions as $q)
-                                    <li><span class="glyphicon glyphicon-question-sign"><a href="{{ route('show', $q->id) }}" id="question_link">{{ $q->title }} ?</a> </span></li>
+                                    <li>
+                                    <span class="pull-right"><a href="{{ route('deleteQuestion', $q->id) }}">delete</a> </span>
+                                    <span class="glyphicon glyphicon-question-sign"><a href="{{ route('show', $q->id) }}" id="question_link">{{ $q->title }} ?</a> </span></li>
                                 @endforeach
                             @endif
                             </ul>

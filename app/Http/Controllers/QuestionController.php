@@ -244,7 +244,6 @@ class QuestionController extends Controller {
 //        dd($questions);
 		return view('question.all', compact('questions'));
 	}
-
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -253,7 +252,8 @@ class QuestionController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Question::find($id)->delete();
+        return Redirect::back()->with("flash_message", 'Question with id: '.$id.' Deleted Successfully!!!');
 	}
 
 

@@ -9,7 +9,7 @@
 
 @section('links')
 {!! Html::style('css/profile.css') !!}
-
+{!! Html::script('js/profile.js') !!}
 @endsection
 @section('content')
 
@@ -25,6 +25,9 @@
                         All the Discussions<span class="glyphicon glyphicon-question-sign"></span> asked by you
                     </div>
                     <div class="panel-body">
+                    @if(Session::get("flash_message"))
+                        <span class="message alert-warning" id="message"> {{ Session::get("flash_message") }} </span>
+                    @endif
                         <p>These are the list of all the discussions started by you up-till now.
 
                         </p>
@@ -33,7 +36,9 @@
                             <ul class="nav nav-stacked">
                             @if(isset($discussions))
                                 @foreach($discussions as $d)
-                                    <li><span class="glyphicon glyphicon-question-sign"><a href="{{ route('singleDiscussion', $d->id) }}" id="question_link">{{ $d->title }} ?</a> </span></li>
+                                    <li>
+                                    <span class="pull-right message" id="message"><a href="{{ route('deleteDiscussion', $d->id) }}">delete</a> </span>
+                                    <span class="glyphicon glyphicon-question-sign"><a href="{{ route('singleDiscussion', $d->id) }}" id="question_link">{{ $d->title }} ?</a> </span></li>
                                 @endforeach
                             @endif
                             </ul>

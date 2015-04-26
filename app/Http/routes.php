@@ -127,7 +127,10 @@ Route::put('/user/start/discussion', [
     'uses'=>"DiscussionController@create",
     "as"=>"createDiscussion"
 ]);
-
+Route::get('/user/delete/discussion/{id}', [
+    'uses'=>"DiscussionController@destroy",
+    "as"=>"deleteDiscussion"
+]);
 /*
  * LikeController Starts from here
  */
@@ -194,7 +197,10 @@ Route::get('/user/view/all/question/', [
     'uses'=>"QuestionController@viewAllQuestions",
     "as"=>"viewAllQuestions"
 ]);
-
+Route::get('/user/delete/question/{id}', [
+    'uses'=>"QuestionController@destroy",
+    "as"=>"deleteQuestion"
+]);
 /*
  * Answers route here
  */

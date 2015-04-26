@@ -192,7 +192,8 @@ class DiscussionController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Discussion::find($id)->delete();
+        return Redirect::back()->with("flash_message", "Discussion with id: ". $id ." has been deleted successfully!");
 	}
 
 }
