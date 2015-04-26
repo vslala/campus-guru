@@ -403,7 +403,10 @@ $(document).ready(function(){/* jQuery toggle layout */
 
     });
 
-
+    /*
+    Fadeout for message spans
+     */
+    $("#message").fadeOut(5000);
 
 
 });

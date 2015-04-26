@@ -85,6 +85,12 @@ class HomeController extends Controller {
 
         $confessions = Confession::take(5)->orderBy('created_at', 'desc')->get(['confession', 'college', 'created_at']);
 
+        $randomUsers = DB::table("users")
+            ->leftJoin("display_pictures", "users.username", "=", "display_pictures.username")
+            ->get();
+        $randomUser = array_rand($randomUsers,1);
+        $randomUser = $randomUsers[$randomUser];
+//        dd($randomUser);
 //        dd($questions);
 //        dd($status[0]->image_url);
         if(isset($status)){
@@ -98,7 +104,7 @@ class HomeController extends Controller {
 //        dd($mostLikedStatus);
 
 		return view('home', compact('status','questions','blog','discussions',
-            'mostLikedStatus', 'complains', 'confessions', 'mostLikedImage'));
+            'mostLikedStatus', 'complains', 'confessions', 'mostLikedImage', 'randomUser'));
 	}
 
     public function profile()
@@ -325,10 +331,6 @@ class HomeController extends Controller {
             'heading' => 'required|max:500',
             'content' => 'required|max:3000',
         ]);
-        if ($v->fails())
-        {
-            return redirect()->back()->withErrors($v->errors());
-        }
 
         $blog = Blog::find($id);
         $blog->heading = $request->get("heading");
@@ -380,16 +382,25 @@ class HomeController extends Controller {
     }
 
     public function sendMessage(Request $request){
+        /*
+         * Form Input validation
+         */
+//        $v = $this->validate($request, [
+//            'sentTo' => 'required|max:500|min:2',
+//            'message' => 'required|max:3000',
+//            'subject' => 'required|min:8'
+//        ]);
         if($request->isMethod("post")){
             if($request->ajax()){
                 $sender = Auth::user()->username;
                 $reciever = $request->get("sentTo");
                 $message = $request->get("message");
+                $subject = $request->get("subject");
                 if($request->file('file')->getClientSize() > 0){
                     $file = $request->file('file');
                     $fileUrl = "files/".Auth::user()->username ."/" .$file->getClientOriginalName();
                     $m = new SendMessage();
-                    $flag = $m->sendMessage($sender,$reciever,$message,$file->getClientOriginalName(),$fileUrl);
+                    $flag = $m->sendMessage($sender,$reciever,$subject,$message,$file->getClientOriginalName(),$fileUrl);
                     if($flag){
                         return "Message sent successfully!";
                     }else{

@@ -126,4 +126,8 @@ $(document).ready(function(){
     });
 
 
+    /*
+    Fade the message span
+     */
+    $("#message").fadeOut(5000);
 });

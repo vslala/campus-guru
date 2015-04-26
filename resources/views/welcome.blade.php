@@ -1,3 +1,6 @@
+<?php
+$title="Campus Guru";
+?>
 @extends('master')
 @section('links')
 {!! Html::style('css/welcome.css') !!}
@@ -7,9 +10,11 @@
 
 @section('content')
 		<div class="container">
-		<div class="alert-info">
-		    <strong>{{ Session::get("flash_message") }}</strong>
-		</div>
+		@if(Session::get("flash_message")):
+		    <div class="alert-info">
+		        <span id="message" style="">{{ Session::get("flash_message") }}</span>
+		    </div>
+		@endif
 		 <div class="row">
 		<a href="#register_section">
 			<div class="content">

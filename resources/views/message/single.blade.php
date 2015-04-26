@@ -2,8 +2,7 @@
 
 @section('links')
     {!! Html::script("js/profile.js") !!}
-    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://cdn.blockspring.com/blockspring.js"></script>
+    {!! Html::style("css/profile.css") !!}
 @endsection
 
 @section('content')
@@ -30,20 +29,25 @@ margin-top: 10%;
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                @if(Session::get("flash_message"))
+                    <span class="alert-danger message" id="message">{{ Session::get("flash_message") }}</span>
+                @endif
+                @if(isset($message))
                     <span class="panel-header">
                         <span class="pull-right"><a href="{{ route("deleteMessage", $message->id) }}">Delete </a></span>
                        From:  <label><a href="{{route("profileVisit", $message->sender_username)}}">{{ $message->sender_username or 'username'}}</a></label><br />
                        Subject:  <label>{{ $message->subject or ''}}</label> <br />
                        Received at: <label>{{ $message->created_at or 'not mentioned' }}</label>
                     </span>
+                    @endif
                 </div>
                 <div class="panel-body">
                 <label>Message:</label><br>
-                        <p style="font-size: medium;">{{ $message->message or '' }}</p>
+                        <p style="font-size: medium;">{{ $message->message or '...' }}</p>
 
                         <p>
                         @if(isset($message->file_name))
-                             <span class="glyphicon glyphicon-paperclip"></span>{!! Html::link($message->file_url, $message->file_name) !!}
+                             <span class="glyphicon glyphicon-paperclip"></span>{!! Html::link($message->file_url."/".$message->file_name, $message->file_name) !!}
                         @endif
                         </p>
                 </div>

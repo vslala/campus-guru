@@ -1,5 +1,5 @@
 <div class="col-sm-3 col-md-2">
-            <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i class="glyphicon glyphicon-edit"></i> Compose</a>
+            <a href="{{ route('composeMail') }}" class="btn btn-danger btn-sm btn-block" role="button"><i class="glyphicon glyphicon-edit"></i> Compose</a>
             <hr>
             <ul class="nav nav-pills nav-stacked">
                 <li class="{{ $setInboxActive or '' }}"><a href="{{ route("messages") }}"><span class="badge pull-right">{{ $totalMessage or '' }}</span> Inbox </a>

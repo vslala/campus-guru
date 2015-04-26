@@ -290,3 +290,7 @@ Route::get('/user/sent/messages', [
     'uses'=>"MessageController@sent",
     "as"=>"sentMessages"
 ]);
+Route::get('/user/compose/message', [
+    'uses'=>"MessageController@compose",
+    "as"=>"composeMail"
+]);

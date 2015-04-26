@@ -70,7 +70,7 @@ class WelcomeController extends Controller {
             if($flag)
             {
                 $message = "You have been successfully registered to Campus Guru!";
-                return redirect(route("index"));
+                return Redirect::back()->with("flash_message", $message);
             } else {
 
             }

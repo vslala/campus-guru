@@ -42,3 +42,9 @@ a:hover{
     display: block;
 }
 
+#message{
+    font-family: Lobster, cursive;
+    font-weight: bolder;
+    font-size: larger;
+    color: darkgreen;
+}
