@@ -104,7 +104,7 @@ $(document).ready(function(){/* jQuery toggle layout */
                 $.each(data, function (key,value) {
                     $(list_of_questions).append("<a style='font-family: cursive,Lobster; " +
                     "font-weight: bold; color: #843534;' class='list-group-item' " +
-                    "href='"+ base_url +"/user/show/question/"+ value.id +"'>" +
+                    "href='"+ base_url +"user/show/question/"+ value.id +"'>" +
                     "<img class='img img-responsive img-thumbnail' " +
                     "style='width: 50px;' " +
                     "src='"+base_url+value.image_url+"'>"+ value.title +"" +
@@ -135,7 +135,7 @@ $(document).ready(function(){/* jQuery toggle layout */
                 $.each(data, function (key,value) {
                     $(list_of_discussions).append("<a style='font-family: cursive,Lobster; " +
                     "font-weight: bold; color: #843534;' class='list-group-item' " +
-                    "href='"+ base_url +"/user/show/question/"+ value.id +"'>" +
+                    "href='"+ base_url +"user/view/single/discussions/"+ value.id +"'>" +
                     "<img class='img img-responsive img-thumbnail' " +
                     "style='width: 50px;' " +
                     "src='"+base_url+value.image_url+"'>"+ value.title +"" +

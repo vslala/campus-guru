@@ -114,25 +114,24 @@
       	 <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Latest Blog</h4></div>
    			<div class="panel-body">
-              <p>
+
               @if(isset($blog))
 
               @foreach($blog as $b)
               @if(isset($b->image_url))
-               {!! Html::image($b->image_url,$b->image_name,['class'=>'img-circle pull-right', 'style'=>'height:150px; width:150px;']) !!}
+               {!! Html::image($b->image_url,$b->image_name,['class'=>'img-thumbnail img img-responsive ', 'style'=>'height:150px; width:150px;']) !!}
               @else
-               <img src="//placehold.it/150x150" class="img-circle pull-right">
+               <img src="//placehold.it/150x150" class="img img-responsive img-thumbnail pull-right">
               @endif
                 <a href="{{ route('profileVisit', $b->username) }}">{{ $b->username or 'User' }}</a></p>
-              <div class="clearfix"></div>
-              <hr>
               <a href="{{ route('showSingleBlog', $b->id)}}">{{ $b->heading or 'Blog heading' }}</a>
-            </div>
+
             @endforeach
             @endif
+            </div>
          </div>
 
-  	</div>
+
     </div>
 
   	{{--<div class="row">--}}
