@@ -1,4 +1,6 @@
-
+<?php
+ $title= $realName[0]['username'];
+ ?>
 @extends('master')
 
 @section('links')

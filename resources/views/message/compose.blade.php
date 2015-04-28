@@ -13,7 +13,8 @@ $title="inbox";
 
 <style>
 .first-row{
-margin-top: 10%;
+margin-top: 20%;
+padding-top: 7%;
 }
 </style>
 
