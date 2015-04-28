@@ -61,12 +61,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CCController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CCController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CCController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.05156538" vertical-offset="448" max-vertical-offset="1292">
+            <state vertical-scroll-proportion="-1.0769231" vertical-offset="448" max-vertical-offset="1292">
               <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.0384617" vertical-offset="1160" max-vertical-offset="2720">
+              <caret line="79" column="93" selection-start-line="79" selection-start-column="93" selection-end-line="79" selection-end-column="93" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scripts.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/scripts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7410072" vertical-offset="6677" max-vertical-offset="7769">
+              <caret line="417" column="75" selection-start-line="417" selection-start-column="75" selection-end-line="417" selection-end-column="75" />
+              <folding>
+                <marker date="1430199790366" expanded="false" signature="2034:2049" placeholder="..." />
+                <marker date="1430199790366" expanded="false" signature="2093:2157" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,7 +128,6 @@
         <option value="$PROJECT_DIR$/app/Discussion.php" />
         <option value="$PROJECT_DIR$/public/css/welcome.css" />
         <option value="$PROJECT_DIR$/public/js/myjs.js" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/message/_left_nav.blade.php" />
         <option value="$PROJECT_DIR$/public/js/profile.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
@@ -121,7 +143,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" />
         <option value="$PROJECT_DIR$/resources/views/home/showAllBlogs.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home/showBlog.blade.php" />
-        <option value="$PROJECT_DIR$/public/js/scripts.js" />
         <option value="$PROJECT_DIR$/resources/views/home/_status.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home/profile.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
@@ -132,6 +153,8 @@
         <option value="$PROJECT_DIR$/resources/views/home/statusAll.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home/profileVisit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CCController.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/scripts.js" />
       </list>
     </option>
   </component>
@@ -1129,17 +1152,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75189394" vertical-offset="3751" max-vertical-offset="7599">
-          <caret line="244" column="13" selection-start-line="244" selection-start-column="13" selection-end-line="244" selection-end-column="13" />
-          <folding>
-            <marker date="1430187960507" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1430187960507" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home/profile.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1923077" vertical-offset="218" max-vertical-offset="3213">
@@ -1168,14 +1180,6 @@
           <folding>
             <element signature="e#39#54#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22830188" vertical-offset="236" max-vertical-offset="2703">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1246,9 +1250,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CCController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05156538" vertical-offset="448" max-vertical-offset="1292">
+        <state vertical-scroll-proportion="-1.0769231" vertical-offset="448" max-vertical-offset="1292">
           <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0384617" vertical-offset="1160" max-vertical-offset="2720">
+          <caret line="79" column="93" selection-start-line="79" selection-start-column="93" selection-end-line="79" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7410072" vertical-offset="6677" max-vertical-offset="7769">
+          <caret line="417" column="75" selection-start-line="417" selection-start-column="75" selection-end-line="417" selection-end-column="75" />
+          <folding>
+            <marker date="1430199790366" expanded="false" signature="2034:2049" placeholder="..." />
+            <marker date="1430199790366" expanded="false" signature="2093:2157" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

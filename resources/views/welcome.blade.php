@@ -63,8 +63,8 @@ $title="Campus Guru";
                                         <input type="password" name="password" class="form-control" id="input_password" placeholder="Password">
                                       </div>
                                       <div class="form-group">
-                                        <label for="college">College</label>
-                                        <input type="text" name="college" id="input_college" class="form-control" placeholder="Enter College Name">
+                                        <label for="college">College/School</label>
+                                        <input type="text" name="college" id="input_college" class="form-control" placeholder="Enter College/School Name">
                                       </div>
                                       <div class="form-group">
                                         <label for="branch">Choose your branch below</label>
@@ -77,6 +77,7 @@ $title="Campus Guru";
                                             <option value="ex">Elex</option>
                                             <option value="civil">Civil</option>
                                             <option value="auto">Automobile</option>
+                                            <option value="other"><span id="other_html">Other</span> </option>
                                         </select>
                                       </div>
                                       <button type="submit" class="btn btn-lg btn-primary">Register </button>
