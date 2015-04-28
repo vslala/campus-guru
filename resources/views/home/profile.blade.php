@@ -22,6 +22,9 @@
     <hr class="">
     <div class="container target">
         <div class="row first-row">
+        @if(Session::get("flash_message"))
+            <span class="alert-success message" id="message">{{ Session::get("flash_message") }}</span>
+        @endif
             <div class="col-sm-12">
             <div class="col-sm-2">
             <a href="{{ route("profile") }}" class="pull-right">{!! Html::image($userImage[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-thumbnail', 'style'=>'width: 200px;']) !!}

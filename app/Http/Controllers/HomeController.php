@@ -273,6 +273,11 @@ class HomeController extends Controller {
         }
     }
 
+    //Delete Status
+    public function deleteStatus($id){
+        Status::find($id)->delete();
+        return Redirect::back()->with("flash_message", "Status with id: ". $id ." has been deleted successfully!");
+    }
     public function blog()
     {
         $blog = new Blog();
@@ -362,7 +367,7 @@ class HomeController extends Controller {
 
     public function profileVisit($username)
     {
-        $realName = User::where("username",$username)->get(['name','created_at']);
+        $realName = User::where("username",$username)->get(['name','username','created_at']);
         $user = Profile::where("username", $username)->get()->toArray();
         $userImage = DisplayPicture::where("username", $username)->get()->toArray();
         $totalLikes = count(LikedAnswer::where("username", $username)->get());
@@ -464,6 +469,19 @@ class HomeController extends Controller {
 
 //        dd($blogs);
         return view('home.showAllBlogs', compact('blogs'));
+    }
+
+    // View All Status
+    public function viewAllStatus()
+    {
+        $status = DB::table('statuses')
+            ->leftJoin('display_pictures', 'statuses.username', '=', 'display_pictures.username')
+            ->orderBy('statuses.created_at', 'desc')
+            ->get(['statuses.id', 'statuses.username', 'statuses.status',
+                'display_pictures.image_name','display_pictures.image_url',
+                'statuses.likeCount', 'statuses.dislikeCount', 'statuses.created_at', 'statuses.updated_at'
+            ]);
+        return view('home.statusAll', compact('status'));
     }
 
 }

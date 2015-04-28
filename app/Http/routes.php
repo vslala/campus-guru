@@ -105,8 +105,14 @@ Route::get('/user/show/all/blogs', [
     'uses'=>"HomeController@showAllBlogs",
     "as"=>"showAllBlogs"
 ]);
-
-
+Route::get('/user/status/delete/{id}', [
+    'uses'=>"HomeController@deleteStatus",
+    "as"=>"deleteStatus"
+]);
+Route::get('/view/all/status', [
+    'uses'=>"HomeController@viewAllStatus",
+    "as"=>"viewAllStatus"
+]);
 
 /*
  * DiscussionController starts here

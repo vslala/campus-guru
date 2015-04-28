@@ -224,25 +224,26 @@ $(document).ready(function(){/* jQuery toggle layout */
     /*
      Most Liked Display Picture Fetch
      */
-    setInterval(function () {
-        var mostLikedImage = $("#most_liked_picture");
-        var url = $("#mostLikedImageUrl").val();
-        console.log(url);
-        $(mostLikedImage).html(load_img);
-        $.ajax({
-            url : url,
-            type : "GET",
-            success : function(data){
-                data = $.parseJSON(data);
-                $(mostLikedImage).html('<img src="'+ base_url+ data[0].image_url +'" class="img img-responsive img-thumbnail" />    <br>' +
-                    '<a class="active btn btn-primary btn-sm"><span class="badge">'+ data[0].likeCount +'</span></a>'
-                );
-            },
-            error : function(xhr, status, msg){
-                console.log("ERROR: "+ xhr.responseText);
-            }
-        });
-    }, 60000);
+    //setInterval(function () {
+    //    var mostLikedImage = $("#most_liked_picture");
+    //    var url = $("#mostLikedImageUrl").val();
+    //    console.log(url);
+    //    $(mostLikedImage).html(load_img);
+    //    $.ajax({
+    //        url : url,
+    //        type : "GET",
+    //        success : function(data){
+    //            data = $.parseJSON(data);
+    //            cosnole.log(data);
+    //            $(mostLikedImage).html('<img src="'+ base_url+ data[0].image_url +'" class="img img-responsive img-thumbnail" />    <br>' +
+    //                '<a class="active btn btn-primary btn-sm"><span class="badge">'+ data[0].likeCount +'</span></a>'
+    //            );
+    //        },
+    //        error : function(xhr, status, msg){
+    //            console.log("ERROR: "+ xhr.responseText);
+    //        }
+    //    });
+    //}, 60000);
 
     /*
     Search VIA username at the _top-nav

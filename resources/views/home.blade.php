@@ -71,7 +71,8 @@
   	<div class="col-md-4">
 
           <div class="well">
-              <h4>News Feed</h4>
+              <h4>News Feed <a href="{{ route('viewAllStatus') }}" class="pull-right">View all</a></h4>
+
               <!-- List Of Status Updates will come here -->
                 <div class="status-section" id="status_section">
                 @if(isset($status))
