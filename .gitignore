@@ -3,5 +3,5 @@
 .env
 database.php
 
-config/
-public/js/
+config/*
+public/js/*
