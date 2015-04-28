@@ -23,7 +23,7 @@
                   <div class="form-group">
                    <textarea name="status" class="form-control" placeholder="Update your status"></textarea>
                  </div>
-                 <button class="btn btn-success pull-right" type="submit">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
+                 <button class="btn btn-success pull-right" type="submit" id="statusPostBtn">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
                {!! Form::close() !!}
            </div>
 
@@ -124,7 +124,7 @@
                <img src="//placehold.it/150x150" class="img img-responsive img-thumbnail pull-right">
               @endif
                 <a href="{{ route('profileVisit', $b->username) }}">{{ $b->username or 'User' }}</a></p>
-              <a href="{{ route('showSingleBlog', $b->id)}}">{{ $b->heading or 'Blog heading' }}</a>
+              <a href="{{ route('showSingleBlog', [$b->id])}}">{{ $b->heading or 'Blog heading' }}</a>
 
             @endforeach
             @endif

@@ -3,10 +3,12 @@ $(document).ready(function(){/* jQuery toggle layout */
 
     base_url = "http://localhost/campusguru/public/";
     load_img = '<img src="http://www.ajaxload.info/images/exemples/25.gif" >';
+
     // Ajax Status Post
     /* Status Post */
     $("#status_form").submit(function (event) {
         event.preventDefault();
+
         var url = $(this).attr("action");
         var data = $(this).serialize();
         if(data == "" || data == null){ return; }
@@ -146,7 +148,7 @@ $(document).ready(function(){/* jQuery toggle layout */
 
             },
             error : function(xhr,status,msg){
-                alert("ERROR: We are working on it!");
+                console.log("ERROR: " + xhr.responseText);
             }
         });
     }, 60000);
@@ -158,7 +160,6 @@ $(document).ready(function(){/* jQuery toggle layout */
         event.preventDefault();
         var url = $(this).attr('href');
         var badge = $(this).find('.badge');
-        console.log(url);
 
         $.ajax({
             url : url,
@@ -168,7 +169,7 @@ $(document).ready(function(){/* jQuery toggle layout */
                 console.log(data);
             },
             error : function(xhr,status,msg){
-                alert("ERROR: "+ xhr.responseText);
+                console.log("ERROR: "+ xhr.responseText);
             }
         });
     });

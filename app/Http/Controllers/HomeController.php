@@ -362,13 +362,13 @@ class HomeController extends Controller {
 
     public function profileVisit($username)
     {
-        $realName = User::where("username",$username)->get(['name']);
+        $realName = User::where("username",$username)->get(['name','created_at']);
         $user = Profile::where("username", $username)->get()->toArray();
         $userImage = DisplayPicture::where("username", $username)->get()->toArray();
-        $totalLikes = count(LikedAnswer::where("username", Auth::user()->username)->get());
-        $questionAsked = count(Question::where("username", Auth::user()->username)->get());
-        $questionAnswered = count(Answer::where("username", Auth::user()->username)->get());
-        $posts = count(Status::where("username", Auth::user()->username)->get());
+        $totalLikes = count(LikedAnswer::where("username", $username)->get());
+        $questionAsked = count(Question::where("username", $username)->get());
+        $questionAnswered = count(Answer::where("username", $username)->get());
+        $posts = count(Status::where("username", $username)->get());
         $status = Status::where("username", $username)->get();
         $discussionStarted = count(Discussion::where("username", $username)->get());
 
@@ -439,6 +439,19 @@ class HomeController extends Controller {
 
 
         }
+    }
+
+    public function showBlog($id){
+        $blog = DB::table("blogs")
+            ->leftJoin("display_pictures", "blogs.username", "=", "display_pictures.username")
+            ->where(["blogs.id"=>$id])
+            ->select(["blogs.id","blogs.username","blogs.heading","blogs.content","blogs.created_at",
+                "display_pictures.image_name","display_pictures.image_url"
+            ])
+            ->get();
+
+//        dd($blog);
+        return view('home.showBlog', compact('blog'));
     }
 
 }

@@ -18,8 +18,12 @@
         <div class="row first-row">
             <div class="col-sm-12">
             <div class="col-sm-2">
+            @if(isset($userImage))
             <a href="#" class="pull-right">{!! Html::image($userImage[0]['image_url'],$userImage[0]['image_name'],['title'=>'profile_image', 'class'=>'img img-responsive img-thumbnail', 'style'=>'width: 200px;']) !!}
              </a>
+            @else
+            <a href="#"><img src="http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png" class="img img-responsive img-thumbnail" style="width: 200px;"/> </a>
+            @endif
                  <h1 class="col-sm-2">{{ $user[0]['username'] or 'Username'}}</h1>
             </div>
           {{--<div class="col-sm-2"><a href="/users" class="pull-right">{!! Html::image($dp[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-circle']) !!}</a>--}}
