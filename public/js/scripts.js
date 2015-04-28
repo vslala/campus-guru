@@ -409,6 +409,16 @@ $(document).ready(function(){/* jQuery toggle layout */
      */
     $("#message").fadeOut(5000);
 
+    /*
+    Enter other branch or stream
+     */
+    $("#input_branch").change(function(){
+        if($(this).val() == "other"){
+            var value = prompt("Enter your branch name");
+            $(this).append('<option value="'+ value +' " selected="selected">'+ value +'</option> ');
+
+        }
+    })
 
 });
 /*
