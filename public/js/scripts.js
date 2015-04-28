@@ -117,7 +117,7 @@ $(document).ready(function(){/* jQuery toggle layout */
 
             },
             error : function(xhr,status,msg){
-                alert("ERROR: We are working on it!");
+                console.log("ERROR: We are working on it!");
             }
         });
     }, 60000);
@@ -188,10 +188,9 @@ $(document).ready(function(){/* jQuery toggle layout */
             type : "GET",
             success : function(data){
                 $(badge).html(data);
-                console.log(data);
             },
             error : function(xhr,status,msg){
-                alert("ERROR: "+ xhr.responseText);
+                console.log("ERROR: "+ xhr.responseText);
             }
         });
     });

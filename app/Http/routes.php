@@ -101,6 +101,10 @@ Route::get('/user/show/blog/{id}', [
     'uses'=>"HomeController@showBlog",
     "as"=>"showSingleBlog"
 ]);
+Route::get('/user/show/all/blogs', [
+    'uses'=>"HomeController@showAllBlogs",
+    "as"=>"showAllBlogs"
+]);
 
 
 

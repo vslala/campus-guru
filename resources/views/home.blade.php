@@ -112,7 +112,7 @@
           </div>
 
       	 <div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Latest Blog</h4></div>
+           <div class="panel-heading"><a href="{{ route('showAllBlogs') }}" class="pull-right">View all</a> <h4>Latest Blog</h4></div>
    			<div class="panel-body">
 
               @if(isset($blog))
