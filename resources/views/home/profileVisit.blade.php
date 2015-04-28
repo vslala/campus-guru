@@ -64,7 +64,7 @@
                     </div>
                     <ul class="list-group">
 
-                                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span>{{ $user[0]['created_at'] or 'Not Provided' }}</li>
+                                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span>{{ $realName[0]['created_at'] or 'Not Provided' }}</li>
                                             <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span>
                                                 {{ $realName[0]->name or '------' }}</li>
                                       <li class="list-group-item text-right"><span class="pull-left"><strong class="" >Rashi: </strong></span> <span id="rashi">{{ $user[0]['rashi'] or "what's your Rashi?" }}</span>
