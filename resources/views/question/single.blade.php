@@ -1,4 +1,5 @@
 <?php
+    $title="Question";
     $pageHeader = $question->title;
     if(count($question) <= 0)
     {
@@ -78,7 +79,7 @@
                                         {!! Html::image($a->image_url,$a->image_name, ['class'=>'img img-responsive img-thumbnail']) !!}
                                         </div>
                                         <div class="col-sm-11" id="answer">
-                                            <p id="lobster_font"><strong>{{ $a->answer }}</strong></p>
+                                            <p id="lobster_font"><strong>{!! $a->answer !!}</strong></p>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +113,7 @@
                                                 </a>
                                              </div>
                                              <div class="col-md-11 blue" id="comments">
-                                                {{ $comment->comment }}
+                                                {!! $comment->comment !!}
                                              </div>
                                              </div><!-- form froup div ends here -->
                                              @endif

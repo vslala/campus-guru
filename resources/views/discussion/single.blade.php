@@ -36,7 +36,7 @@
                     </div>
                     <div class="panel-body">
                         <p>
-                            {{ $discussion->description or 'description does not exists!' }}
+                            {!! $discussion->description or 'description does not exists!' !!}
                         </p>
 
                         <hr>
@@ -64,7 +64,7 @@
                                         {!! Html::image($r->image_url,$r->image_name, ['class'=>'img img-responsive img-thumbnail']) !!}
                                         </div>
                                         <div class="col-sm-11" id="answer">
-                                            <p id="lobster_font"><strong>{{ $r->reply }}</strong></p>
+                                            <p id="lobster_font"><strong>{!! $r->reply !!}</strong></p>
                                         </div>
                                     </div>
                                 </div>
