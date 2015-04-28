@@ -39,6 +39,13 @@ class CommentController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+        /*
+         * Form Input validation
+         */
+        $v = $this->validate($request, [
+            'ansId' => 'required',
+            'comment' => 'required|min:3',
+        ]);
 		if($request->isMethod("put"))
         {
             $answerID = $request->get('ansId');
@@ -46,7 +53,7 @@ class CommentController extends Controller {
             $c = new Comment();
             $flag = $c->addComment(Auth::user()->username, $answerID, $comment);
             if($flag)
-                return Redirect::back();
+                return Redirect::back()->with("flash_message", "Your comment has been added.");
             else
                 return Redirect::back()->with("flash_message", "There was some error while adding comment.");
         }

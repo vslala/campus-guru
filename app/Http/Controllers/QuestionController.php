@@ -128,6 +128,13 @@ class QuestionController extends Controller {
 	 */
 	public function addAnswer(Request $request)
 	{
+        /*
+         * Form Input validation
+         */
+        $v = $this->validate($request, [
+            'q_id' => 'required',
+            'answer' => 'required|min:3',
+        ]);
 		if($request->ajax())
         {
             $username = Auth::user()->username;
@@ -154,6 +161,7 @@ class QuestionController extends Controller {
 
         if($request->isMethod('put'))
         {
+
             $username = Auth::user()->username;
             $q_id = $request->get('q_id');
             $answer = $request->get('answer');
