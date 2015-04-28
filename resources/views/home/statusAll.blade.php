@@ -37,7 +37,7 @@
                                                     <br>
                                                     <div class="help-block">created at: {{ $s->created_at }}</div>
                                                  </li>
-
+                                                @include('_status_like')
                                                 <hr>
                                             </ul>
                 @endforeach

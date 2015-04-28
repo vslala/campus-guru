@@ -1,7 +1,7 @@
 /vendor
 /node_modules
 .env
-database.php
 
-config/*
-public/js/*
+
+/config/*
+/public/js/*
