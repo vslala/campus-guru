@@ -17,7 +17,7 @@ class CCController extends Controller {
     }
 	public function complain()
     {
-        $colleges  = User::all(['college']);
+        $colleges  = User::distinct()->get(['college']);
         return view('cc.complain', compact('colleges'));
     }
     public function viewAllComplains()
@@ -34,7 +34,7 @@ class CCController extends Controller {
 
     public function confession()
     {
-        $colleges  = User::all(['college']);
+        $colleges  = User::distinct()->get(['college']);
         return view('cc.confession', compact('colleges'));
     }
     public function viewAllConfessions()

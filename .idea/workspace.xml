@@ -48,15 +48,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profileVisit.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profileVisit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/home/profileVisit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33266932" vertical-offset="955" max-vertical-offset="3570">
+            <state vertical-scroll-proportion="-3.0925925" vertical-offset="955" max-vertical-offset="3570">
               <caret line="66" column="154" selection-start-line="66" selection-start-column="154" selection-end-line="66" selection-end-column="154" />
               <folding>
                 <marker date="1430194933523" expanded="true" signature="5703:5819" placeholder="..." />
                 <marker date="1430194933523" expanded="true" signature="5720:5818" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CCController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CCController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.05156538" vertical-offset="448" max-vertical-offset="1292">
+              <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -71,7 +81,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/LikeController.php" />
         <option value="$PROJECT_DIR$/resources/views/_top-nav.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/csSyllabus.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_04_05_163932_create_categories_table.php" />
@@ -122,6 +131,7 @@
         <option value="$PROJECT_DIR$/resources/views/vendor/_status_like.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home/statusAll.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home/profileVisit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CCController.php" />
       </list>
     </option>
   </component>
@@ -847,14 +857,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/storage/framework/compiled.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="192474" max-vertical-offset="284886">
-          <caret line="11574" column="4" selection-start-line="11574" selection-start-column="4" selection-end-line="11574" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/discussion/start.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="1003">
@@ -1233,12 +1235,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home/profileVisit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33266932" vertical-offset="955" max-vertical-offset="3570">
+        <state vertical-scroll-proportion="-3.0925925" vertical-offset="955" max-vertical-offset="3570">
           <caret line="66" column="154" selection-start-line="66" selection-start-column="154" selection-end-line="66" selection-end-column="154" />
           <folding>
             <marker date="1430194933523" expanded="true" signature="5703:5819" placeholder="..." />
             <marker date="1430194933523" expanded="true" signature="5720:5818" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CCController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05156538" vertical-offset="448" max-vertical-offset="1292">
+          <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
