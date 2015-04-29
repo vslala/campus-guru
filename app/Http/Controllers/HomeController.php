@@ -89,6 +89,7 @@ class HomeController extends Controller {
             ->leftJoin("display_pictures", "users.username", "=", "display_pictures.username")
             ->select(['users.id','users.name','users.username','users.created_at','display_pictures.image_name','display_pictures.image_url'])
             ->get();
+        $users = $randomUsers;
         $randomUser = array_rand($randomUsers,1);
         $randomUser = $randomUsers[$randomUser];
 //        dd($randomUser);
@@ -104,7 +105,7 @@ class HomeController extends Controller {
 
 //        dd($mostLikedStatus);
 
-		return view('home', compact('status','questions','blog','discussions',
+		return view('home', compact('status','questions','blog','discussions', 'users',
             'mostLikedStatus', 'complains', 'confessions', 'mostLikedImage', 'randomUser'));
 	}
 

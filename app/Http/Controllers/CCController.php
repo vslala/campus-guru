@@ -5,9 +5,11 @@ use App\Confession;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Suggestion;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
 class CCController extends Controller {
@@ -74,5 +76,40 @@ class CCController extends Controller {
         $confession = Confession::find($id);
         $confession->delete();
         return ['message'=>'The confession has been reported abuse and removed!'];
+    }
+
+    /*
+     * Add Suggestion by the user
+     */
+    public function addSuggestion(Request $request){
+
+        if($request->ajax()){
+            $suggestion = $request->get("content");
+            $username = $request->get("username");
+            $s = new Suggestion();
+            $flag = $s->addSuggestion($username,$suggestion);
+
+            if($flag){
+                return "Thankyou for your suggestion! I am on it!";
+            } else {
+                return "I am on it! ";
+            }
+        } else {
+            if($request->isMethod("PUT")){
+                $suggestion = $request->get("content");
+                $username = $request->get("username");
+                $s = new Suggestion();
+                $flag = $s->addSuggestion($username,$suggestion);
+
+                if($flag){
+                    return Redirect::back()->with("flash_message","Thankyou for your suggestion! I am on it!");
+                } else {
+                    return Redirect::back()->with("flash_message","I am on it!");
+                }
+            }
+
+        }
+
+
     }
 }

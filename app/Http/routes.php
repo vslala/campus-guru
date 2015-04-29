@@ -286,7 +286,10 @@ Route::get('/confession/report/abuse/{id}', [
     'uses'=>"CCController@deleteConfession",
     "as"=>"deleteConfession"
 ]);
-
+Route::put('/user/suggestion', [
+    'uses'=>"CCController@addSuggestion",
+    "as"=>"addSuggestion"
+]);
 /*
  * Message Controller
  */

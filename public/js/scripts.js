@@ -418,7 +418,29 @@ $(document).ready(function(){/* jQuery toggle layout */
             $(this).append('<option value="'+ value +' " selected="selected">'+ value +'</option> ');
 
         }
-    })
+    });
+
+    /*
+    Suggestion Box
+     */
+    $("#suggestion_form").submit(function(event){
+        event.preventDefault();
+        var url = $(this).attr("action");
+        var data = $(this).serialize();
+        var suggestionBoxDiv = $("#suggestion_box_div");
+
+        $.ajax({
+            url : url,
+            type : "PUT",
+            data : data,
+            success : function(data) {
+                $(suggestionBoxDiv).html(data);
+            },
+            error: function(xhr,status,message) {
+                console.log("ERROR: " + xhr.responseText);
+            }
+        });
+    });
 
 });
 /*

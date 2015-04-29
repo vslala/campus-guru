@@ -233,7 +233,7 @@
            <div class="panel-heading"><a href="https://www.rgpv.ac.in/UploadContent/frm_ViewScheme.aspx" class="pull-right">View all</a> <h4>Syllabus</h4></div>
    			<div class="panel-body" id="syllabus">
               <!-- Syllabus will come here -->
-                @include('partials/csSyllabus')
+                @include('partials.suggestionBox')
             </div>
          </div>
     </div>
