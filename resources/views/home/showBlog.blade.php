@@ -1,4 +1,5 @@
 <?php
+ $title=$blog[0]->username." Blog";
  $pageHeader = "Blog";
 ?>
 @extends('master')
@@ -28,14 +29,14 @@
                             {!! Html::image($blog[0]->image_url, $blog[0]->image_name, ['class'=>'img img-responsive img-thumbnail']) !!}
                         </div>
                         <div class="col-md-6">
-                            <div class="h3"><span class="glyphicon glyphicon-user"></span><b>{{ $realName[0]->username or 'username not set' }}</b></div>
+                            <div class="h3"><span class="glyphicon glyphicon-user"></span><b>{{ $blog[0]->username or 'username not set' }}</b></div>
                             <div class="help-block">
                                 <div class="h6">created at: {{ $blog[0]->created_at or 'time not set' }}</div>
                                 <br />
                             </div>
                             <div class="h4">{{ $blog[0]->heading or 'heading not set' }}</div>
                             <br />
-                            <p>{{ $blog[0]->content or 'content not set'}}</p>
+                            <p>{{ $blog[0]->content or '---' }}</p>
                         </div>
                     </div>
                 </div>

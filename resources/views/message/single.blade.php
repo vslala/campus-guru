@@ -1,3 +1,4 @@
+<?php $title="Blogs"; ?>
 @extends('master')
 
 @section('links')
@@ -36,8 +37,10 @@ margin-top: 10%;
                     <span class="panel-header">
                         <span class="pull-right"><a href="{{ route("deleteMessage", $message->id) }}">Delete </a></span>
                        From:  <label><a href="{{route("profileVisit", $message->sender_username)}}">{{ $message->sender_username or 'username'}}</a></label><br />
+                       Sent to: <label><a href="{{ route("profileVisit", $message->reciever_username) }}"> {{ $message->reciever_username }} </a></label><br />
                        Subject:  <label>{{ $message->subject or ''}}</label> <br />
                        Received at: <label>{{ $message->created_at or 'not mentioned' }}</label>
+
                     </span>
                     @endif
                 </div>

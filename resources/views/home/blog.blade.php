@@ -1,4 +1,5 @@
 <?php
+ $title="Blogs";
  $pageHeader = "Blogs";
 ?>
 @extends('master')
@@ -37,7 +38,7 @@
                             </div>
                             <div class="h4">{{ $b->heading or 'heading not set' }}</div>
                             <br />
-                            <p>{{ $b->content or 'content not set'}}</p>
+                            <p>{{ $b->content or 'content not set' }}</p>
                             <div class="form-group">
                                 {!! Html::link(route('blogEdit', $b->id), 'Edit', ['class'=>'btn btn-primary']) !!}
 
