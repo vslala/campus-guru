@@ -21,6 +21,7 @@ class MessageController extends Controller {
                 'display_pictures.image_name','display_pictures.image_url'
                 ])
             ->where(['send_messages.reciever_username'=> Auth::user()->username])
+            ->orderBy("send_messages.created_at", "desc")
             ->get();
 
         $totalMessage = count($messages);
@@ -41,6 +42,7 @@ class MessageController extends Controller {
                 'display_pictures.image_name','display_pictures.image_url'
             ])
             ->where(['send_messages.sender_username'=>Auth::user()->username])
+            ->orderBy("send_messages.created_at", "desc")
             ->get();
 
         $totalMessageSent = count($messages);
