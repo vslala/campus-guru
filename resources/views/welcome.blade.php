@@ -10,7 +10,7 @@ $title="Campus Guru";
 
 @section('content')
 		<div class="container">
-		@if(Session::get("flash_message")):
+		@if(Session::get("flash_message"))
 		    <div class="alert-info">
 		        <span id="message" style="">{{ Session::get("flash_message") }}</span>
 		    </div>
@@ -116,7 +116,7 @@ $title="Campus Guru";
                                         												<span class="input-group-addon">
                                         													<i class="glyphicon glyphicon-user"></i>
                                         												</span>
-                                        												<input class="form-control" placeholder="Username" name="username" type="text">
+                                        												<input class="form-control" placeholder="Username Or Email" name="username" type="text">
                                         											</div>
                                         										</div>
                                         										<div class="form-group">

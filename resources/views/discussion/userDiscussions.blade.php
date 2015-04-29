@@ -37,7 +37,7 @@
                             @if(isset($discussions))
                                 @foreach($discussions as $d)
                                     <li>
-                                    <span class="pull-right message" id="message"><a href="{{ route('deleteDiscussion', $d->id) }}">delete</a> </span>
+                                    <span class="pull-right"><a href="{{ route('deleteDiscussion', $d->id) }}">delete</a> </span>
                                     <span class="glyphicon glyphicon-question-sign"><a href="{{ route('singleDiscussion', $d->id) }}" id="question_link">{{ $d->title }} ?</a> </span></li>
                                 @endforeach
                             @endif

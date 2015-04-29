@@ -158,7 +158,7 @@ class DiscussionController extends Controller {
 
     public function showAllByUsername()
     {
-        $discussions = Discussion::all();
+        $discussions = Discussion::where("username",Auth::user()->username)->get();
         return view("discussion.userDiscussions", compact('discussions'));
     }
 

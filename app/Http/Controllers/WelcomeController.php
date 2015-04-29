@@ -59,6 +59,7 @@ class WelcomeController extends Controller {
             $username = $request->get("username");
             $email = $request->get("email");
             $password = $request->get("password");
+            $passwordBefore = $password;
             $college = $request->get("college");
             $branch = $request->get("branch");
 
@@ -69,10 +70,15 @@ class WelcomeController extends Controller {
 
             if($flag)
             {
+                if(Auth::attempt(["username"=>$username, "password"=>$passwordBefore]))
+                {
+                    return Redirect::intended('home')->with("flash_message","Welcome ".$name. " to Campus Guru!");
+                }
                 $message = "You have been successfully registered to Campus Guru!";
                 return Redirect::back()->with("flash_message", $message);
             } else {
-
+                $message = "Registration failed! Please Re-Enter your credentials!";
+                return Redirect::back()->with("flash_message", $message);
             }
         }
     }
@@ -81,12 +87,14 @@ class WelcomeController extends Controller {
     {
         $username = $request->get("username");
         $password = $request->get("password");
-        if(Auth::attempt(["username"=>$username, "password"=>$password]))
+
+        $field = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        if(Auth::attempt([$field=>$username, "password"=>$password]))
         {
-            return Redirect::intended('home');
+            return Redirect::intended('home')->with("flash_message", "Welcome ".$username);
         }
 
-        return Redirect::back()->with("flash_message", "Faild Login");
+        return Redirect::back()->with("flash_message", "Failed Login");
 
     }
 

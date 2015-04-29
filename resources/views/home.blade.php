@@ -194,7 +194,7 @@
          {{--</div>--}}
 
         <div class="panel panel-default">
-          <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Most Liked Status</h4></div>
+          <div class="panel-heading"> <h4>Most Liked Status</h4></div>
    			<div class="panel-body">
    			<input type="hidden" id="mostLikedStatusUrl" value="{{ route('mostLikedStatus')}}" />
                 <div class="most-liked" id="most_liked_status">
@@ -227,10 +227,10 @@
   <hr>
 
   <div class="row">
-  	<div class="col-md-12"><h2>RGPV Syllabus</h2></div>
+  	<div class="col-md-12"><h2>Suggestion Box</h2></div>
     <div class="col-md-4 col-sm-6">
     	<div class="panel panel-default">
-           <div class="panel-heading"><a href="https://www.rgpv.ac.in/UploadContent/frm_ViewScheme.aspx" class="pull-right">View all</a> <h4>Syllabus</h4></div>
+           <div class="panel-heading"> <h4>Your Suggestion is Valuable :)</h4></div>
    			<div class="panel-body" id="syllabus">
               <!-- Syllabus will come here -->
                 @include('partials.suggestionBox')
@@ -239,7 +239,7 @@
     </div>
      <div class="col-md-4 col-sm-6">
     	<div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Random Profile</h4></div>
+           <div class="panel-heading"> <h4>Random Profile</h4></div>
    			<div class="panel-body">
               Check out one of our member's profile..
               <hr>
@@ -267,7 +267,7 @@
     </div>
      <div class="col-md-4 col-sm-6">
     	<div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Jokes</h4></div>
+           <div class="panel-heading"> <h4>Jokes</h4></div>
    			<div class="panel-body">
 
               <div id="quote">

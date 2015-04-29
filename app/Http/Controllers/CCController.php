@@ -47,6 +47,13 @@ class CCController extends Controller {
 
     public function storeComplain(Request $request)
     {
+        /*
+         * Form Input validation
+         */
+        $this->validate($request, [
+            'complain' => 'required|min:5',
+            'college' => 'required',
+        ]);
         if($request->isMethod("put"))
         {
             $complain = $request->get("complain");
@@ -60,6 +67,13 @@ class CCController extends Controller {
 
     public function storeConfession(Request $request)
     {
+        /*
+         * Form Input validation
+         */
+        $this->validate($request, [
+            'confession' => 'required|min:5',
+            'college' => 'required',
+        ]);
         if($request->isMethod("put"))
         {
             $confession = $request->get("confession");
@@ -83,6 +97,13 @@ class CCController extends Controller {
      */
     public function addSuggestion(Request $request){
 
+        /*
+         * Form Input validation
+         */
+        $this->validate($request, [
+            'content' => 'required|min:5',
+            'username' => 'required',
+        ]);
         if($request->ajax()){
             $suggestion = $request->get("content");
             $username = $request->get("username");
@@ -90,7 +111,7 @@ class CCController extends Controller {
             $flag = $s->addSuggestion($username,$suggestion);
 
             if($flag){
-                return "Thankyou for your suggestion! I am on it!";
+                return "Thank You for your suggestion! I am on it!";
             } else {
                 return "I am on it! ";
             }

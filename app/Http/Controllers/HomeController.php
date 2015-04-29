@@ -147,7 +147,7 @@ class HomeController extends Controller {
             $flag = $user->checkProfile(Auth::user()->username, $aboutMe, $email,$mobile,$dob,$rashi,$state,$city,$website);
             if($flag)
             {
-                $message = "Profile has been update successfully!";
+                $message = "Profile has been updated successfully!";
                 return $message;
             }
         }
