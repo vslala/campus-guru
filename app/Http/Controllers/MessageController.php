@@ -15,7 +15,7 @@ class MessageController extends Controller {
 
 	public function messages(){
         $messages = DB::table("send_messages")
-            ->join('display_pictures', 'send_messages.reciever_username', '=', 'display_pictures.username')
+            ->join('display_pictures', 'send_messages.sender_username', '=', 'display_pictures.username')
             ->select(['send_messages.reciever_username', 'send_messages.sender_username', 'send_messages.id',
                 'send_messages.subject', 'send_messages.message', 'send_messages.created_at',
                 'display_pictures.image_name','display_pictures.image_url'
