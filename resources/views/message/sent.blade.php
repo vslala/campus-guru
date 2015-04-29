@@ -47,7 +47,7 @@ margin-top: 10%;
                                 {!! Html::image($m->image_url, $m->image_name, ['class'=>'img img-responsive img-thumbnail', 'style'=>'height: 100px;']) !!}
 
                             <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
-                                display: inline-block;">{{ $m->sender_username or '' }}</span> <span class="">{{ $m->subject or '' }}</span>
+                                display: inline-block;">{{ $m->reciever_username or '' }}</span> <span class="">{{ $m->subject or '' }}</span>
                             <span class="text-muted" style="font-size: 11px;"><?php if(isset($m->message)){echo substr($m->message,0,110);}else{echo '';} ?></span> <span class="badge">{{ $m->created_at or '' }}</span>
 
                                 </a>
