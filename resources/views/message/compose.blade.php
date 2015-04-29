@@ -25,7 +25,7 @@ padding-top: 7%;
 
     @include('message._left_nav')
         <div class="col-sm-9 col-md-10">
-            @if(Session::get("flash_message")):
+            @if(Session::get("flash_message"))
                 <span class="message alert-success" id="message">{{ Session::get("flash_message") }}</span>
             @endif
 

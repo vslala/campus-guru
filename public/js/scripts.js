@@ -1,7 +1,7 @@
 
 $(document).ready(function(){/* jQuery toggle layout */
 
-    base_url = "http://localhost/campusguru/public/";
+    base_url = "http://campusguru.eu1.frbit.net/";
     load_img = '<img src="http://www.ajaxload.info/images/exemples/25.gif" >';
 
     // Ajax Status Post

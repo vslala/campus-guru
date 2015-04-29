@@ -44,12 +44,9 @@
                         </p>
                         <p>
 
-                            @if((isset($attachment[0])) && ($attachment[0]->image_type == "image/jpeg" ||
-                             $attachment[0]->image_type == "image/jpg" || $attachment[0]->image_type == "image/png"))
-                                {!! Html::image($attachment[0]->image_url,$attachment[0]->image_url, ['class'=>'img img-responsive img-rectangle']) !!}
+                            @if((isset($attachment[0])))
+                                {!! Html::image($attachment[0]->image_url,$attachment[0]->image_url, ['class'=>'img img-responsive img-rectangle', "style"=>"height: 300px;"]) !!}
 
-                            @else
-                                <a href="http://localhost/campusguru/public/{{ $attachment[0]->image_url or 'no attachment'}}">{{ $attachment[0]->image_url or 'no attachment'}} <span class="glyphicon glyphicon-download"></span></a>
 
                             @endif
 
