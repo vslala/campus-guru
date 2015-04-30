@@ -57,9 +57,12 @@ class HomeController extends Controller {
         $blog = DB::table("blogs")
             ->leftJoin("display_pictures", "blogs.username","=","display_pictures.username")
             ->select(['blogs.id', 'blogs.username','blogs.heading', 'blogs.created_at', 'display_pictures.image_url', 'display_pictures.image_name'])
-            ->take(1)
+            ->take(5)
             ->orderBy('blogs.created_at','desc')
             ->get();
+        $randomIndex = array_rand($blog, 1);
+        $blog = $blog[$randomIndex];
+
 //        dd($blog);
         // status in descending order
         $status = DB::table('statuses')

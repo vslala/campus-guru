@@ -118,16 +118,16 @@
 
               @if(isset($blog))
 
-              @foreach($blog as $b)
-              @if(isset($b->image_url))
-               {!! Html::image($b->image_url,$b->image_name,['class'=>'img-thumbnail img img-responsive ', 'style'=>'height:150px; width:150px;']) !!}
+              {{--@foreach($blog as $b)--}}
+              @if(isset($blog->image_url))
+               {!! Html::image($blog->image_url,$blog->image_name,['class'=>'img-thumbnail img img-responsive ', 'style'=>'height:150px; width:150px;']) !!}
               @else
                <img src="//placehold.it/150x150" class="img img-responsive img-thumbnail pull-right">
               @endif
-                <a href="{{ route('profileVisit', $b->username) }}">{{ $b->username or 'User' }}</a></p>
-              <a href="{{ route('showSingleBlog', [$b->id])}}">{{ $b->heading or 'Blog heading' }}</a>
+                <a href="{{ route('profileVisit', $blog->username) }}">{{ $blog->username or 'User' }}</a></p>
+              <a href="{{ route('showSingleBlog', [$blog->id])}}">{{ $blog->heading or 'Blog heading' }}</a>
 
-            @endforeach
+            {{--@endforeach--}}
             @endif
             </div>
          </div>

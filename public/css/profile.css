@@ -2,7 +2,12 @@
 body{
     background-color: #f5f5f5;
 }
-
+p{
+    font-family: tahoma, arial, helvetica, sans-serif;
+}
+h4{
+    font-family: tahoma, arial, helvetica, sans-serif;
+}
 .first-row{
     margin-top: 5%;
 }
