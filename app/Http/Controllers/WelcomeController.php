@@ -87,10 +87,11 @@ class WelcomeController extends Controller {
     {
         $username = $request->get("username");
         $password = $request->get("password");
-
+        $remember = $request->has("remember") ? true : false ;
         $field = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        if(Auth::attempt([$field=>$username, "password"=>$password]))
-        {
+        $auth = Auth::attempt([$field=>$username, "password"=>$password], $remember);
+
+        if($auth){
             return Redirect::intended('home')->with("flash_message", "Welcome ".$username);
         }
 

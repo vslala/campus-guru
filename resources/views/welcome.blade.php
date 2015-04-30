@@ -128,6 +128,12 @@ $title="Campus Guru";
                                         											</div>
                                         										</div>
                                         										<div class="form-group">
+                                        										    <div class="input-group">
+                                        										        <input type="checkbox" name="remember" class="checkbox checkbox-inline" id="remember" />
+                                        										        <label class="checkbox-inline" for="remember">Remember Me</label>
+                                        										    </div>
+                                        										</div>
+                                        										<div class="form-group">
                                         											<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
                                         										</div>
                                         									</div>
