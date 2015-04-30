@@ -104,8 +104,8 @@ $(document).ready(function(){/* jQuery toggle layout */
                 data = $.parseJSON(data);
                 $(list_of_questions).empty();
                 $.each(data, function (key,value) {
-                    $(list_of_questions).append("<a style='font-family: cursive,Lobster; " +
-                    "font-weight: bold; color: #843534;' class='list-group-item' " +
+                    $(list_of_questions).append("<a style='font-family: tahoma, arial, helvetica, sans-serif; " +
+                    "font-weight: bold; color: #000000;' class='list-group-item' " +
                     "href='"+ base_url +"user/show/question/"+ value.id +"'>" +
                     "<img class='img img-responsive img-thumbnail' " +
                     "style='width: 50px;' " +
@@ -135,8 +135,8 @@ $(document).ready(function(){/* jQuery toggle layout */
                 data = $.parseJSON(data);
                 $(list_of_discussions).empty();
                 $.each(data, function (key,value) {
-                    $(list_of_discussions).append("<a style='font-family: cursive,Lobster; " +
-                    "font-weight: bold; color: #843534;' class='list-group-item' " +
+                    $(list_of_discussions).append("<a style='font-family: tahoma, arial, helvetica, sans-serif; " +
+                    "font-weight: bold; color: #000000;' class='list-group-item' " +
                     "href='"+ base_url +"user/view/single/discussions/"+ value.id +"'>" +
                     "<img class='img img-responsive img-thumbnail' " +
                     "style='width: 50px;' " +
