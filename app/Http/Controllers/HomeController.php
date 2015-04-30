@@ -2,6 +2,7 @@
 
 use App\Answer;
 use App\Blog;
+use App\BlogView;
 use App\Complain;
 use App\Confession;
 use App\Discussion;
@@ -455,9 +456,20 @@ class HomeController extends Controller {
                 "display_pictures.image_name","display_pictures.image_url"
             ])
             ->get();
+        $userComments = DB::table("blog_comments")
+            ->leftJoin("display_pictures","blog_comments.username", "=", "display_pictures.username")
+            ->select([
+                'blog_comments.id','blog_comments.username','blog_comments.comment', 'blog_comments.created_at',
+                'display_pictures.image_url','display_pictures.image_name'
+            ])
+            ->where("blog_comments.blog_id",$id)
+            ->orderBy("blog_comments.created_at", "asc")
+            ->get();
 
+            $bv = new BlogView();
+            $total_views = $bv->incrementViews($id);
 //        dd($blog);
-        return view('home.showBlog', compact('blog'));
+        return view('home.showBlog', compact('blog','userComments','total_views'));
     }
 
     public function showAllBlogs(){

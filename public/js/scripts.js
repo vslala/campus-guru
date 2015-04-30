@@ -442,6 +442,44 @@ $(document).ready(function(){/* jQuery toggle layout */
         });
     });
 
+    /*
+    Blog Comment Ajax Post
+     */
+    $("body").on("submit","#blog_comment_form", function (event) {
+        event.preventDefault();
+        var url = $(this).attr("action");
+        var data = $(this).serialize();
+        var comments = $(this).parent().parent().find("#comments");
+        var blogCommentTextField = $(this).parent().parent().parent().find("#blogCommentTextField");
+
+        $.ajax({
+            url : url,
+            data : data,
+            type : "POST",
+            success : function(data){
+                data = $.parseJSON(data);
+
+                $(comments).append('<li class="list-group-item">' +
+                '<div class="help-block">' +
+                '<span class="glyphicon glyphicon-time pull-right time">'+ data[0].created_at +'</span>' +
+                '</div> ' +
+                '<a href="'+ base_url+'/user/profile/visit/'+data[0].username + '">' +
+                '<img style="height: 50px;" class="img img-responsive img-thumbnail" src="'+ base_url+data[0].image_url+'">' +
+                '<span class="username">'+ data[0].username +'</span>' +
+                '</a>' +
+                '<p class="comment">'+ data[0].comment +'</p>' +
+                '</li>');
+
+                $(blogCommentTextField).val('');
+                $(blogCommentTextField).focus();
+            },
+            error : function(xhr,status,msg){
+                console.log("ERROR: " + xhr.responseText );
+            }
+        })
+    });
+
+
 });
 /*
  Form Validation plugin from jquery for Status Form

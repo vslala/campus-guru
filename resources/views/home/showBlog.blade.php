@@ -37,8 +37,18 @@
                             <div class="h4">{{ $blog[0]->heading or 'heading not set' }}</div>
                             <br />
                             <p>{{ $blog[0]->content or '---' }}</p>
+                    <hr>
+                            @if(isset($total_views))
+                            <div class="help-block">
+                                <label>Total Blog Views: {{ $total_views }}</label>
+                            </div>
+                            @endif
+                    <hr>
+                            <!-- Blog Comment System Include -->
+                            @include('home._blog_comment_section')
                         </div>
                     </div>
+
                 </div>
                 <hr>
 

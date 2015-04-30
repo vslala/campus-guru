@@ -313,3 +313,11 @@ Route::get('/user/compose/message', [
     'uses'=>"MessageController@compose",
     "as"=>"composeMail"
 ]);
+
+/*
+ * Blog Controller
+ */
+Route::post('/user/blog-post-comment', [
+    'uses'=>"BlogController@addBlogComment",
+    "as"=>"addBlogComment"
+]);

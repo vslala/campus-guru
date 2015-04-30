@@ -119,6 +119,24 @@ body{
 
 }
 
+.time{
+    font-size: x-small;
+    position: relative;
+}
+.comment{
+    font-family: tahoma, arial, helvetica, sans-serif;
+    color: #000000;
+    font-size: small;
+}
+.username{
+    font-family: tahoma, arial, helvetica, sans-serif;
+    font-size: large;
+    font-weight: 700;
+}
+
+#blog_row:hover{
+    background-color: #E8E8E8;
+}
 #footer{
 
 }

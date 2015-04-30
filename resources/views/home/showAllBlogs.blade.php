@@ -1,4 +1,5 @@
 <?php
+$title="CampusGuru Blogs";
  $pageHeader = "All Blogs";
 ?>
 @extends('master')
@@ -24,25 +25,27 @@
 
                 <div class="container-fluid">
                     @foreach($blogs as $b)
-                    <div class="row">
-                        <div class="col-md-4">
+                    <div class="row" id="blog_row">
+                        <div class="col-md-1">
                             {!! Html::image($b->image_url, $b->image_name, ['class'=>'img img-responsive img-thumbnail']) !!}
                         </div>
-                        <div class="col-md-6">
-                            <div class="h3"><span class="glyphicon glyphicon-user"></span><b>{{ $b->username or 'username not set' }}</b></div>
+                        <div class="col-md-11">
+                            <div class="username"><span class="glyphicon glyphicon-user"></span><b>{{ $b->username or 'username not set' }}</b></div>
                             <div class="help-block">
                                 <div class="h6">created at: {{ $b->created_at or 'time not set' }}</div>
-                                <br />
                             </div>
-                            <div class="h4">{{ $b->heading or 'heading not set' }}</div>
-                            <br />
-                            <p>{{ $b->content or 'content not set'}}</p>
+                            <div class="h4">
+                                <a href="{{ route('showSingleBlog', $b->id) }}">
+                                    {{ $b->heading or 'heading not set' }}
+                                </a>
+                            </div>
+
                         </div>
                     </div>
                     <hr>
                     @endforeach
                 </div>
-                <hr>
+
 
 
                 @endif
