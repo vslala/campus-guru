@@ -98,7 +98,7 @@ Route::get('/user/delete/blog/{id}', [
     "as"=>"blogDelete"
 ]);
 Route::get('/user/show/blog/{id}', [
-    'uses'=>"HomeController@showBlog",
+    'uses'=>"BlogController@showBlog",
     "as"=>"showSingleBlog"
 ]);
 Route::get('/user/show/all/blogs', [

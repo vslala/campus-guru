@@ -230,6 +230,7 @@ class HomeController extends Controller {
                 $status = DB::table('statuses')
                     ->leftJoin('display_pictures', 'statuses.username', '=', 'display_pictures.username')
                     ->orderBy('statuses.created_at', 'desc')
+                    ->take(5)
                     ->get(['statuses.id', 'statuses.username', 'statuses.status',
                 'display_pictures.image_name','display_pictures.image_url',
                 'statuses.likeCount', 'statuses.dislikeCount', 'statuses.created_at', 'statuses.updated_at'
@@ -451,29 +452,7 @@ class HomeController extends Controller {
         }
     }
 
-    public function showBlog($id){
-        $blog = DB::table("blogs")
-            ->leftJoin("display_pictures", "blogs.username", "=", "display_pictures.username")
-            ->where(["blogs.id"=>$id])
-            ->select(["blogs.id","blogs.username","blogs.heading","blogs.content","blogs.created_at",
-                "display_pictures.image_name","display_pictures.image_url"
-            ])
-            ->get();
-        $userComments = DB::table("blog_comments")
-            ->leftJoin("display_pictures","blog_comments.username", "=", "display_pictures.username")
-            ->select([
-                'blog_comments.id','blog_comments.username','blog_comments.comment', 'blog_comments.created_at',
-                'display_pictures.image_url','display_pictures.image_name'
-            ])
-            ->where("blog_comments.blog_id",$id)
-            ->orderBy("blog_comments.created_at", "asc")
-            ->get();
 
-            $bv = new BlogView();
-            $total_views = $bv->incrementViews($id);
-//        dd($blog);
-        return view('home.showBlog', compact('blog','userComments','total_views'));
-    }
 
     public function showAllBlogs(){
         $blogs = DB::table("blogs")

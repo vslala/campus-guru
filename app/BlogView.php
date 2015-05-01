@@ -26,4 +26,6 @@ class BlogView extends Model {
         return $total_views;
     }
 
+
+
 }

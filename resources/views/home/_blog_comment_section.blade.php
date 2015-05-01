@@ -28,7 +28,13 @@
                                                                     <input type="hidden" value="{{ $blog[0]->id }}" name="blogID" />
                                                                     <div class="col-sm-8">
                                                                         <textarea class="form-control" name="blogComment" id="blogCommentTextField" rows="1" cols="40" ></textarea>
+                                                                        @if(! isset($username))
+                                                                             <div class="has-error help-block">
+                                                                                     You must log in to post comment.
+                                                                             </div>
+                                                                        @endif
                                                                     </div>
+
                                                                     <div class="col-sm-4">
                                                                         <button class="btn btn-primary btn-md" type="submit" id="blogCommentBtn" >comment</button>
                                                                     </div>

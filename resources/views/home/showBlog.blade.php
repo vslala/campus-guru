@@ -9,7 +9,10 @@
 @endsection
 
 @section('content')
+
+@if(isset($username))
 @include('_top-nav')
+@endif
 
 <div class="container-fluid">
 @include('_first_row')
@@ -38,14 +41,15 @@
                             <br />
                             <p>{!! $blog[0]->content or '---' !!}</p>
                     <hr>
-                            @if(isset($total_views))
+
                             <div class="help-block">
                                 <label>Total Blog Views: {{ $total_views }}</label>
                             </div>
-                            @endif
+
                     <hr>
                             <!-- Blog Comment System Include -->
                             @include('home._blog_comment_section')
+
                         </div>
                     </div>
 

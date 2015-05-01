@@ -36,7 +36,7 @@
                                 <div class="h6">created at: {{ $b->created_at or 'time not set' }}</div>
                                 <br />
                             </div>
-                            <div class="h4"><a href="{{ route('showSingleBlog', $b->id) }}"> {{ $b->heading or 'heading not set' }} </a></div>
+                            <div class="h4"><a href="{{ route('showSingleBlog', $b->id) }}"> {{ $b->heading or 'heading not set' }} </a><span style="color: lightgray; font-size: xx-small;">(user's view)</span></div>
                             <br />
                             <p>{!! $b->content or 'content not set' !!}</p>
                             <div class="form-group">
