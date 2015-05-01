@@ -101,6 +101,8 @@ class BlogController extends Controller {
 
         if(! isset(Auth::user()->username))
             $username = null;
+        else
+            $username = Auth::user()->username;
 //        dd($blog);
         return view('home.showBlog', compact('blog','userComments','total_views','username'));
     }
