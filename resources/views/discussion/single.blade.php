@@ -35,7 +35,7 @@
                         {{ $discussion->title or 'title not present' }}<span class="glyphicon glyphicon-question-sign"></span>
                     </div>
                     <div class="panel-body">
-                        <p>
+                        <p class="tahoma">
                             {{ $discussion->description or 'description does not exists!' }}
                         </p>
 
@@ -64,7 +64,7 @@
                                         {!! Html::image($r->image_url,$r->image_name, ['class'=>'img img-responsive img-thumbnail']) !!}
                                         </div>
                                         <div class="col-sm-11" id="answer">
-                                            <p id="lobster_font"><strong>{{ $r->reply }}</strong></p>
+                                            <p class="tahoma">{{ $r->reply }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -204,6 +204,7 @@ class QuestionController extends Controller {
         $comments = DB::table('comments')
             ->leftJoin('display_pictures', 'comments.username', '=', 'display_pictures.username')
             ->select('comments.id', 'comments.ans_id','comments.comment','comments.username','comments.created_at','display_pictures.image_name','display_pictures.image_url')
+            ->orderBy('comments.created_at', 'ASC')
             ->get();
 //        dd($comments);
 //        dd($answers);

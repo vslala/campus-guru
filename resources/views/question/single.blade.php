@@ -39,7 +39,7 @@
                         {{ $question->title or 'title not present' }}<span class="glyphicon glyphicon-question-sign"></span>
                     </div>
                     <div class="panel-body">
-                        <p>
+                        <p class="tahoma">
                             {!! $question->description or 'description does not exists!' !!}
                         </p>
                         <p>
@@ -76,7 +76,7 @@
                                         {!! Html::image($a->image_url,$a->image_name, ['class'=>'img img-responsive img-thumbnail']) !!}
                                         </div>
                                         <div class="col-sm-11" id="answer">
-                                            <p id="lobster_font"><strong>{{ $a->answer }}</strong></p>
+                                            <p class="tahoma">{{ $a->answer }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -101,27 +101,53 @@
                                             <!-- end -->
                                 <?php $i = 0;$j=0; ?>
                                     @if(count($comments) >= 0)
-                                        @foreach($comments as $comment)
-                                             @if($comment->ans_id == $a->id)
-                                             <div class="form-group jumbotron col-md-12" style="padding: 1px;"><!-- Form a group to contain single row -->
-                                             <div class="col-md-1">
-                                                <a href="{{ route('profileVisit', $comment->username) }}">
-                                                {!! Html::image($comment->image_url,$comment->image_name, ['class'=>'img img-thumbnail img-responsive']) !!}
-                                                </a>
-                                             </div>
-                                             <div class="col-md-11 blue" id="comments">
-                                                {{ $comment->comment }}
-                                             </div>
-                                             </div><!-- form froup div ends here -->
-                                             @endif
-                                        @endforeach
-                                    @endif
+                                                    <div class="form-group comment-block">
+                                                                <!-- Comments will be show here -->
+                                                                <ul id="comments" class="list-group">
 
-                                    {!! Form::open(["route"=>["addComment"], 'method'=>'put', 'class'=>'form-inline', 'id'=>'commentForm']) !!}
+                                                                    @foreach($comments as $comment)
+                                                                        <li class="list-group-item">
+                                                                            <div class="help-block">
+                                                                                <span class="glyphicon glyphicon-time pull-right time">{{ $comment->created_at }}</span>
+                                                                            </div>
+                                                                            <a href="{{ route('profileVisit', $comment->username) }}">
+                                         {!! Html::image($comment->image_url, $comment->image_name, ['class'=>'img img-responsive img-thumbnail', 'style'=>'height: 50px;']) !!}
+                                                                            <span class="username">{{ $comment->username }}</span>
+                                                                            </a>
+
+                                                                            <p class="comment">{{  $comment->comment }}</p>
+                                                                        </li>
+                                                                    @endforeach
+                                                                @endif
+                                                                </ul>
+
+                    {!! Form::open(["route"=>["addComment"], 'method'=>'put', 'class'=>'form-inline', 'id'=>'commentForm']) !!}
                                         <input type="hidden" value="{{ $a->id }}" name="ansId">
-                                        {!! Form::textarea('comment', null, ['class'=>'form-control', 'rows'=>'1']) !!}
+                                        {!! Form::textarea('comment', null, ['class'=>'form-control', 'rows'=>'1', 'id'=>'commentTextField']) !!}
                                         {!! Form::submit("comment", ['class'=>'btn btn-primary btn-sm']) !!}
                                     {!! Form::close() !!}
+                                                            </div>
+                                        {{--@foreach($comments as $comment)--}}
+                                             {{--@if($comment->ans_id == $a->id)--}}
+
+                                             {{--<div class="form-group col-md-12"><!-- Form a group to contain single row -->--}}
+                                             {{--<div class="col-md-1">--}}
+                                                {{--<a href="{{ route('profileVisit', $comment->username) }}">--}}
+                                                {{--{!! Html::image($comment->image_url,$comment->image_name, ['class'=>'img img-thumbnail img-responsive small-img']) !!}--}}
+                                                {{--</a>--}}
+                                             {{--</div>--}}
+
+                                             {{--<div class="col-md-11 blue tahoma" id="comments">--}}
+                                                {{--{{ $comment->comment }}--}}
+                                             {{--</div>--}}
+                                             {{--</div><!-- form froup div ends here -->--}}
+
+                                             {{--@endif--}}
+                                        {{--@endforeach--}}
+
+                                    {{--@endif--}}
+
+
                                 </div>
                             </div>
                         </div>

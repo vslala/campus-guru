@@ -96,9 +96,15 @@ h4{
     font-family: cursive, "Lobster";
 }
 
+.tahoma{
+    font-family: tahoma, arial, helvetica, sans-serif;
+    font-weight: 500;
+}
+
 #comments{
     color: darkblue;
-    font-family: cursive, "Lobster";
+    font-size: 12px;
+
 }
 .complains{
     font-family: cursive, "Lobster";
@@ -144,4 +150,12 @@ h4{
 }
 #footer{
 
+}
+
+.small-img{
+    height: 50px;
+}
+
+.comment-block{
+    padding: 30px;
 }
