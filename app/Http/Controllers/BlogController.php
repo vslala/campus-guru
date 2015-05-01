@@ -64,12 +64,33 @@ class BlogController extends Controller {
             ->orderBy("blog_comments.created_at", "asc")
             ->get();
 
-        $bv = new BlogView();
-        $total_views = $bv->incrementViews($id);
-
         if(isset(Auth::user()->username))
             $username = Auth::user()->username;
+        else
+            $username = 'vister_'.uniqid();
 
+        /*
+         * Increment Blog Views
+         */
+        $blogViews = BlogView::where(["blog_id"=>$id, 'username'=>$username])->first();
+        if(count($blogViews) <= 0){
+            $b = new BlogView();
+            $b->blog_id = $id;
+            $b->username = $username;
+            $b->total_views = 1;
+            if($b->save()){
+                $total_views = $b->totalViews($id);
+            }else {
+                $total_views = $b->totalViews($id);
+                return view('home.showBlog', compact('blog','userComments','total_views','username'));
+            }
+
+
+        }
+        $total_views = $b->totalViews($id);
+
+        if(! isset(Auth::user()->username))
+            $username = null;
 //        dd($blog);
         return view('home.showBlog', compact('blog','userComments','total_views','username'));
     }
