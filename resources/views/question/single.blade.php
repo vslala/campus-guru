@@ -106,6 +106,7 @@
                                                                 <ul id="comments" class="list-group">
 
                                                                     @foreach($comments as $comment)
+                                                                     @if($comment->ans_id == $a->id)
                                                                         <li class="list-group-item">
                                                                             <div class="help-block">
                                                                                 <span class="glyphicon glyphicon-time pull-right time">{{ $comment->created_at }}</span>
@@ -117,6 +118,7 @@
 
                                                                             <p class="comment">{{  $comment->comment }}</p>
                                                                         </li>
+                                                                        @endif
                                                                     @endforeach
                                                                 @endif
                                                                 </ul>

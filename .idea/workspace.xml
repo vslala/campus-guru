@@ -35,20 +35,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="single.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="single.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/question/single.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.884615" vertical-offset="1712" max-vertical-offset="2890">
-              <caret line="125" column="138" selection-start-line="125" selection-start-column="138" selection-end-line="125" selection-end-column="138" />
+            <state vertical-scroll-proportion="0.82840234" vertical-offset="1637" max-vertical-offset="2924">
+              <caret line="121" column="74" selection-start-line="121" selection-start-column="74" selection-end-line="121" selection-end-column="74" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuestionController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QuestionController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/QuestionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45929018" vertical-offset="3027" max-vertical-offset="4437">
+            <state vertical-scroll-proportion="-4.0740743" vertical-offset="3027" max-vertical-offset="4437">
               <caret line="205" column="174" selection-start-line="205" selection-start-column="174" selection-end-line="205" selection-end-column="174" />
               <folding />
             </state>
@@ -157,10 +157,10 @@
         <option value="$PROJECT_DIR$/resources/views/home/_blog_comment_section.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/discussion/single.blade.php" />
         <option value="$PROJECT_DIR$/public/css/profile.css" />
-        <option value="$PROJECT_DIR$/resources/views/question/single.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" />
         <option value="$PROJECT_DIR$/public/js/scripts.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" />
+        <option value="$PROJECT_DIR$/resources/views/question/single.blade.php" />
       </list>
     </option>
   </component>
@@ -876,7 +876,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="0" width="1364" height="728" extended-state="0" />
+    <frame x="1" y="0" width="1364" height="728" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1303,14 +1303,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/question/single.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.884615" vertical-offset="1712" max-vertical-offset="2890">
-          <caret line="125" column="138" selection-start-line="125" selection-start-column="138" selection-end-line="125" selection-end-column="138" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CommentController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.0" vertical-offset="761" max-vertical-offset="2329">
@@ -1334,8 +1326,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/QuestionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45929018" vertical-offset="3027" max-vertical-offset="4437">
+        <state vertical-scroll-proportion="-4.0740743" vertical-offset="3027" max-vertical-offset="4437">
           <caret line="205" column="174" selection-start-line="205" selection-start-column="174" selection-end-line="205" selection-end-column="174" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/question/single.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82840234" vertical-offset="1637" max-vertical-offset="2924">
+          <caret line="121" column="74" selection-start-line="121" selection-start-column="74" selection-end-line="121" selection-end-column="74" />
           <folding />
         </state>
       </provider>
