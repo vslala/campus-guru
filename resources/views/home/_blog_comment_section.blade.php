@@ -32,6 +32,10 @@
                                                                              <div class="has-error help-block">
                                                                                      You must log in to post comment.
                                                                              </div>
+                                                                             <div class="help-block">
+                                                                                <a href="{{ route('index', '#login') }}">Login</a>
+                                                                                <a href="{{ route('index', '#register_section') }}">Register</a>
+                                                                             </div>
                                                                         @endif
                                                                     </div>
 
