@@ -38,7 +38,7 @@
                             </div>
                             <div class="h4"><a href="{{ route('showSingleBlog', $b->id) }}"> {{ $b->heading or 'heading not set' }} </a></div>
                             <br />
-                            <p>{{ $b->content or 'content not set' }}</p>
+                            <p>{!! $b->content or 'content not set' !!}</p>
                             <div class="form-group">
                                 {!! Html::link(route('blogEdit', $b->id), 'Edit', ['class'=>'btn btn-primary']) !!}
 

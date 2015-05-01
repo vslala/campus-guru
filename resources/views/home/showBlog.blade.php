@@ -36,7 +36,7 @@
                             </div>
                             <div class="h4">{{ $blog[0]->heading or 'heading not set' }}</div>
                             <br />
-                            <p>{{ $blog[0]->content or '---' }}</p>
+                            <p>{!! $blog[0]->content or '---' !!}</p>
                     <hr>
                             @if(isset($total_views))
                             <div class="help-block">
