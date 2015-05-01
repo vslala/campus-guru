@@ -19,7 +19,7 @@ class BlogView extends Model {
             }
         }
         $total_views = $blogViews->total_views;
-        $blogViews->total_views = $total_views + 1;
+        $blogViews->total_views = intval($total_views) + 1;
         if($blogViews->save()){
             return $blogViews->total_views;
         }
