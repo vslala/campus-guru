@@ -218,6 +218,12 @@ class HomeController extends Controller {
 
     public function statusUpdate(Request $request)
     {
+        /*
+         * Form Input validation
+         */
+        $v = $this->validate($request, [
+            'status' => 'required|min:2',
+        ]);
         if($request->ajax())
         {
             // For Put Request
