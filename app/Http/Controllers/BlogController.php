@@ -87,6 +87,7 @@ class BlogController extends Controller {
 
 
         }
+        $b = new BlogView();
         $total_views = $b->totalViews($id);
 
         if(! isset(Auth::user()->username))
