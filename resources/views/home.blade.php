@@ -198,10 +198,10 @@
    			<div class="panel-body">
    			<input type="hidden" id="mostLikedStatusUrl" value="{{ route('mostLikedStatus')}}" />
                 <div class="most-liked" id="most_liked_status">
-                    {{ $mostLikedStatus[0]['status'] or '' }}   <br>
-                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedStatus[0]['likeCount'] or '0'}}</span></a>
+                    {{ $mostLikedStatus['status'] or '' }}   <br>
+                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedStatus['likeCount'] or '0'}}</span></a>
                       |
-                    <a class="active btn btn-danger btn-sm"><span class="badge badge-primary">{{ $mostLikedStatus[0]['dislikeCount'] or '0'}}</span></a>
+                    <a class="active btn btn-danger btn-sm"><span class="badge badge-primary">{{ $mostLikedStatus['dislikeCount'] or '0'}}</span></a>
                 </div>
             </div>
    		</div>
