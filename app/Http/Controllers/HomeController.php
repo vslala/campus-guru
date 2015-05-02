@@ -96,6 +96,9 @@ class HomeController extends Controller {
         $users = $randomUsers;
         $randomUser = array_rand($randomUsers,1);
         $randomUser = $randomUsers[$randomUser];
+
+        $mliIndex = array_rand($mostLikedImage, 1);
+        $mostLikedImage = $mostLikedImage[$mliIndex];
 //        dd($randomUser->username);
 //        dd($questions);
 //        dd($status[0]->image_url);

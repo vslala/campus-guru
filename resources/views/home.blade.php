@@ -144,8 +144,8 @@
    			<input type="hidden" id="mostLikedStatusUrl" value="{{ route('mostLikedStatus')}}" />
                 <div class="most-liked" id="most_liked_picture">
                 <input type="hidden" id="mostLikedImageUrl" value="{{ route("mostLikedImage") }}" />
-                    <img src="{{ $mostLikedImage[0]['image_url'] or 'No Image Liked' }}" class="img img-responsive img-thumbnail" />    <br>
-                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedImage[0]['likeCount'] or '0'}}</span></a>
+                    <img src="{{ $mostLikedImage['image_url'] or 'No Image Liked' }}" class="img img-responsive img-thumbnail" />    <br>
+                    <a class="active btn btn-primary btn-sm"><span class="badge">{{ $mostLikedImage['likeCount'] or '0'}}</span></a>
 
                 </div>
             </div>
