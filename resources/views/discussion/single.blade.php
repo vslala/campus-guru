@@ -64,7 +64,7 @@
                                         {!! Html::image($r->image_url,$r->image_name, ['class'=>'img img-responsive img-thumbnail']) !!}
                                         </div>
                                         <div class="col-sm-11" id="answer">
-                                            <p class="tahoma">{{ $r->reply }}</p>
+                                            <p class="tahoma">{!! $r->reply !!}</p>
                                         </div>
                                     </div>
                                 </div>
