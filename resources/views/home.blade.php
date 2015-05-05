@@ -21,7 +21,7 @@
                 {!! Form::open(["route"=>["statusUpdate"], "method"=>"put", "class"=>"form-horizontal", "id"=>"status_form"]) !!}
                  <h4>What's New</h4>
                   <div class="form-group">
-                   <textarea name="status" class="form-control" placeholder="Update your status" required="true" minlength="2"></textarea>
+                   <textarea name="status" class="form-control" placeholder="Update your status" required="true" minlength="2" id="status_box"></textarea>
                  </div>
                  <button class="btn btn-success pull-right" type="submit" id="statusPostBtn">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
                {!! Form::close() !!}

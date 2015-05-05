@@ -9,6 +9,8 @@ $(document).ready(function(){/* jQuery toggle layout */
     $("#status_form").submit(function (event) {
         event.preventDefault();
 
+        var statusBox = $(this).parent().find("#status_box");
+
         var url = $(this).attr("action");
         var data = $(this).serialize();
         if(data == "" || data == null){ return; }
@@ -67,6 +69,8 @@ $(document).ready(function(){/* jQuery toggle layout */
                     '<hr>'
                 );
                 }
+                $(statusBox).val('');
+                $(statusBox).focus();
 
             },
             error : function(xhr, status, msg){
