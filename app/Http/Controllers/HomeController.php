@@ -8,6 +8,7 @@ use App\Confession;
 use App\Discussion;
 use App\DisplayPicture;
 use App\LikedAnswer;
+use App\Notification;
 use App\Profile;
 use App\Question;
 use App\SendMessage;
@@ -52,6 +53,9 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
+        //Notification
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
+//        dd(count($notifications));
         //latest blog
 //        DB::setFetchMode(PDO::FETCH_ASSOC);
         $blog = DB::table("blogs")
@@ -120,11 +124,13 @@ class HomeController extends Controller {
 //        dd($mostLikedStatus);
 
 		return view('home', compact('status','questions','blog','discussions', 'users',
-            'mostLikedStatus', 'complains', 'confessions', 'mostLikedImage', 'randomUser'));
+            'mostLikedStatus', 'complains', 'confessions', 'mostLikedImage', 'randomUser',
+            'notifications'));
 	}
 
     public function profile()
     {
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $totalLikes = count(LikedAnswer::where("username", Auth::user()->username)->get());
         $questionAsked = count(Question::where("username", Auth::user()->username)->get());
         $questionAnswered = count(Answer::where("username", Auth::user()->username)->get());
@@ -142,7 +148,7 @@ class HomeController extends Controller {
 
 
         return view('home.profile', compact("user","userImage","status", 'totalLikes', 'questionAsked',
-            'posts', 'questionAnswered', 'realName', 'discussionStarted'));
+            'posts', 'questionAnswered', 'realName', 'discussionStarted', 'notifications'));
     }
     public function editProfile(Request $request)
     {
@@ -187,10 +193,6 @@ class HomeController extends Controller {
         }
     }
 
-    public function home()
-    {
-        return view('home.home');
-    }
 
     public function uploadDP(Request $request)
     {
@@ -311,7 +313,8 @@ class HomeController extends Controller {
 
     public function composeBlog()
     {
-        return view('home.compose');
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
+        return view('home.compose', compact('notifications'));
     }
     public function createBlog(Request $request)
     {
@@ -344,8 +347,9 @@ class HomeController extends Controller {
      */
     public function blogEdit($id)
     {
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $blog = Blog::find($id);
-        return view("home.edit", compact('blog'));
+        return view("home.edit", compact('blog', 'notifications'));
     }
     /*
      * get method for blog edit
@@ -389,6 +393,7 @@ class HomeController extends Controller {
 
     public function profileVisit($username)
     {
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $realName = User::where("username",$username)->get(['name','username','created_at']);
         $user = Profile::where("username", $username)->get()->toArray();
         $userImage = DisplayPicture::where("username", $username)->get()->toArray();
@@ -406,7 +411,7 @@ class HomeController extends Controller {
 //        dd($userImage);
 
         return view('home.profileVisit', compact('user','realName', 'userImage', 'totalLikes',
-            'questionAsked','status', 'questionAnswered', 'posts', 'discussionStarted'));
+            'questionAsked','status', 'questionAnswered', 'posts', 'discussionStarted', 'notifications'));
     }
 
     public function sendMessage(Request $request){
@@ -471,6 +476,7 @@ class HomeController extends Controller {
 
 
     public function showAllBlogs(){
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $blogs = DB::table("blogs")
             ->leftJoin("display_pictures", "blogs.username", "=", "display_pictures.username")
             ->select(["blogs.id","blogs.username","blogs.heading","blogs.content","blogs.created_at",
@@ -479,12 +485,13 @@ class HomeController extends Controller {
             ->get();
 
 //        dd($blogs);
-        return view('home.showAllBlogs', compact('blogs'));
+        return view('home.showAllBlogs', compact('blogs','notifications'));
     }
 
     // View All Status
     public function viewAllStatus()
     {
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $status = DB::table('statuses')
             ->leftJoin('display_pictures', 'statuses.username', '=', 'display_pictures.username')
             ->orderBy('statuses.created_at', 'desc')
@@ -492,7 +499,7 @@ class HomeController extends Controller {
                 'display_pictures.image_name','display_pictures.image_url',
                 'statuses.likeCount', 'statuses.dislikeCount', 'statuses.created_at', 'statuses.updated_at'
             ]);
-        return view('home.statusAll', compact('status'));
+        return view('home.statusAll', compact('status', 'notifications'));
     }
 
 }

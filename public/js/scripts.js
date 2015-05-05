@@ -522,7 +522,12 @@ $(document).ready(function(){/* jQuery toggle layout */
         })
     });
 
+    /*
+    Notification delete when button is clicked
+     */
+    $("#notification_toggle").click(function(){
 
+    })
 });
 /*
  Form Validation plugin from jquery for Status Form

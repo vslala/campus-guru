@@ -26,7 +26,7 @@
           <ul class="nav navbar-nav navbar-right">
              <li><a href="{{ route("profile") }}" >Profile</a></li>
              <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th-large"></i></a>
                 <ul class="dropdown-menu">
                   <li><a href="{{ route('askQuestion') }}" class="dropdown_link">Ask Question</a></li>
                   <li class="nav-divider"></li>
@@ -41,7 +41,34 @@
                   <li><a href="{{ route('viewAllConfessions') }}" class="dropdown_link"><span class="badge pull-right"></span>All Confessions</a></li>
                 </ul>
              </li>
-             <li><a href="#" id="btnToggle"><i class="glyphicon glyphicon-th-large"></i></a></li>
+
+             <!-- Notification for questions and discussions -->
+             <li>
+                <a href="#" id="notification_toggle" class="dropdown-toggle @if(isset($notifications[0])) {{ 'bg-danger' }} @else {{ 'bg-success' }} @endif" data-toggle="dropdown"><i class="glyphicon glyphicon-bell">
+                     @if(isset($notifications[0]))
+                    <span class="badge">
+                            {{ count($notifications) }}
+                    </span>
+                    @endif
+                </i></a>
+
+                @if(isset($notifications[0]))
+                <ul class="dropdown-menu">
+                  @foreach($notifications as $n)
+                    @if(intval($n->n_for) == 1)
+                    <li><a href="{{ route('show', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> answered your question</a></li>
+                     <li class="nav-divider"></li>
+                    @elseif($n->n_for == 2)
+                    <li><a href="{{ route('singleDiscussion', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> replied on your discussion</a></li>
+                    <li class="nav-divider"></li>
+                    @endif
+                  @endforeach
+                </ul>
+                @endif
+             </li>
+
+            <!-- Notification ends here -->
+
              <li><a href="{{ route('logout') }}"><i class="glyphicon glyphicon-log-out"></i></a></li>
            </ul>
         </div>

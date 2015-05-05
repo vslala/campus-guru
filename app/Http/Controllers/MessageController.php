@@ -14,6 +14,7 @@ class MessageController extends Controller {
     }
 
 	public function messages(){
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $messages = DB::table("send_messages")
             ->leftJoin('display_pictures', 'send_messages.sender_username', '=', 'display_pictures.username')
             ->select(['send_messages.reciever_username', 'send_messages.sender_username', 'send_messages.id',
@@ -26,15 +27,17 @@ class MessageController extends Controller {
 
         $totalMessage = count($messages);
 //        $messages = SendMessage::where(['reciever_username'=>Auth::user()->username])->get();
-        return view("message.index", compact('messages','totalMessage'));
+        return view("message.index", compact('messages','totalMessage','notifications'));
     }
 
     public function single($id){
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $message = SendMessage::find($id);
-        return view('message.single', compact('message'));
+        return view('message.single', compact('message', 'notifications'));
     }
 
     public function sent(){
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $messages = $messages = DB::table("send_messages")
             ->leftJoin('display_pictures', 'send_messages.reciever_username', '=', 'display_pictures.username')
             ->select(['send_messages.reciever_username', 'send_messages.sender_username', 'send_messages.id',
@@ -46,11 +49,12 @@ class MessageController extends Controller {
             ->get();
 
         $totalMessageSent = count($messages);
-        return view("message.sent", compact('messages', 'totalMessageSent'));
+        return view("message.sent", compact('messages', 'totalMessageSent', 'notifications'));
     }
 
     public function compose(){
-        return view('message.compose');
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
+        return view('message.compose', compact('notifications'));
     }
 
     public function delete($id){

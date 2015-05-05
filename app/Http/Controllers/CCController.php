@@ -5,6 +5,7 @@ use App\Confession;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Notification;
 use App\Suggestion;
 use App\User;
 use Illuminate\Http\Request;
@@ -132,5 +133,13 @@ class CCController extends Controller {
         }
 
 
+    }
+
+    public function deleteNotification(Request $request){
+        if($request->isMethod("POST")){
+            $n = new Notification();
+            $n->where("n_to", Auth::user()->username)->delete();
+            return true;
+        }
     }
 }

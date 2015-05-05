@@ -7,6 +7,7 @@ use App\DisplayPicture;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\LikedDiscussion;
+use App\Notification;
 use App\Reply;
 use DB;
 use Illuminate\Http\Request;
@@ -25,8 +26,9 @@ class DiscussionController extends Controller {
 	 */
 	public function index()
 	{
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $categories = Category::all();
-		return view('discussion.start', compact('categories'));
+		return view('discussion.start', compact('categories', 'notifications'));
 	}
 
     function multiexplode ($delimiters,$string) {
@@ -108,8 +110,20 @@ class DiscussionController extends Controller {
             $q = new Reply();
             $flag = $q->addReply($d_id, $reply, $username);
 
-            if($flag)
+            if($flag){
+                $n_to = $request->get("n_to");
+                $n_for = 2;
+                $n_by = Auth::user()->username;
+                $n_id_of_discussion = $d_id;
+                if($n_by == $n_to){
+                    return Redirect::back();
+                }else{
+                    $n = new Notification();
+                    $n->addNotification($n_to,$n_by,$n_for,$n_id_of_discussion);
+                }
                 return Redirect::back();
+            }
+
             else
                 return false;
         }
@@ -124,6 +138,11 @@ class DiscussionController extends Controller {
 	 */
 	public function show($id)
 	{
+        // delete the notification of the corresponding discussion
+        $n = new Notification();
+        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>2])->delete();
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
+
         $likes = LikedDiscussion::all();
         $dislikes = DislikedDiscussion::all();
         $discussion = Discussion::find($id);
@@ -137,7 +156,7 @@ class DiscussionController extends Controller {
             ->get();
 //        dd($replies);
         $image = DisplayPicture::where("username", Auth::user()->username)->get();
-        return view('discussion.single', compact('discussion','replies','image','likes','dislikes'));
+        return view('discussion.single', compact('discussion','replies','image','likes','dislikes','notifications'));
 	}
 
 	/**
@@ -148,18 +167,20 @@ class DiscussionController extends Controller {
 	 */
 	public function showAll()
 	{
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $discussions = DB::table("discussions")
             ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")
             ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
             ->get();
 //        dd($discussions);
-        return view('discussion.all', compact('discussions'));
+        return view('discussion.all', compact('discussions','notifications'));
 	}
 
     public function showAllByUsername()
     {
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $discussions = Discussion::where("username",Auth::user()->username)->get();
-        return view("discussion.userDiscussions", compact('discussions'));
+        return view("discussion.userDiscussions", compact('discussions', 'notifications'));
     }
 
 	/**

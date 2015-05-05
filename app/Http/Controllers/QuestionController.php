@@ -9,6 +9,7 @@ use App\DisplayPicture;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\LikedAnswer;
+use App\Notification;
 use DB;
 use App\Question;
 use App\QuestionTag;
@@ -28,8 +29,9 @@ class QuestionController extends Controller {
 	 */
 	public function index()
 	{
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $categories = Category::all();
-		return view('question.ask', compact('categories'));
+		return view('question.ask', compact('categories', 'notifications'));
 	}
 
 	/**
@@ -133,7 +135,7 @@ class QuestionController extends Controller {
          */
         $v = $this->validate($request, [
             'q_id' => 'required',
-            'answer' => 'required|min:3',
+            'answer' => 'required|min:3'
         ]);
 		if($request->ajax())
         {
@@ -161,7 +163,6 @@ class QuestionController extends Controller {
 
         if($request->isMethod('put'))
         {
-
             $username = Auth::user()->username;
             $q_id = $request->get('q_id');
             $answer = $request->get('answer');
@@ -169,7 +170,20 @@ class QuestionController extends Controller {
             $flag = $q->addAnswer($q_id, $answer, $username);
 
             if($flag)
+            {
+                $n_to = $request->get("n_to");
+                $n_for = 1;
+                $n_by = Auth::user()->username;
+                $n_id_of_question = $q_id;
+                if($n_by == $n_to){
+                    return Redirect::back();
+                }else{
+                    $n = new Notification();
+                    $n->addNotification($n_to,$n_by,$n_for,$n_id_of_question);
+                }
+
                 return Redirect::back();
+            }
             else
                 return false;
         }
@@ -183,6 +197,11 @@ class QuestionController extends Controller {
 	 */
     public function show($id)
     {
+        // delete the notification of the corresponding question
+        $n = new Notification();
+        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>1])->delete();
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
+
         $likes = new LikedAnswer();
         $likes = $likes->get();
         $dislikes = new DislikedAnswer();
@@ -208,16 +227,18 @@ class QuestionController extends Controller {
 //        dd($comments);
 //        dd($answers);
         $image = DisplayPicture::where("username", Auth::user()->username)->get();
-        return view('question.single', compact('question','answers','image', 'comments','likes','dislikes', 'attachment'));
+        return view('question.single', compact('question','answers','image', 'comments','likes',
+            'dislikes', 'attachment', 'notifications'));
     }
 	public function showQuestionsByUsername()
 	{
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $questions = new Question();
         $questions = $questions->where("username", Auth::user()->username)->get();
 //        dd($questions);
         $image = new DisplayPicture();
         $image = $image->where("username", Auth::user()->username)->get()->toArray();
-		return view('question.userQuestions', compact('questions', 'image'));
+		return view('question.userQuestions', compact('questions', 'image', 'notifications'));
 	}
 
 	/**
@@ -246,12 +267,13 @@ class QuestionController extends Controller {
 	 */
 	public function viewAllQuestions()
 	{
+        $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $questions = DB::table("questions")
             ->leftJoin("display_pictures", "questions.username", "=","display_pictures.username")
             ->select(['questions.id','questions.title','display_pictures.image_url','display_pictures.image_name'])
             ->get();
 //        dd($questions);
-		return view('question.all', compact('questions'));
+		return view('question.all', compact('questions','notifications'));
 	}
 	/**
 	 * Remove the specified resource from storage.
