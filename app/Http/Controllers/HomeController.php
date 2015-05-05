@@ -76,10 +76,14 @@ class HomeController extends Controller {
         $questions = DB::table("questions")
             ->leftJoin("display_pictures", "questions.username", "=","display_pictures.username")
             ->select(['questions.id','questions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->take(8)
+            ->orderBy("questions.created_at", "desc")
             ->get();
         $discussions = DB::table("discussions")
             ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")
             ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->take(8)
+            ->orderBy("discussions.created_at", "desc")
             ->get();
         $mostLikedStatus = Status::whereRaw('likeCount = (select max(`likeCount`) from statuses)')->get()->toArray();
 

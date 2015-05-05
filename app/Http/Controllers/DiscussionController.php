@@ -177,8 +177,9 @@ class DiscussionController extends Controller {
     {
         $response = DB::table("discussions")
             ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")
-            ->take(5)
+            ->take(8)
             ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->orderBy("discussions.created_at", "desc")
             ->get();
 
         return json_encode($response);

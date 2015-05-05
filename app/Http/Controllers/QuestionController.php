@@ -230,8 +230,9 @@ class QuestionController extends Controller {
 	{
         $response = DB::table("questions")
             ->leftJoin("display_pictures", "questions.username", "=","display_pictures.username")
-            ->take(5)
+            ->take(8)
             ->select(['questions.id','questions.title','display_pictures.image_url','display_pictures.image_name'])
+            ->orderBy("questions.created_at", "desc")
             ->get();
 
         return json_encode($response);
