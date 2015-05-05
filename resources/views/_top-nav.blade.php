@@ -34,7 +34,7 @@
                   <li class="nav-divider"></li>
                   <li><a href="{{ route('viewAllQuestions') }}" class="dropdown_link"><span class="badge pull-right"></span>All Questions</a></li>
                   <li class="nav-divider"></li>
-                  <li><a href="{{ route('askQuestion') }}" class="dropdown_link"><span class="label label-info pull-right"></span>All Discussions</a></li>
+                  <li><a href="{{ route('viewAllDiscussion') }}" class="dropdown_link"><span class="label label-info pull-right"></span>All Discussions</a></li>
                   <li class="nav-divider"></li>
                   <li><a href="{{ route('viewAllComplains') }}" class="dropdown_link"><span class="badge pull-right"></span>All Complains</a></li>
                   <li class="nav-divider"></li>
