@@ -78,6 +78,13 @@ class DiscussionController extends Controller {
 	 */
 	public function storeReply(Request $request)
 	{
+        /*
+         * Form Input validation
+         */
+        $v = $this->validate($request, [
+            'd_id' => 'required',
+            'reply' => 'required|max:9999'
+        ]);
         if($request->ajax())
         {
             $username = Auth::user()->username;

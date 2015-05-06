@@ -46,7 +46,7 @@
                             {!! Form::open(["route"=>["addReply"], 'method'=>'put', 'id'=>'reply_form']) !!}
                                 <input type="hidden" name="d_id" value="{{ $discussion->id }}" />
                                 <input type="hidden" name="n_to" value="{{ $discussion->username }}" />
-                                {!! Form::textarea("reply", null, ['class'=>'form-control', 'rows'=>'6']) !!}
+                                {!! Form::textarea("reply", null, ['class'=>'form-control', 'rows'=>'6', 'maxlength'=>'10000']) !!}
                                 {!! Form::submit("Reply", ['class'=>'btn btn-lg btn-success']) !!}
                             {!! Form::close() !!}
                         </div>

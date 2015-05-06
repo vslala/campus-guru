@@ -58,7 +58,7 @@
                             {!! Form::open(["route"=>["addAnswer"], 'method'=>'put', 'id'=>'answer_form']) !!}
                                 <input type="hidden" name="q_id" value="{{ $question->id }}" />
                                 <input type="hidden" name="n_to" value="{{ $question->username }}" />
-                                {!! Form::textarea("answer", null, ['class'=>'form-control', 'rows'=>'6']) !!}
+                                {!! Form::textarea("answer", null, ['class'=>'form-control', 'rows'=>'6', 'maxlength'=>'10000']) !!}
                                 {!! Form::submit("Submit Answer", ['class'=>'btn btn-lg btn-success']) !!}
                             {!! Form::close() !!}
                         </div>
