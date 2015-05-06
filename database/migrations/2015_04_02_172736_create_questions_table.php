@@ -18,7 +18,7 @@ class CreateQuestionsTable extends Migration {
             $table->string('username');
             $table->string('title', 500);
             $table->string('category');
-            $table->string('description');
+            $table->string('description',10000);
 //            $table->string('image_name')->nullable();
 //            $table->string('image_type')->nullable();
 //            $table->string('image_url')->nullable();

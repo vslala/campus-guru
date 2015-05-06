@@ -17,7 +17,7 @@ class CreateAnswersTable extends Migration {
 			$table->increments('id');
             $table->integer('q_id')->unsigned();
             $table->string('username');
-            $table->string('answer', 2000);
+            $table->string('answer', 10000);
             $table->foreign('q_id')->references('id')->on('questions')->onDelete('cascade');
 			$table->timestamps();
 		});

@@ -17,7 +17,7 @@ class CreateRepliesTable extends Migration {
 			$table->increments('id');
             $table->integer('d_id')->unsigned();
             $table->string('username');
-            $table->string('reply', 3000);
+            $table->string('reply', 10000);
             $table->foreign('d_id')->references('id')->on('discussions')->onDelete('cascade');
 			$table->timestamps();
 		});

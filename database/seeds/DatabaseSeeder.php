@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class DatabaseSeeder extends Seeder {
 
@@ -13,7 +14,6 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-
 
         $categories = ["Education and Reference", "Entertainment and Music", "Environment", "Relationships",
             "Food & Drinks", "Games & Recreation", 'Science & Mathematics', "Computer Science", "Sports",
