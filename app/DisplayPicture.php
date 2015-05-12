@@ -30,8 +30,13 @@ class DisplayPicture extends Model {
             'image_name'=>$imageName,
             'image_type'=>$imageType,
             'image_url'=>$imageUrl,
-            'image_size'=>$imageSize
+            'image_size'=>$imageSize,
+            'likeCount'=>0,
+            'dislikeCount'=>0
         ]);
+        $dp_id = DB::table("display_pictures")->where("username",$username)->get(['id']);
+
+        DB::table("liked_display_pictures")->where(['dp_id'=>$dp_id[0]->id])->delete();
 
         return true;
     }
@@ -83,5 +88,6 @@ class DisplayPicture extends Model {
 
         return $dislikeCount;
     }
+
 
 }

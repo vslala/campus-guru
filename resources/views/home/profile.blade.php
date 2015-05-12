@@ -100,6 +100,22 @@
             </div>
             <!--/col-3-->
             <div class="col-sm-9" contenteditable="false" style="">
+                <!--  -->
+                                <div class="panel panel-default target">
+                                    <div class="panel-heading" contenteditable="false">My Today's Horoscope</div>
+                                    <div class="panel-body">
+                                <div class="row">
+                    				<div class="col-md-12">
+                                        <div id="horoscope">
+
+                                        </div>
+                    				</div>
+
+                                </div>
+                                    </div>
+
+                                </div>
+
                 <div class="panel panel-default">
                     <div class="panel-heading">About Me</div>
                     <div class="panel-body"> {{ $user[0]['about_me'] or '' }}
@@ -120,21 +136,7 @@
 
                 </div>
 
-                <!--  -->
-                <div class="panel panel-default target">
-                    <div class="panel-heading" contenteditable="false">My Today's Horoscope</div>
-                    <div class="panel-body">
-                <div class="row">
-    				<div class="col-md-12">
-                        <div id="horoscope">
 
-                        </div>
-    				</div>
-
-                </div>
-                    </div>
-
-                </div>
 
             </div>
 
