@@ -49,7 +49,7 @@ class WelcomeController extends Controller {
             'username' => 'required|max:20|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required',
-            'college' => 'required|min:4',
+            'college' => 'required',
             'branch' => 'required|min:2'
         ]);
 
