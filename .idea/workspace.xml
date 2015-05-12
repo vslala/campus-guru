@@ -25,12 +25,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="profile.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profile.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/home/profile.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7433962" vertical-offset="1578" max-vertical-offset="3247">
-              <caret line="116" column="38" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="38" />
+            <state vertical-scroll-proportion="-9.576923" vertical-offset="1961" max-vertical-offset="3247">
+              <caret line="130" column="48" selection-start-line="130" selection-start-column="48" selection-end-line="130" selection-end-column="48" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_status.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/home/_status.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.064150944" vertical-offset="0" max-vertical-offset="629">
+              <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+              <folding>
+                <element signature="e#853#876#0#HTML" expanded="true" />
+                <element signature="e#883#955#0#HTML" expanded="true" />
+                <marker date="1431410142093" expanded="true" signature="255:411" placeholder="..." />
+                <marker date="1431410142093" expanded="true" signature="272:410" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,7 +99,6 @@
         <option value="$PROJECT_DIR$/resources/views/message/_left_nav.blade.php" />
         <option value="$PROJECT_DIR$/app/Attachment.php" />
         <option value="$PROJECT_DIR$/resources/views/question/userQuestions.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/home/_status.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/vendor/_status_like.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home/statusAll.blade.php" />
@@ -131,6 +145,7 @@
         <option value="$PROJECT_DIR$/resources/views/question/single.blade.php" />
         <option value="$PROJECT_DIR$/app/DisplayPicture.php" />
         <option value="$PROJECT_DIR$/resources/views/home/profile.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/home/_status.blade.php" />
       </list>
     </option>
   </component>
@@ -922,13 +937,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/home/statusAll.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7245283" vertical-offset="279" max-vertical-offset="1139">
-          <caret line="39" column="70" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/partials/csSyllabus.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="408">
@@ -1287,9 +1295,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home/profile.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7433962" vertical-offset="1578" max-vertical-offset="3247">
-          <caret line="116" column="38" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="38" />
+        <state vertical-scroll-proportion="-9.576923" vertical-offset="1961" max-vertical-offset="3247">
+          <caret line="130" column="48" selection-start-line="130" selection-start-column="48" selection-end-line="130" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home/_status.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.064150944" vertical-offset="0" max-vertical-offset="629">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+          <folding>
+            <element signature="e#853#876#0#HTML" expanded="true" />
+            <element signature="e#883#955#0#HTML" expanded="true" />
+            <marker date="1431410142093" expanded="true" signature="255:411" placeholder="..." />
+            <marker date="1431410142093" expanded="true" signature="272:410" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
