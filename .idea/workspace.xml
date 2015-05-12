@@ -35,29 +35,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_status.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_status.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/home/_status.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.064150944" vertical-offset="0" max-vertical-offset="629">
-              <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="595">
+              <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
               <folding>
-                <element signature="e#853#876#0#HTML" expanded="true" />
-                <element signature="e#883#955#0#HTML" expanded="true" />
-                <marker date="1431410142093" expanded="true" signature="255:411" placeholder="..." />
-                <marker date="1431410142093" expanded="true" signature="272:410" placeholder="..." />
+                <element signature="e#677#700#0#HTML" expanded="true" />
+                <element signature="e#707#779#0#HTML" expanded="true" />
+                <marker date="1431410395575" expanded="true" signature="229:329" placeholder="..." />
+                <marker date="1431410395575" expanded="true" signature="246:328" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profileVisit.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="profileVisit.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/home/profileVisit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.6153846" vertical-offset="406" max-vertical-offset="3604">
-              <caret line="34" column="57" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.4509434" vertical-offset="1937" max-vertical-offset="3706">
+              <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
               <folding>
-                <marker date="1430203144216" expanded="true" signature="5747:5863" placeholder="..." />
-                <marker date="1430203144216" expanded="true" signature="5764:5862" placeholder="..." />
+                <element signature="e#6367#6390#0#HTML" expanded="true" />
+                <element signature="e#6397#6469#0#HTML" expanded="true" />
+                <marker date="1431410417104" expanded="true" signature="5815:5939" placeholder="..." />
+                <marker date="1431410417104" expanded="true" signature="5832:5938" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -102,7 +104,6 @@
         <option value="$PROJECT_DIR$/resources/views/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/vendor/_status_like.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home/statusAll.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/home/profileVisit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/message/single.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_04_29_064358_create_suggestions_table.php" />
         <option value="$PROJECT_DIR$/app/Suggestion.php" />
@@ -146,6 +147,7 @@
         <option value="$PROJECT_DIR$/app/DisplayPicture.php" />
         <option value="$PROJECT_DIR$/resources/views/home/profile.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home/_status.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/home/profileVisit.blade.php" />
       </list>
     </option>
   </component>
@@ -861,7 +863,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="0" width="1364" height="728" extended-state="0" />
+    <frame x="1" y="0" width="1364" height="728" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1274,17 +1276,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home/profileVisit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6153846" vertical-offset="406" max-vertical-offset="3604">
-          <caret line="34" column="57" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="57" />
-          <folding>
-            <marker date="1430203144216" expanded="true" signature="5747:5863" placeholder="..." />
-            <marker date="1430203144216" expanded="true" signature="5764:5862" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/DisplayPicture.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.5" vertical-offset="279" max-vertical-offset="1649">
@@ -1303,13 +1294,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home/_status.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.064150944" vertical-offset="0" max-vertical-offset="629">
-          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="595">
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding>
-            <element signature="e#853#876#0#HTML" expanded="true" />
-            <element signature="e#883#955#0#HTML" expanded="true" />
-            <marker date="1431410142093" expanded="true" signature="255:411" placeholder="..." />
-            <marker date="1431410142093" expanded="true" signature="272:410" placeholder="..." />
+            <element signature="e#677#700#0#HTML" expanded="true" />
+            <element signature="e#707#779#0#HTML" expanded="true" />
+            <marker date="1431410395575" expanded="true" signature="229:329" placeholder="..." />
+            <marker date="1431410395575" expanded="true" signature="246:328" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home/profileVisit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4509434" vertical-offset="1937" max-vertical-offset="3706">
+          <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
+          <folding>
+            <element signature="e#6367#6390#0#HTML" expanded="true" />
+            <element signature="e#6397#6469#0#HTML" expanded="true" />
+            <marker date="1431410417104" expanded="true" signature="5815:5939" placeholder="..." />
+            <marker date="1431410417104" expanded="true" signature="5832:5938" placeholder="..." />
           </folding>
         </state>
       </provider>
