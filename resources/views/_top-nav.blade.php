@@ -61,6 +61,9 @@
                     @elseif($n->n_for == 2)
                     <li><a href="{{ route('singleDiscussion', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> replied on your discussion</a></li>
                     <li class="nav-divider"></li>
+                    @elseif($n->n_for == 21)
+                    <li><a href="{{ route('singleDiscussion', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> replied on this discussion</a></li>
+                    <li class="nav-divider"></li>
                     @elseif($n->n_for == 3)
                     <li><a href="{{ route('singleMessage', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> messaged you</a></li>
                     <li class="nav-divider"></li>

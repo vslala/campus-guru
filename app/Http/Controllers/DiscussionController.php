@@ -148,6 +148,7 @@ class DiscussionController extends Controller {
         // delete the notification of the corresponding discussion
         $n = new Notification();
         $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>2])->delete();
+        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>21])->delete();
         $notifications = Notification::where("n_to", Auth::user()->username)->get();
 
         $likes = LikedDiscussion::all();

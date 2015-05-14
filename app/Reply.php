@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Reply extends Model {
 
@@ -14,8 +15,15 @@ class Reply extends Model {
         $a->reply = $reply;
         $flag = $a->save();
 
-        if($flag)
+        if($flag){
+            $discussionBelongsTo = Discussion::where("id", $dId)->get(["username"]);
+            $replies = Reply::where(["d_id"=>$dId])->distinct("username")->get();
+            $n = new Notification();
+            foreach($replies as $r){
+                $n->addNotification($r->username,$username, 21, $dId);
+            }
             return $a->reply;
+        }
         else
             return false;
     }
