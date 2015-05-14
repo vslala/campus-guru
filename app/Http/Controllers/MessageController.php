@@ -32,7 +32,7 @@ class MessageController extends Controller {
     }
 
     public function single($id){
-        Notification::where("n_id_of", $id)->delete();
+        Notification::where(["n_id_of"=>$id, "n_to"=>Auth::user()->username])->delete();
         $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $message = SendMessage::find($id);
         return view('message.single', compact('message', 'notifications'));

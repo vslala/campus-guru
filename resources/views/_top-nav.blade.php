@@ -64,6 +64,12 @@
                     @elseif($n->n_for == 3)
                     <li><a href="{{ route('singleMessage', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> messaged you</a></li>
                     <li class="nav-divider"></li>
+                    @elseif($n->n_for == 4)
+                    <li><a href="{{ route('show', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> commented on your answer</a></li>
+                    <li class="nav-divider"></li>
+                    @elseif($n->n_for == 41)
+                    <li><a href="{{ route('show', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> commented on your comment on this question</a></li>
+                    <li class="nav-divider"></li>
                     @endif
                   @endforeach
                 </ul>

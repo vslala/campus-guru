@@ -200,6 +200,8 @@ class QuestionController extends Controller {
         // delete the notification of the corresponding question
         $n = new Notification();
         $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>1])->delete();
+        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>4])->delete();
+        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>41])->delete();
         $notifications = Notification::where("n_to", Auth::user()->username)->get();
 
         $likes = new LikedAnswer();

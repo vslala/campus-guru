@@ -16,6 +16,26 @@ class Comment extends Model {
 
         if($flag)
         {
+            $answer = new Answer();
+            $answerRow = $answer->where(["id"=>$answerID])->get();
+            $q_id = $answerRow[0]->q_id;
+            $n = new Notification();
+            $n->n_to = $answerRow[0]->username;
+            $n->n_by = $username;
+            $n->n_for = 4;
+            $n->n_id_of = $q_id;
+            $n->save();
+
+            $commentAll = new Comment();
+            $commentAll = $commentAll->where("ans_id", $answerID)->get();
+            foreach($commentAll as $c){
+                $n = new Notification();
+                $n->n_to = $c->username;
+                $n->n_by = $username;
+                $n->n_for = 41;
+                $n->n_id_of = $q_id;
+                $n->save();
+            }
             return true;
         } else {
             return false;
