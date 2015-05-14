@@ -166,7 +166,7 @@
       </div>
       <div class="modal-body">
             {!! Form::open(["route"=>["sendMessage"], 'files'=>true, 'method'=>'POST', 'id'=>'message_form', 'class'=>'form-horizontal']) !!}
-                <input type="hidden" name="sentTo" value="{{ $user[0]['username'] or '' }}" />
+                <input type="hidden" name="sentTo" value="{{ $realName[0]['username'] or '' }}" />
                 <div class="form-group">
                                     <label class="form-label col-md-2">
                                         Subject
