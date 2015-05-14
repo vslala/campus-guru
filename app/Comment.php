@@ -27,7 +27,7 @@ class Comment extends Model {
             $n->save();
 
             $commentAll = new Comment();
-            $commentAll = $commentAll->where("ans_id", $answerID)->get();
+            $commentAll = $commentAll->where("ans_id", $answerID)->distinct()->get();
             foreach($commentAll as $c){
                 $n = new Notification();
                 $n->n_to = $c->username;
