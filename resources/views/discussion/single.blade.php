@@ -36,7 +36,7 @@
                     </div>
                     <div class="panel-body">
                         <p class="tahoma">
-                            {{ $discussion->description or 'description does not exists!' }}
+                            {!! $discussion->description or 'description does not exists!' !!}
                         </p>
 
                         <hr>
