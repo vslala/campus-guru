@@ -523,6 +523,29 @@ $(document).ready(function(){/* jQuery toggle layout */
     });
 
     /*
+    Attach Image Button Click
+     */
+    function checkImage(src) {
+        var img = new Image();
+        img.onload = function() {
+            // code to set the src on success
+            var currentValue = $("#status_box").val();
+            $('#status_box').val(currentValue + '<a href="'+ src +'"><img src="' + src + '" class="img img-responsive img-thumbnail" style="height: 200px;" /></a>');
+        };
+        img.onerror = function() {
+            // doesn't exist or error loading
+            console.log("NO IMAGE");
+        };
+
+        img.src = src; // fires off loading of image
+    }
+    $("#attach_url").click(function(event){
+        event.preventDefault();
+        var url = prompt("Enter the complete image url here.");
+        checkImage(url);
+    });
+
+    /*
     Notification delete when button is clicked
      */
     $("#notification_toggle").click(function(){

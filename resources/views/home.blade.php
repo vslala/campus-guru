@@ -23,7 +23,7 @@
                   <div class="form-group">
                    <textarea name="status" class="form-control" placeholder="Update your status" required="true" minlength="2" id="status_box"></textarea>
                  </div>
-                 <button class="btn btn-success pull-right" type="submit" id="statusPostBtn">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
+                 <button class="btn btn-success pull-right" type="submit" id="statusPostBtn">Post</button><ul class="list-inline"><li><a href="#" id="attach_url"><i class="glyphicon glyphicon-picture"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
                {!! Form::close() !!}
            </div>
 
@@ -85,7 +85,7 @@
 
 
                                 </li>
-                                <li style="margin-top: 2%;"><span style="font-family: cursive,Lobster; font-weight: bold; color: #843534;">{{ $s->status or 'Status' }}</span>
+                                <li style="margin-top: 2%;"><span style="font-family: cursive,Lobster; font-weight: bold; color: #843534;">{!! $s->status or 'Status' !!}</span>
                                     <br>
                                     <div class="help-block">created at: {{ $s->created_at }}</div>
                                  </li>
