@@ -35,7 +35,7 @@ $title="CampusGuru Blogs";
                                 <div class="h6">created at: {{ $b->created_at or 'time not set' }}</div>
                             </div>
                             <div class="h4">
-                                <a href="{{ route('showSingleBlog', $b->id) }}">
+                                <a href="{{ route('showSingleBlog', ["id"=>$b->id,"heading"=>$b->heading]) }}">
                                     {{ $b->heading or 'heading not set' }}
                                 </a>
                             </div>

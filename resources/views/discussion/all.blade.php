@@ -1,4 +1,5 @@
 <?php
+    $title = "CampusGuru Discussions";
     $pageHeader = "All Discussions";
     if(count($discussions) <= 0)
     {
@@ -35,7 +36,7 @@
                                 @foreach($discussions as $d)
                                     <li>
 
-                                        <a href="{{ route('singleDiscussion', $d->id) }}" id="question_link">
+                                        <a href="{{ route('singleDiscussion', ["id"=>$d->id, "title"=>$d->title]) }}" id="question_link">
                                         {!! Html::image($d->image_url, $d->image_name, ['class'=>'img img-responsive img-thumbnail profile_pic']) !!}
                                         {{ $d->title }} ?</a>
                                     </li>

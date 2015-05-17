@@ -36,7 +36,7 @@
               <div class="list-group" id="list_of_questions">
               @if(isset($questions))
               @foreach($questions as $q)
-                <a href="{{ route("show", $q->id) }}" class="list-group-item">
+                <a href="{{ route("show", ["id"=>$q->id, "title"=>$q->title]) }}" class="list-group-item">
                     {!! Html::image($q->image_url,$q->image_name, ['class'=>'img img-responsive img-thumbnail', 'style'=>'width:50px;']) !!}
                     <span id="question_link_home">{{ $q->title }}</span>
                 </a>
@@ -125,7 +125,7 @@
                <img src="//placehold.it/150x150" class="img img-responsive img-thumbnail pull-right">
               @endif
                 <a href="{{ route('profileVisit', $blog->username) }}">{{ $blog->username or 'User' }}</a></p>
-              <a href="{{ route('showSingleBlog', [$blog->id])}}">{{ $blog->heading or 'Blog heading' }}</a>
+              <a href="{{ route('showSingleBlog', ["id"=>$blog->id, "heading"=>$blog->heading])}}">{{ $blog->heading or 'Blog heading' }}</a>
 
             {{--@endforeach--}}
             @endif
@@ -160,7 +160,7 @@
               <div class="list-group" id="list_of_discussions">
               @if(isset($discussions))
               @foreach($discussions as $d)
-                <a href="{{ route("singleDiscussion", $d->id) }}" class="list-group-item">
+                <a href="{{ route("singleDiscussion", ["id"=>$d->id, "title"=>$d->title]) }}" class="list-group-item">
                     {!! Html::image($d->image_url,$d->image_name, ['class'=>'img img-responsive img-thumbnail', 'style'=>'width:50px;']) !!}
                     <span id="discussion_link_home">{{ $d->title }}</span>
                 </a>

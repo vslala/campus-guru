@@ -38,7 +38,7 @@
                                 @foreach($questions as $q)
                                     <li>
                                     <span class="pull-right"><a href="{{ route('deleteQuestion', $q->id) }}">delete</a> </span>
-                                    <span class="glyphicon glyphicon-question-sign"><a href="{{ route('show', $q->id) }}" id="question_link">{{ $q->title }} ?</a> </span></li>
+                                    <span class="glyphicon glyphicon-question-sign"><a href="{{ route('show', ["id"=>$q->id, "title"=>$q->title]) }}" id="question_link">{{ $q->title }} ?</a> </span></li>
                                 @endforeach
                             @endif
                             </ul>

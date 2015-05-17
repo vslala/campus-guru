@@ -35,7 +35,7 @@
                                 @foreach($questions as $q)
                                     <li>
 
-                                        <a href="{{ route('show', $q->id) }}" id="question_link">
+                                        <a href="{{ route('show', ["id"=>$q->id, "title"=>$q->title]) }}" id="question_link">
                                         {!! Html::image($q->image_url, $q->image_name, ['class'=>'img img-responsive img-thumbnail profile_pic']) !!}
                                         {{ $q->title }} ?</a>
                                     </li>

@@ -97,7 +97,7 @@ Route::get('/user/delete/blog/{id}', [
     'uses'=>"HomeController@blogDelete",
     "as"=>"blogDelete"
 ]);
-Route::get('/user/show/blog/{id}', [
+Route::get('/user/show/blog/{id}/{heading}', [
     'uses'=>"BlogController@showBlog",
     "as"=>"showSingleBlog"
 ]);
@@ -129,7 +129,7 @@ Route::get('/user/view/user/discussions', [
     'uses'=>"DiscussionController@showAllByUsername",
     "as"=>"userDiscussions"
 ]);
-Route::get('/user/view/single/discussions/{id}', [
+Route::get('/user/view/single/discussions/{id}/{title}', [
     'uses'=>"DiscussionController@show",
     "as"=>"singleDiscussion"
 ]);
@@ -195,7 +195,7 @@ Route::get('/user/show/question', [
     'uses'=>"QuestionController@showQuestionsByUsername",
     "as"=>"userQuestions"
 ]);
-Route::get('/user/show/question/{id}', [
+Route::get('/user/show/question/{id}/{title}', [
     'uses'=>"QuestionController@show",
     "as"=>"show"
 ]);
