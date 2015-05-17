@@ -40,7 +40,7 @@ $(document).ready(function(){/* jQuery toggle layout */
                     }
                     if(data[i]['dislikeCount'] == null || data[i]['dislikeCount'] == '')
                     {
-                        data[i]['dislikeCount'] == 0;
+                        data[i]['dislikeCount'] = 0;
                     }
                     $(statusSection).append(
                         '<ul class="nav nav-pills list-inline">' +
