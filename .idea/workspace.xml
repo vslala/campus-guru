@@ -35,14 +35,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scripts.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="scripts.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.502693" vertical-offset="8764" max-vertical-offset="9996">
+            <state vertical-scroll-proportion="0.0" vertical-offset="8764" max-vertical-offset="9996">
               <caret line="532" column="162" selection-start-line="532" selection-start-column="162" selection-end-line="532" selection-end-column="162" />
               <folding>
                 <marker date="1431835341897" expanded="false" signature="2094:2109" placeholder="..." />
                 <marker date="1431835341897" expanded="false" signature="2153:2217" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="statusAll.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/home/statusAll.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6629002" vertical-offset="243" max-vertical-offset="1139">
+              <caret line="35" column="184" selection-start-line="35" selection-start-column="184" selection-end-line="35" selection-end-column="184" />
+              <folding>
+                <marker date="1431835902294" expanded="true" signature="698:838" placeholder="..." />
+                <marker date="1431835902294" expanded="true" signature="715:837" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -61,7 +74,6 @@
         <option value="$PROJECT_DIR$/resources/views/question/userQuestions.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/vendor/_status_like.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/home/statusAll.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/message/single.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_04_29_064358_create_suggestions_table.php" />
         <option value="$PROJECT_DIR$/app/Suggestion.php" />
@@ -109,6 +121,7 @@
         <option value="$PROJECT_DIR$/resources/views/discussion/single.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/public/js/scripts.js" />
+        <option value="$PROJECT_DIR$/resources/views/home/statusAll.blade.php" />
       </list>
     </option>
   </component>
@@ -900,13 +913,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/suggestionBox.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="374">
-          <caret line="7" column="81" selection-start-line="7" selection-start-column="81" selection-end-line="7" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/discussion/userDiscussions.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.807693" vertical-offset="382" max-vertical-offset="1037">
@@ -1256,11 +1262,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.502693" vertical-offset="8764" max-vertical-offset="9996">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8764" max-vertical-offset="9996">
           <caret line="532" column="162" selection-start-line="532" selection-start-column="162" selection-end-line="532" selection-end-column="162" />
           <folding>
             <marker date="1431835341897" expanded="false" signature="2094:2109" placeholder="..." />
             <marker date="1431835341897" expanded="false" signature="2153:2217" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home/statusAll.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6629002" vertical-offset="243" max-vertical-offset="1139">
+          <caret line="35" column="184" selection-start-line="35" selection-start-column="184" selection-end-line="35" selection-end-column="184" />
+          <folding>
+            <marker date="1431835902294" expanded="true" signature="698:838" placeholder="..." />
+            <marker date="1431835902294" expanded="true" signature="715:837" placeholder="..." />
           </folding>
         </state>
       </provider>
