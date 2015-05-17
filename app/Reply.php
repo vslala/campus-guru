@@ -17,7 +17,7 @@ class Reply extends Model {
 
         if($flag){
             $discussionBelongsTo = Discussion::where("id", $dId)->get(["username"]);
-            $replies = Reply::where(["d_id"=>$dId])->distinct("username")->get();
+            $replies = Reply::where(["d_id"=>$dId])->groupBy("username")->get();
             $n = new Notification();
             foreach($replies as $r){
                 $n->addNotification($r->username,$username, 21, $dId);

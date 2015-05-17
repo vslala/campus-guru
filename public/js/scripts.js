@@ -19,7 +19,9 @@ $(document).ready(function(){/* jQuery toggle layout */
         var statusSection = $("#status_section");
         $(statusSection).html(load_img);
         //var imgLocation = "http://localhost/campusguru/public/";
-        console.log(data);
+        var statusContent = $(statusBox).val();
+        $(statusBox).val('');
+
         $.ajax({
             url : url,
             type : "PUT",
@@ -69,12 +71,12 @@ $(document).ready(function(){/* jQuery toggle layout */
                     '<hr>'
                 );
                 }
-                $(statusBox).val('');
-                $(statusBox).focus();
 
             },
             error : function(xhr, status, msg){
-                console.log("ERROR: " + xhr.responseText());
+                alert("There was some error posting the status. Please Try again!");
+                $(statusBox).val(statusContent);
+                //console.log("ERROR: " + xhr.responseText());
             }
         });
     });
