@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Redirect;
 class DiscussionController extends Controller {
 
     public function __construct(){
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 	/**
 	 * Display a listing of the resource.
@@ -163,8 +163,9 @@ class DiscussionController extends Controller {
             )
             ->get();
 //        dd($replies);
+        $username = Auth::user()->username;
         $image = DisplayPicture::where("username", Auth::user()->username)->get();
-        return view('discussion.single', compact('discussion','replies','image','likes','dislikes','notifications'));
+        return view('discussion.single', compact('discussion','replies','image','likes','dislikes','notifications', 'username'));
 	}
 
 	/**

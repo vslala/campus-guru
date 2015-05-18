@@ -41,6 +41,7 @@
 
                         <hr>
 
+                    @if($username)
                     <!-- Reply form starts here -->
                         <div class="answer-form">
                             {!! Form::open(["route"=>["addReply"], 'method'=>'put', 'id'=>'reply_form']) !!}
@@ -50,6 +51,15 @@
                                 {!! Form::submit("Reply", ['class'=>'btn btn-lg btn-success']) !!}
                             {!! Form::close() !!}
                         </div>
+                    @else
+                       <div class="has-error help-block">
+                              You must log in to post comment.
+                       </div>
+                       <div class="help-block">
+                             <a href="{{ route('index', '#login') }}">Login</a>
+                             <a href="{{ route('index', '#register_section') }}">Register</a>
+                       </div>
+                    @endif
                         <br>
                     @foreach($replies as $r)
 

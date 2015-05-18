@@ -66,36 +66,38 @@ class BlogController extends Controller {
             ->orderBy("blog_comments.created_at", "asc")
             ->get();
 
-
-        if(isset(Auth::user()->username))
-            Session::put('username', Auth::user()->username);
-        else if(Cookie::get('VISITOR')){
-            Session::put('username', Cookie::get('VISITOR'));
-        }
-        else{
-            Session::put('username', 'vister_'.uniqid() );
-            $cookie = Cookie::make("VISITOR", uniqid(), 7200);
-        }
-
-
-        /*
-         * Increment Blog Views
-         */
-        $blogViews = BlogView::where(["blog_id"=>$id, 'username'=>Session::get('username')])->first();
-        if(count($blogViews) <= 0){
+        if(Auth::guest()){
             $b = new BlogView();
             $b->blog_id = $id;
-            $b->username = Session::get('username');
+            $b->username = "visitor_".uniqid();
             $b->total_views = 1;
             if($b->save()){
                 $total_views = $b->totalViews($id);
-            }else {
+            }else{
                 $total_views = $b->totalViews($id);
                 return view('home.showBlog', compact('blog','userComments','total_views','username','cookie'));
             }
+        } else{
+            /*
+         * Increment Blog Views
+         */
+            $blogViews = BlogView::where(["blog_id"=>$id, 'username'=>Session::get('username')])->first();
+            if(count($blogViews) == 0 || count($blogViews) == NULL){
+                $b = new BlogView();
+                $b->blog_id = $id;
+                $b->username = Session::get('username');
+                $b->total_views = 1;
+                if($b->save()){
+                    $total_views = $b->totalViews($id);
+                }else {
+                    $total_views = $b->totalViews($id);
+                    return view('home.showBlog', compact('blog','userComments','total_views','username','cookie'));
+                }
 
 
+            }
         }
+
         $b = new BlogView();
         $total_views = $b->totalViews($id);
 
