@@ -532,7 +532,7 @@ $(document).ready(function(){/* jQuery toggle layout */
         img.onload = function() {
             // code to set the src on success
             var currentValue = $("#status_box").val();
-            $('#status_box').val(currentValue + '<a href="'+ src +'"><img src="' + src + '" class="img img-responsive img-thumbnail" style="height: 200px;" /></a>');
+            $('#status_box').val(currentValue + '<br><a href="'+ src +'"><img src="' + src + '" class="img img-responsive img-thumbnail" style="height: 200px;" /></a><br>');
         };
         img.onerror = function() {
             // doesn't exist or error loading
