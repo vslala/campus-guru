@@ -56,22 +56,22 @@
                 <ul class="dropdown-menu">
                   @foreach($notifications as $n)
                     @if(intval($n->n_for) == 1)
-                    <li><a href="{{ route('show', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> answered your question</a></li>
+                    <li><a href="{{ route('show', ["id"=>$n->n_id_of, "title"=>"answered to the question number ".$n->n_id_of]) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> answered your question</a></li>
                      <li class="nav-divider"></li>
                     @elseif($n->n_for == 2)
-                    <li><a href="{{ route('singleDiscussion', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> replied on your discussion</a></li>
+                    <li><a href="{{ route('singleDiscussion', ["id"=>$n->n_id_of, "title"=>"discussion number ".$n->n_id_of]) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> replied on your discussion</a></li>
                     <li class="nav-divider"></li>
                     @elseif($n->n_for == 21)
-                    <li><a href="{{ route('singleDiscussion', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> replied on this discussion you previously replied to.</a></li>
+                    <li><a href="{{ route('singleDiscussion', ["id"=>$n->n_id_of, "title"=>"Reply on discussion number ".$n->n_id_of]) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> replied on this discussion you previously replied to.</a></li>
                     <li class="nav-divider"></li>
                     @elseif($n->n_for == 3)
                     <li><a href="{{ route('singleMessage', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> messaged you</a></li>
                     <li class="nav-divider"></li>
                     @elseif($n->n_for == 4)
-                    <li><a href="{{ route('show', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> commented on your answer</a></li>
+                    <li><a href="{{ route('show', ["id"=>$n->n_id_of, "title"=>"Comment on the answer with question number ".$n->n_id_of]) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> commented on your answer</a></li>
                     <li class="nav-divider"></li>
                     @elseif($n->n_for == 41)
-                    <li><a href="{{ route('show', $n->n_id_of) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> commented on your comment on this question</a></li>
+                    <li><a href="{{ route('show', ["id"=>$n->n_id_of, "title"=>"Comment on the comment with question number ".$n->n_id_of]) }}" class="dropdown_link"><span class="label label-info pull-right"></span><strong>{{ $n->n_by }}</strong> commented on your comment on this question</a></li>
                     <li class="nav-divider"></li>
                     @endif
                   @endforeach
