@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="shortcut icon" type="image/png" href="http://localhost/campusguru/public/favicon.ico"/>
+    <link rel="shortcut icon" type="image/png" href="http://campusguru.eu1.frbit.net/favicon.ico"/>
   <title>{{ $title or '' }}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
