@@ -12,7 +12,7 @@
           {!! Form::open(["route"=>["_searchUsername"], 'method'=>"PUT" ,'class'=>"navbar-form pull-left", 'id'=>"searchForm" ]) !!}
               <div class="input-group" style="max-width:470px;">
                 <input type="text" class="form-control" autocomplete="off" placeholder="Search" name="searchTerm" id="srch-term">
-                <div class="help-block"  style="z-index: 9;" id="search_result_parent_div">
+                <div class="help-block"  style="z-index: -1;" id="search_result_parent_div">
                     <ul id="search_result" class="list-group">
 
                     </ul>
@@ -24,6 +24,7 @@
               </div>
           {!! Form::close() !!}
           <ul class="nav navbar-nav navbar-right">
+             <li>@if(isset($userImage[0]))<a href="{{ route("profile") }}" class="pull-right">{!! Html::image($userImage[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-rectangle', 'style'=>'width: 25px;']) !!}</a> @endif</li>
              <li><a href="{{ route("profile") }}" >Profile</a></li>
              <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th-large"></i></a>

@@ -29,7 +29,7 @@
             <div class="col-sm-2">
             <a href="{{ route("profile") }}" class="pull-right">{!! Html::image($userImage[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-thumbnail', 'style'=>'width: 200px;']) !!}
              </a>
-                 <h1 class="col-sm-2">{{ $user[0]['username'] or 'Username'}}</h1>
+                 <h1 class="col-sm-2">{{ $user[0]['username'] or $username }}</h1>
             </div>
           {{--<div class="col-sm-2"><a href="/users" class="pull-right">{!! Html::image($dp[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-circle']) !!}</a>--}}
                 <div class="col-sm-6 pull-right">

@@ -23,7 +23,7 @@
                   <div class="form-group">
                    <textarea name="status" class="form-control" placeholder="Update your status" required="true" minlength="2" id="status_box"></textarea>
                  </div>
-                 <button class="btn btn-success pull-right" type="submit" id="statusPostBtn">Post</button><ul class="list-inline"><li><a href="#" id="attach_url"><i class="glyphicon glyphicon-picture"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
+                 <button class="btn btn-success pull-right" type="submit" id="statusPostBtn">Post</button><ul class="list-inline"><li><a href="#" id="attach_url"><i class="glyphicon glyphicon-picture"></i></a></li><li><a href="#" id="embed_video"><i class="glyphicon glyphicon-facetime-video"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
                {!! Form::close() !!}
            </div>
 

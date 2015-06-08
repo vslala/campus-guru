@@ -548,6 +548,18 @@ $(document).ready(function(){/* jQuery toggle layout */
     });
 
     /*
+    Embed Video to the status
+     */
+    $("#embed_video").click(function(event){
+        event.preventDefault();
+        var videoUrl = prompt("Enter the emedded url of the video:");
+        var currentValue = $("#status_box").val();
+        $('#status_box').val(currentValue + '<div class="auto-resizable-iframe">' +
+        '<div>'+ videoUrl +'</div>' +
+        '</div><br>');
+    })
+
+    /*
     Notification delete when button is clicked
      */
     $("#notification_toggle").click(function(){

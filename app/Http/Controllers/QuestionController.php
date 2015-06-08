@@ -197,6 +197,7 @@ class QuestionController extends Controller {
 	 */
     public function show($id)
     {
+
         // delete the notification of the corresponding question
         $n = new Notification();
         $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>1])->delete();
@@ -229,6 +230,11 @@ class QuestionController extends Controller {
 //        dd($comments);
 //        dd($answers);
         $image = DisplayPicture::where("username", Auth::user()->username)->get();
+
+        if(Auth::guest()){
+            return view('question.single', compact('question','answers','image', 'comments','likes',
+                'dislikes', 'attachment', 'notifications'));
+        }
         return view('question.single', compact('question','answers','image', 'comments','likes',
             'dislikes', 'attachment', 'notifications'));
     }

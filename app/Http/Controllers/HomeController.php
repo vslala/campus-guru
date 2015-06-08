@@ -67,6 +67,7 @@ class HomeController extends Controller {
             ->get();
         $randomIndex = array_rand($blog, 1);
         $blog = $blog[$randomIndex];
+        $userImage = DisplayPicture::where("username",  Auth::user()->username)->get()->toArray();
 
 //        dd($blog);
         // status in descending order
@@ -126,7 +127,7 @@ class HomeController extends Controller {
 
 		return view('home', compact('status','questions','blog','discussions', 'users',
             'mostLikedStatus', 'complains', 'confessions', 'mostLikedImage', 'randomUser',
-            'notifications'));
+            'notifications', 'userImage'));
 	}
 
     public function profile()
@@ -135,11 +136,12 @@ class HomeController extends Controller {
         $totalLikes = count(LikedAnswer::where("username", Auth::user()->username)->get());
         $questionAsked = count(Question::where("username", Auth::user()->username)->get());
         $questionAnswered = count(Answer::where("username", Auth::user()->username)->get());
-        $posts = count(Status::where("username", Auth::user()->username)->get());
+        $posts = count(Status::where("username", Auth::user()->username)->orderBy("created_at", "desc")->get());
         $realName = Auth::user()->name;
+        $username = Auth::user()->username;
         $user = Profile::where("username", Auth::user()->username)->get()->toArray();
         $userImage = DisplayPicture::where("username",  Auth::user()->username)->get()->toArray();
-        $status = Status::where('username',  Auth::user()->username)->get();
+        $status = Status::where('username',  Auth::user()->username)->orderBy('created_at', 'desc')->get();
         $discussionStarted = count(Discussion::where("username", Auth::user()->username)->get());
 
         if(count($userImage) <= 0){
@@ -149,7 +151,7 @@ class HomeController extends Controller {
 
 
         return view('home.profile', compact("user","userImage","status", 'totalLikes', 'questionAsked',
-            'posts', 'questionAnswered', 'realName', 'discussionStarted', 'notifications'));
+            'posts', 'questionAnswered', 'realName', 'discussionStarted', 'notifications', 'username'));
     }
     public function editProfile(Request $request)
     {
