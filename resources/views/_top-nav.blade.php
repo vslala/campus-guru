@@ -24,7 +24,7 @@
               </div>
           {!! Form::close() !!}
           <ul class="nav navbar-nav navbar-right">
-             <li>@if(isset($userImage[0]))<a href="{{ route("profile") }}" class="pull-right">{!! Html::image($userImage[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-rectangle', 'style'=>'width: 25px;']) !!}</a> @endif</li>
+             <li>@if(isset($userImage[0]))<a href="{{ route("profile") }}" class="pull-right">{!! Html::image($userImage[0]['image_url'],"dp",['title'=>'profile_image', 'class'=>'img img-responsive img-rectangle', 'style'=>'height: 25px;']) !!}</a> @endif</li>
              <li><a href="{{ route("profile") }}" >Profile</a></li>
              <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th-large"></i></a>
