@@ -1,4 +1,5 @@
 <?php
+    $title = $username. ' profile';
     if(count($userImage) <= 0)
     {
         $userImage[0]->image_url = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
