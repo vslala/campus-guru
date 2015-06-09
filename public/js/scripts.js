@@ -560,6 +560,38 @@ $(document).ready(function(){/* jQuery toggle layout */
     })
 
     /*
+    Search question and Discussion
+     */
+    $("#search_term").keyup(function(event){
+        event.preventDefault();
+        var SHOWURL = $("#show_url").val();
+        var searchTerm = $(this).val();
+        var table = $("#table_from").val();
+        var url = $("#search_for_q_n_d").attr('href');
+        var list = $("#content_list");
+        console.log("SEARCH TERM: "+searchTerm+ " | "+ "TABLE: "+table + "URL: "+url);
+
+        $.ajax({
+            url : url+'/'+searchTerm+'/'+table,
+            type: "GET",
+            success: function(data){
+                data = $.parseJSON(data);
+                $(list).empty();
+                $.each(data, function(index, value){
+                    $(list).append('<li>' +
+                    '<a href="'+ base_url+SHOWURL+value.id+'/'+value.title +'" id="question_link">' +
+                    '<img src="'+ base_url + value.image_url +'"alt="'+ value.image_name + '" class="img img-responsive img-thumbnail profile_pic" />' +
+                    ''+ value.title +'');
+                });
+                //console.log(data[0].id);
+            },
+            error : function(xhr,status,msg){
+                console.log("ERROR: "+ xhr.responseText);
+            }
+        });
+    });
+
+    /*
     Notification delete when button is clicked
      */
     $("#notification_toggle").click(function(){

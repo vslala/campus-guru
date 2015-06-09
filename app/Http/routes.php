@@ -321,3 +321,15 @@ Route::post('/user/blog-post-comment', [
     'uses'=>"BlogController@addBlogComment",
     "as"=>"addBlogComment"
 ]);
+
+/*
+ * Search Controller
+ */
+Route::get('/search/{searchTerm}/{table}', [
+    'uses'=>"SearchController@_search",
+    "as"=>"search"
+]);
+Route::get('/search', [
+    'uses'=>"SearchController@_search",
+    "as"=>"dummy"
+]);

@@ -5,6 +5,8 @@
     {
         $discussions = null;
     }
+    $table = "discussions";
+    $showURL = "user/view/single/discussions";
 ?>
 @extends('master')
 
@@ -23,6 +25,7 @@
         <div class="col-md-10">
             <div class="panel panel-default">
                     <div class="panel-heading" style="color: crimson; font-weight: bold;">
+                        @include('_search_q_n_d')
                         All Discussions<span class="glyphicon glyphicon-question-sign"></span>
                     </div>
                     <div class="panel-body">
@@ -31,7 +34,7 @@
                         </p>
                         <hr>
                         <div class="question-lists">
-                            <ul class="nav nav-stacked">
+                            <ul class="nav nav-stacked" id="content_list">
                             @if(isset($discussions))
                                 @foreach($discussions as $d)
                                     <li>
