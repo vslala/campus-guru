@@ -404,7 +404,7 @@ class HomeController extends Controller {
         $questionAsked = count(Question::where("username", $username)->get());
         $questionAnswered = count(Answer::where("username", $username)->get());
         $posts = count(Status::where("username", $username)->get());
-        $status = Status::where("username", $username)->get();
+        $status = Status::where("username", $username)->orderBy('created_at', 'desc')->get();
         $discussionStarted = count(Discussion::where("username", $username)->get());
 
         if(count($userImage) <= 0){

@@ -122,7 +122,7 @@
                                     </li>
                                 </div>
                                 <div class="panel-body">
-                                    <li style="margin-top: 2%;"><span style="font-family: cursive,Lobster; font-weight: bold; color: #843534;">{{ $s->status or 'Status' }}</span>
+                                    <li style="margin-top: 2%;"><span style="font-family: cursive,Lobster; font-weight: bold; color: #843534;">{!! $s->status or 'Status' !!}</span>
                                            <br>
                                            <div class="help-block">created at: {{ $s->created_at }}</div>
 
