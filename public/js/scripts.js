@@ -579,7 +579,7 @@ $(document).ready(function(){/* jQuery toggle layout */
                 $(list).empty();
                 $.each(data, function(index, value){
                     $(list).append('<li>' +
-                    '<a href="'+ base_url+SHOWURL+value.id+'/'+value.title +'" id="question_link">' +
+                    '<a href="'+ base_url+SHOWURL+'/'+value.id+'/'+value.title +'" id="question_link">' +
                     '<img src="'+ base_url + value.image_url +'"alt="'+ value.image_name + '" class="img img-responsive img-thumbnail profile_pic" />' +
                     ''+ value.title +'');
                 });
