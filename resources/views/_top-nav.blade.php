@@ -1,3 +1,4 @@
+<input type="hidden" value="{{ route('index') }}" id="base_address" />
 <nav class="navbar navbar-fixed-top header">
  	<div class="col-md-12">
         <div class="navbar-header">

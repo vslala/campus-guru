@@ -1,7 +1,18 @@
 
 $(document).ready(function(){/* jQuery toggle layout */
 
-    base_url = "http://campusguru.eu1.frbit.net/";
+
+    base_url = null;
+    if($("#base_address").val()){
+        base_url = $("#base_address").val()+'/';
+    }else{
+        base_url = "http://campusguru.eu1.frbit.net/";
+    }
+
+    setInterval(function(){
+        console.log(base_url);
+    }, 1000);
+
     load_img = '<img src="http://www.ajaxload.info/images/exemples/25.gif" >';
 
     // Ajax Status Post
