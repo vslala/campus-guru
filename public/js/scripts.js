@@ -8,10 +8,10 @@ $(document).ready(function(){/* jQuery toggle layout */
     }else{
         base_url = "http://campusguru.eu1.frbit.net/";
     }
-
-    setInterval(function(){
-        console.log(base_url);
-    }, 1000);
+    //
+    //setInterval(function(){
+    //    console.log(base_url);
+    //}, 1000);
 
     load_img = '<img src="http://www.ajaxload.info/images/exemples/25.gif" >';
 
