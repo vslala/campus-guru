@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Redirect;
 class QuestionController extends Controller {
 
     public function __construct(){
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 	/**
 	 * Display a listing of the resource.
@@ -197,13 +197,17 @@ class QuestionController extends Controller {
 	 */
     public function show($id)
     {
-
+        $username = NULL;
         // delete the notification of the corresponding question
         $n = new Notification();
-        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>1])->delete();
-        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>4])->delete();
-        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>41])->delete();
-        $notifications = Notification::where("n_to", Auth::user()->username)->get();
+        if(!Auth::guest()) {
+            $n->where(["n_to" => Auth::user()->username, "n_id_of" => $id, "n_for" => 1])->delete();
+            $n->where(["n_to" => Auth::user()->username, "n_id_of" => $id, "n_for" => 4])->delete();
+            $n->where(["n_to" => Auth::user()->username, "n_id_of" => $id, "n_for" => 41])->delete();
+            $notifications = Notification::where("n_to", Auth::user()->username)->get();
+            $username = Auth::user()->username;
+            $image = DisplayPicture::where("username", $username)->get();
+        }
 
         $likes = new LikedAnswer();
         $likes = $likes->get();
@@ -229,14 +233,9 @@ class QuestionController extends Controller {
             ->get();
 //        dd($comments);
 //        dd($answers);
-        $image = DisplayPicture::where("username", Auth::user()->username)->get();
 
-        if(Auth::guest()){
-            return view('question.single', compact('question','answers','image', 'comments','likes',
-                'dislikes', 'attachment', 'notifications'));
-        }
         return view('question.single', compact('question','answers','image', 'comments','likes',
-            'dislikes', 'attachment', 'notifications'));
+            'dislikes', 'attachment', 'notifications', 'username'));
     }
 	public function showQuestionsByUsername()
 	{

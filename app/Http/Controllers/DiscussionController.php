@@ -146,11 +146,15 @@ class DiscussionController extends Controller {
 	public function show($id)
 	{
         // delete the notification of the corresponding discussion
+        $username = NULL;
         $n = new Notification();
-        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>2])->delete();
-        $n->where(["n_to"=>Auth::user()->username, "n_id_of"=>$id, "n_for"=>21])->delete();
-        $notifications = Notification::where("n_to", Auth::user()->username)->get();
-
+        if(!Auth::guest()) {
+            $n->where(["n_to" => Auth::user()->username, "n_id_of" => $id, "n_for" => 2])->delete();
+            $n->where(["n_to" => Auth::user()->username, "n_id_of" => $id, "n_for" => 21])->delete();
+            $notifications = Notification::where("n_to", Auth::user()->username)->get();
+            $username = Auth::user()->username;
+            $image = DisplayPicture::where("username", Auth::user()->username)->get();
+        }
         $likes = LikedDiscussion::all();
         $dislikes = DislikedDiscussion::all();
         $discussion = Discussion::find($id);
@@ -163,8 +167,8 @@ class DiscussionController extends Controller {
             )
             ->get();
 //        dd($replies);
-        $username = Auth::user()->username;
-        $image = DisplayPicture::where("username", Auth::user()->username)->get();
+
+
         return view('discussion.single', compact('discussion','replies','image','likes','dislikes','notifications', 'username'));
 	}
 
