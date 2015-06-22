@@ -32,7 +32,9 @@
         <div class="col-md-10">
             <div class="panel panel-default" id="answer_panel">
                     <div class="panel-heading" style="color: crimson; font-weight: bold;">
-                        {{ $discussion->title or 'title not present' }}<span class="glyphicon glyphicon-question-sign"></span>
+                    <div class="pull-right"><div class="help-block">{{ $discussion->created_at or '' }}</div> </div>
+                    <label class="label label-primary"><a href="{{ route("profileVisit", $discussion->username) }}" style="color: white;">{{ $discussion->username or '' }} says</a></label>{{ $discussion->title or 'title not present' }}<span class="glyphicon glyphicon-question-sign"></span>
+
                     </div>
                     <div class="panel-body">
                         <p class="tahoma">
@@ -67,7 +69,8 @@
                         <div class="form-group-lg">
                             <div class="panel panel-primary" style="border: 2px solid #000000;">
                                 <div class="panel panel-heading" id="heading-panel">
-                                    <span class="glyphicon glyphicon-user"></span>{{ $r->username }}
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <a href="{{ route("profileVisit", $r->username) }}" style="font-size: 22px; font-weight: bolder;"> {{ $r->username }}</a>
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group col-sm-12">
