@@ -1,10 +1,12 @@
 <?php
+$title="Compose Blog";
  $pageHeader = "Compose Blog";
  ?>
 @extends('master')
 
 @section('links')
 {!! Html::style('css/profile.css') !!}
+{!! Html::script('js/wysiwyg.js')!!}
 @endsection
 
 @section('content')

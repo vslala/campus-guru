@@ -18,6 +18,7 @@
 @section('links')
 {!! Html::style('css/profile.css') !!}
 {!! Html::script('js/myjs.js')!!}
+{!! Html::script('js/wysiwyg.js') !!}
 @endsection
 @section('content')
 
@@ -49,8 +50,8 @@
                             {!! Form::open(["route"=>["addReply"], 'method'=>'put', 'id'=>'reply_form']) !!}
                                 <input type="hidden" name="d_id" value="{{ $discussion->id }}" />
                                 <input type="hidden" name="n_to" value="{{ $discussion->username }}" />
-                                {!! Form::textarea("reply", null, ['class'=>'form-control', 'rows'=>'6', 'maxlength'=>'10000']) !!}
-                                {!! Form::submit("Reply", ['class'=>'btn btn-lg btn-success']) !!}
+                                {!! Form::textarea("reply", null, ['class'=>'form-control text-editor', 'id'=>'text_editor', 'rows'=>'6', 'maxlength'=>'10000']) !!}
+                                {!! Form::submit("Reply", ['class'=>'btn btn-lg btn-success', 'onclick'=>'parseTextFromIFrameAndSetTextInTextArea()']) !!}
                             {!! Form::close() !!}
                         </div>
                     @else

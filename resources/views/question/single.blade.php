@@ -19,6 +19,7 @@
 @section('links')
 {!! Html::style('css/profile.css') !!}
 {!! Html::script('js/myjs.js')!!}
+{!! Html::script('js/wysiwyg.js') !!}
 @endsection
 @section('content')
 
@@ -59,8 +60,8 @@
                             {!! Form::open(["route"=>["addAnswer"], 'method'=>'put', 'id'=>'answer_form']) !!}
                                 <input type="hidden" name="q_id" value="{{ $question->id }}" />
                                 <input type="hidden" name="n_to" value="{{ $question->username }}" />
-                                {!! Form::textarea("answer", null, ['class'=>'form-control', 'rows'=>'6', 'maxlength'=>'10000']) !!}
-                                {!! Form::submit("Submit Answer", ['class'=>'btn btn-lg btn-success']) !!}
+                                {!! Form::textarea("answer", null, ['class'=>'form-control text-editor','id'=>'text_editor', 'rows'=>'6', 'maxlength'=>'10000']) !!}
+                                {!! Form::submit("Submit Answer", ['class'=>'btn btn-lg btn-success', 'onclick'=>'parseTextFromIFrameAndSetTextInTextArea()']) !!}
                             {!! Form::close() !!}
                         </div>
                     @else

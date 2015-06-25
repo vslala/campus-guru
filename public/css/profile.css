@@ -159,3 +159,17 @@ h4{
 .comment-block{
     padding: 30px;
 }
+
+.text-editor{
+    display: none;
+}
+
+.iframe{
+    width: 100%;
+}
+
+.output-div{
+    border: 1px solid #c0c0c0;
+    padding: 2em;
+    font-family: tahoma, arial, helvetica, sans-serif;
+}
