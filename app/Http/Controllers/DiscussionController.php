@@ -26,6 +26,10 @@ class DiscussionController extends Controller {
 	 */
 	public function index()
 	{
+        if(Auth::guest()){
+            return Redirect::back();
+        }
+
         $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $categories = Category::all();
 		return view('discussion.start', compact('categories', 'notifications'));
@@ -180,6 +184,7 @@ class DiscussionController extends Controller {
 	 */
 	public function showAll()
 	{
+        $this->middleware('auth');
         $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $discussions = DB::table("discussions")
             ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")

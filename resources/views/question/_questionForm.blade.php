@@ -39,13 +39,13 @@
                             <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
                                <label class="col-md-2">Description<span class="red">*</span> :</label>
                                  <div class="col-md-10">
-                                      {!! Form::textarea("content", null, ['class'=>'form-control', 'data-msg'=>'Description is required']) !!}
+                                      {!! Form::textarea("content", null, ['class'=>'form-control text-editor','id'=>"text_editor", 'data-msg'=>'Description is required']) !!}
                                       {!! $errors->first('content', '<span class="help-block">:message</span> ') !!}
                                  </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-2"></div>
-                                {!! Form::submit("Publish Question", ["class"=>"btn btn-success btn-lg"]) !!}
+                                {!! Form::submit("Publish Question", ["class"=>"btn btn-success btn-lg", 'onclick'=>'parseTextFromIFrameAndSetTextInTextArea()']) !!}
                             </div>
                         {!! form::close() !!}

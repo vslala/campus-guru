@@ -12,7 +12,7 @@ $(document).ready(function(){
                         '<button id="Preview" type="button" onclick="parseText()" class="btn btn-default">Preview</button>'+
                     '</div>');
     $('#wrapper').append('<iframe id="richTextField" class="iframe"></iframe>');
-    $('#wrapper').append('<div class="output-div" id="output_div"></div>');
+    $('#wrapper').append('<div class="output-div" id="output_div"><b>Preview Window</b></div>');
 });
 
 window.onload = function() {

@@ -29,6 +29,9 @@ class QuestionController extends Controller {
 	 */
 	public function index()
 	{
+        if(Auth::guest()){
+            return Redirect::back();
+        }
         $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $categories = Category::all();
 		return view('question.ask', compact('categories', 'notifications'));

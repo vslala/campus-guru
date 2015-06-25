@@ -31,7 +31,7 @@
                             <div class="form-group">
                                <label class="col-md-2">Description<span class="red">*</span> :</label>
                                  <div class="col-md-10 {{ $errors->has('description') ? 'has-error' : '' }}">
-                                      {!! Form::textarea("description", null, ['class'=>'form-control', 'placeholder'=>'What is this discussion all about?']) !!}
+                                      {!! Form::textarea("description", null, ['class'=>'form-control text-editor', 'id'=>'text_editor', 'placeholder'=>'What is this discussion all about?']) !!}
                                       {!! $errors->first('description','<span class="help-block">:message</span> ') !!}
                                  </div>
 
@@ -39,6 +39,6 @@
 
                             <div class="form-group">
                                 <div class="col-md-2"></div>
-                                {!! Form::submit("Start Discussion", ["class"=>"btn btn-success btn-lg"]) !!}
+                                {!! Form::submit("Start Discussion", ["class"=>"btn btn-success btn-lg", 'onclick'=>'parseTextFromIFrameAndSetTextInTextArea()']) !!}
                             </div>
                         {!! form::close() !!}
