@@ -4,6 +4,8 @@
     <link rel="shortcut icon" type="image/png" href="http://campusguru.eu1.frbit.net/favicon.ico"/>
   <title>{{ $title or '' }}</title>
   <meta charset="utf-8">
+  <meta name="msvalidate.01" content="9A742AD490D0DC47C3C133D37576AAE2" />
+  <meta name="Description" content="Author: Varun, Illustrator: Campus, Category: Education, About: An online forum solely focused on the students. Have question just post it here, get the help." />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {!! Html::script("https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js") !!}
   {!! Html::script("http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js") !!}
