@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Blog;
 use App\BlogComment;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -67,39 +68,38 @@ class BlogController extends Controller {
             ->get();
 
         if(Auth::guest()){
-            $b = new BlogView();
-            $b->blog_id = $id;
-            $b->username = "visitor_".uniqid();
-            $b->total_views = 1;
-            if($b->save()){
-                $total_views = $b->totalViews($id);
-            }else{
-                $total_views = $b->totalViews($id);
-                return view('home.showBlog', compact('blog','userComments','total_views','username','cookie'));
-            }
+            $blogViews = Blog::where(["id"=>$id])->first();
+            $blogViews->views += 1;
+            $blogViews->save();
+            $total_views = $blogViews->views;
+            return view('home.showBlog', compact('blog','userComments','total_views'));
+
         } else{
             /*
          * Increment Blog Views
          */
-            $blogViews = BlogView::where(["blog_id"=>$id, 'username'=>Session::get('username')])->first();
-            if(count($blogViews) == 0 || count($blogViews) == NULL){
-                $b = new BlogView();
-                $b->blog_id = $id;
-                $b->username = Session::get('username');
-                $b->total_views = 1;
-                if($b->save()){
-                    $total_views = $b->totalViews($id);
-                }else {
-                    $total_views = $b->totalViews($id);
-                    return view('home.showBlog', compact('blog','userComments','total_views','username','cookie'));
-                }
+            $blogViews = Blog::where(["id"=>$id])->first();
+            if(Auth::user()->username != $blogViews->username){
+                $blogViews->views += 1;
+                $blogViews->save();
+            }
+
+//            if(count($blogViews) == 0 || count($blogViews) == NULL){
+//                $b = new BlogView();
+//                $b->blog_id = $id;
+//                $b->username = Session::get('username');
+//                $b->total_views = 1;
+//                if($b->save()){
+//                    $total_views = $b->totalViews($id);
+//                }else {
+//                    $total_views = $b->totalViews($id);
+//                    return view('home.showBlog', compact('blog','userComments','total_views','username','cookie'));
+//                }
 
 
             }
-        }
 
-        $b = new BlogView();
-        $total_views = $b->totalViews($id);
+        $total_views = $blogViews->views;
 
         if(! isset(Auth::user()->username))
             $username = null;
