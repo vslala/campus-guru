@@ -23,6 +23,7 @@ $(document).ready(function(){
                 panelBody.html('<span class="alert-success"><b> An email will be sent to <u style="color: blue;">'+ data +'</u> address shortly</b></span>');
             },
             error: function(xhr,status,msg){
+                panelBody.html('<span class="alert-danger">There was some error! Please try again later or contact varunshrivastava007@gmail.com for password recovery.<br>Sorry for your inconvenience.</span>')
                 console.log(xhr.responseText);
             }
         });
