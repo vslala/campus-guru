@@ -3,6 +3,7 @@
 {!! Html::style('css/welcome.css') !!}
 <script>
 $(document).ready(function(){
+ load_img = '<img src="http://www.ajaxload.info/images/exemples/25.gif" >';
     $('#askEmailForm').submit(function(event){
         event.preventDefault();
         var url = $(this).attr('action');
@@ -10,7 +11,7 @@ $(document).ready(function(){
         var panel = $(this).parent().parent();
         var panelHead = $(this).parent().parent().find('.panel-heading');
         var panelBody = $(this).parent().parent().find('.panel-body');
-        console.log(panelBody.attr('class'));
+        panelBody.html(load_img);
 
         $.ajax({
             type: "PUT",
