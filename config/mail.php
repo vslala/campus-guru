@@ -29,8 +29,8 @@ return [
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
-//    'host' => 'smtp.gmail.com',
+//	'host' => 'smtp.mailgun.org',
+    'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -43,8 +43,9 @@ return [
 	|
 	*/
 
-	'port' => 587,
-//	'port' => 465,
+//	'port' => 587,
+	'port' => 465,
+//	'port' => 25,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -84,8 +85,8 @@ return [
 	|
 	*/
 
-//	'username' => 'campusguru12@gmail.com',
-	'username' => null,
+	'username' => 'campusguru12@gmail.com',
+//	'username' => null,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -98,8 +99,8 @@ return [
 	|
 	*/
 
-//	'password' => 'maibhulgaya',
-	'password' => null,
+	'password' => 'maibhulgaya',
+//	'password' => null,
 
 	/*
 	|--------------------------------------------------------------------------

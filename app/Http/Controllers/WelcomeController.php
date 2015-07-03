@@ -114,9 +114,12 @@ class WelcomeController extends Controller {
 
             $email = $request['email'];
             $data = User::where('email', $email)->first(['id', 'username', 'password']);
-            Mail::send('emails.password', ['id'=>$data->id, 'username'=>$data->username, 'password'=>$data->password], function($message){
+            $sentStat = Mail::send('emails.password', ['id'=>$data->id, 'username'=>$data->username, 'password'=>$data->password], function($message){
                 $message->to(Input::get('email'))->subject("Password Recovery");
             });
+            if(! $sentStat){
+               dd("nakki");
+            }
 //            $to = $email;
 //            $subject = "Password Recovery";
 //            $message = "Please click the link below to reset the password\n" . route('recoverPassword', [
