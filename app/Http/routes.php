@@ -14,6 +14,15 @@
 Route::get('/', ["uses"=>'WelcomeController@index',
     "as"=>"index"
 ]);
+Route::get('/password-recovery', ["uses"=>'WelcomeController@passwordRecovery',
+    "as"=>"forgotPassword"
+]);
+Route::put('/password-recovery', ["uses"=>'WelcomeController@passwordRecovery',
+    "as"=>"forgotPassword"
+]);
+Route::get('/recover-password/{id}/{username}/{password}', ["uses"=>'WelcomeController@recoverPassword',
+    "as"=>"recoverPassword"
+]);
 
 Route::get('/home', ["uses"=>'HomeController@index', "as"=>"home"]);
 

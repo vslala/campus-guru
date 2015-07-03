@@ -4,7 +4,10 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class WelcomeController extends Controller {
 
@@ -99,6 +102,39 @@ class WelcomeController extends Controller {
 
     }
 
+    public function passwordRecovery(Request $request){
+        $title = "password recovery";
+        if($request->isMethod("PUT")){
+            if($request->ajax()){
+                $email = $request['email'];
+                $data = User::where('email', $email)->first();
+                dd($data);
+                return $email;
+            }
+
+            $email = $request['email'];
+            $data = User::where('email', $email)->first(['id', 'username', 'password']);
+            Mail::send('emails.password', ['id'=>$data->id, 'username'=>$data->username, 'password'=>$data->password], function($message){
+                $message->to(Input::get('email'))->subject("Password Recovery");
+            });
+//            $to = $email;
+//            $subject = "Password Recovery";
+//            $message = "Please click the link below to reset the password\n" . route('recoverPassword', [
+//                    $data->id, $data->username, $data->password
+//                ]);
+//            $headers = "From: webmaster@campusguru.com" . "\r\n".
+//                            'X-Mailer: PHP/'.phpversion();
+//            mail($to, $subject, $message, $headers);
+        }
+        return view('forgotPassword')->with(['title'=>$title]);
+    }
+
+    public function recoverPassword(Request $request){
+        if($request->isMethod("GET")){
+            return view('newpassword');
+        }
+
+    }
     public function logout()
     {
         Auth::logout();
