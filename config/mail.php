@@ -43,8 +43,8 @@ return [
 	|
 	*/
 
-//	'port' => 587,
-	'port' => 465,
+	'port' => 587,
+//	'port' => 465,
 //	'port' => 25,
 
 	/*
@@ -85,7 +85,7 @@ return [
 	|
 	*/
 
-	'username' => 'campusguru12@gmail.com',
+	'username' => 'varunshrivastava007@gmail.com',
 //	'username' => null,
 
 	/*

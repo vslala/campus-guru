@@ -20,7 +20,10 @@ Route::get('/password-recovery', ["uses"=>'WelcomeController@passwordRecovery',
 Route::put('/password-recovery', ["uses"=>'WelcomeController@passwordRecovery',
     "as"=>"forgotPassword"
 ]);
-Route::get('/recover-password/{id}/{username}/{password}', ["uses"=>'WelcomeController@recoverPassword',
+Route::get('/recover-password/{id}/{username}/{email}', ["uses"=>'WelcomeController@recoverPassword',
+    "as"=>"recoverPassword"
+]);
+Route::put('/recover-password', ["uses"=>'WelcomeController@recoverPasswordPost',
     "as"=>"recoverPassword"
 ]);
 

@@ -2,31 +2,31 @@
 @section('links')
 {!! Html::style('css/welcome.css') !!}
 <script>
-//$(document).ready(function(){
-//    $('#askEmailForm').submit(function(event){
-//        event.preventDefault();
-//        var url = $(this).attr('action');
-//        var data = $(this).serialize();
-//        var panel = $(this).parent().parent();
-//        var panelHead = $(this).parent().parent().find('.panel-heading');
-//        var panelBody = $(this).parent().parent().find('.panel-body');
-//        console.log(panelBody.attr('class'));
-//
-//        $.ajax({
-//            type: "PUT",
-//            data: data,
-//            url: url,
-//            success: function(data){
-//                panel.addClass('panel panel-success').removeClass('panel-default');
-//                panelHead.html('<div class="h3"><b>Password Recovery Panel</b></div> ');
-//                panelBody.html('<span class="alert-success"><b> An email will be sent to <u style="color: blue;">'+ data +'</u> address shortly</b></span>');
-//            },
-//            error: function(xhr,status,msg){
-//                console.log(xhr.responseText);
-//            }
-//        });
-//    })
-//});
+$(document).ready(function(){
+    $('#askEmailForm').submit(function(event){
+        event.preventDefault();
+        var url = $(this).attr('action');
+        var data = $(this).serialize();
+        var panel = $(this).parent().parent();
+        var panelHead = $(this).parent().parent().find('.panel-heading');
+        var panelBody = $(this).parent().parent().find('.panel-body');
+        console.log(panelBody.attr('class'));
+
+        $.ajax({
+            type: "PUT",
+            data: data,
+            url: url,
+            success: function(data){
+                panel.addClass('panel panel-success').removeClass('panel-default');
+                panelHead.html('<div class="h3"><b>Password Recovery Panel</b></div> ');
+                panelBody.html('<span class="alert-success"><b> An email will be sent to <u style="color: blue;">'+ data +'</u> address shortly</b></span>');
+            },
+            error: function(xhr,status,msg){
+                console.log(xhr.responseText);
+            }
+        });
+    })
+});
 </script>
 @endsection
 @section('content')

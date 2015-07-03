@@ -107,14 +107,19 @@ class WelcomeController extends Controller {
         if($request->isMethod("PUT")){
             if($request->ajax()){
                 $email = $request['email'];
-                $data = User::where('email', $email)->first();
-                dd($data);
+                $data = User::where('email', $email)->first(['id', 'username', 'email']);
+                $sentStat = Mail::send('emails.password', ['id'=>$data->id, 'username'=>md5($data->username), 'email'=>$data->email], function($message){
+                    $message->to(Input::get('email'))->subject("Password Recovery");
+                });
+                if(! $sentStat){
+                    return false;
+                }
                 return $email;
             }
 
             $email = $request['email'];
-            $data = User::where('email', $email)->first(['id', 'username', 'password']);
-            $sentStat = Mail::send('emails.password', ['id'=>$data->id, 'username'=>$data->username, 'password'=>$data->password], function($message){
+            $data = User::where('email', $email)->first(['id', 'username', 'email']);
+            $sentStat = Mail::send('emails.password', ['id'=>$data->id, 'username'=>md5($data->username), 'email'=>$data->email], function($message){
                 $message->to(Input::get('email'))->subject("Password Recovery");
             });
             if(! $sentStat){
@@ -132,10 +137,30 @@ class WelcomeController extends Controller {
         return view('forgotPassword')->with(['title'=>$title]);
     }
 
-    public function recoverPassword(Request $request){
-        if($request->isMethod("GET")){
-            return view('newpassword');
+    public function recoverPasswordPost(Request $request){
+        if($request->isMethod("put")){
+            $password = $request->get("newPassword");
+            $repeatPassword = $request->get('newPasswordRepeat');
+            if($password == $repeatPassword){
+                $username = $request->get('username');
+                $id = Input::get('id');
+                $user = User::where("id",$id)->first();
+                if(md5($user->username) == $username){
+                    $user->password = Hash::make($password);
+                    $flag = $user->save();
+                    if($flag){
+                        $title = "Reset Password";
+                        $message = "Password has been changed successfully!!!";
+                        return view('newpassword', compact('message', 'title'));
+                    }
+                }
+            }
         }
+
+    }
+    public function recoverPassword($id, $username, $email){
+        $title = "Reset Password";
+            return view('newpassword', compact('username','id','email', 'title'));
 
     }
     public function logout()
