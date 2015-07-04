@@ -108,6 +108,9 @@ class WelcomeController extends Controller {
             if($request->ajax()){
                 $email = $request['email'];
                 $data = User::where('email', $email)->first(['id', 'username', 'email']);
+                if($data == null){
+                   return view();
+                }
                 $sentStat = Mail::send('emails.password', ['id'=>$data->id, 'username'=>md5($data->username), 'email'=>$data->email], function($message){
                     $message->to(Input::get('email'))->subject("Password Recovery");
                 });
