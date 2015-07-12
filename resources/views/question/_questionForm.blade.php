@@ -41,6 +41,9 @@
                                  <div class="col-md-10">
                                       {!! Form::textarea("content", null, ['class'=>'form-control text-editor','id'=>"text_editor", 'data-msg'=>'Description is required']) !!}
                                       {!! $errors->first('content', '<span class="help-block">:message</span> ') !!}
+                                      <script>
+                                      CKEDITOR.replace('content');
+                                      </script>
                                  </div>
                             </div>
 

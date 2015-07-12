@@ -152,16 +152,19 @@ h4{
 
 }
 
+
 .small-img{
     height: 50px;
 }
 
 .comment-block{
     padding: 30px;
+
 }
 
 .text-editor{
     display: none;
+    border: 2px solid crimson;
 }
 
 .iframe{

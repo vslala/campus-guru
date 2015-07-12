@@ -33,6 +33,9 @@
                                  <div class="col-md-10 {{ $errors->has('description') ? 'has-error' : '' }}">
                                       {!! Form::textarea("description", null, ['class'=>'form-control text-editor', 'id'=>'text_editor', 'placeholder'=>'What is this discussion all about?']) !!}
                                       {!! $errors->first('description','<span class="help-block">:message</span> ') !!}
+                                      <script>
+                                      CKEDITOR.replace('description');
+                                      </script>
                                  </div>
 
                             </div>

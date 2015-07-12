@@ -12,7 +12,7 @@
         {!! Html::script('http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.js') !!}
 
         {!! Html::script('http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js') !!}
-{!! Html::script('js/wysiwyg.js') !!}
+{!! Html::script('js/ckeditor.js') !!}
 @endsection
 
 @section('content')

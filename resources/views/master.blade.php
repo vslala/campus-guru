@@ -14,6 +14,7 @@
   {!! Html::style("css/styles.css") !!}
   {!! Html::script("js/scripts.js") !!}
   {!! Html::style("http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css") !!}
+  <script src="//cdn.ckeditor.com/4.5.1/standard/ckeditor.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   {{--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>--}}

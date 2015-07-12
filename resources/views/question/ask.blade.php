@@ -6,7 +6,7 @@
 @section('links')
 {!! Html::style('css/profile.css') !!}
 {!! Html::script('js/scripts.js') !!}
-{!! Html::script('js/wysiwyg.js') !!}
+{!! Html::script('js/ckeditor.js') !!}
 @endsection
 @section('content')
 

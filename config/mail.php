@@ -85,7 +85,7 @@ return [
 	|
 	*/
 
-	'username' => 'varunshrivastava007@gmail.com',
+	'username' => 'campusguru12@gmail.com',
 //	'username' => null,
 
 	/*
@@ -99,7 +99,7 @@ return [
 	|
 	*/
 
-	'password' => 'maibhulgaya',
+	'password' => 'zgzcjuszmuswtdcn',
 //	'password' => null,
 
 	/*

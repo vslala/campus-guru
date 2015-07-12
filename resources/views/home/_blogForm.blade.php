@@ -14,6 +14,9 @@
         <div class="col-sm-10 {{ $errors->has('heading') ? 'has-error': '' }}">
             {!! Form::textarea('content', null, ['class'=>'form-control text-editor', 'id'=>'text_editor']) !!}
             {!! $errors->first('content', '<span class="help-block">:message</span> ') !!}
+            <script>
+            CKEDITOR.replace('content');
+            </script>
         </div>
     </div>
 

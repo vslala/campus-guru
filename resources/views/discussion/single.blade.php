@@ -17,8 +17,8 @@
 
 @section('links')
 {!! Html::style('css/profile.css') !!}
-{!! Html::script('js/myjs.js')!!}
-{!! Html::script('js/wysiwyg.js') !!}
+{!! Html::script('js/myjs.js') !!}
+{!! Html::script('js/ckeditor.js') !!}
 @endsection
 @section('content')
 
@@ -52,6 +52,7 @@
                                 <input type="hidden" name="n_to" value="{{ $discussion->username }}" />
                                 {!! Form::textarea("reply", null, ['class'=>'form-control text-editor', 'id'=>'text_editor', 'rows'=>'6', 'maxlength'=>'10000']) !!}
                                 {!! Form::submit("Reply", ['class'=>'btn btn-lg btn-success', 'onclick'=>'parseTextFromIFrameAndSetTextInTextArea()']) !!}
+                                <script>CKEDITOR.replace('reply');</script>
                             {!! Form::close() !!}
                         </div>
                     @else

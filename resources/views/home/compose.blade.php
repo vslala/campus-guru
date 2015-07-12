@@ -6,7 +6,7 @@ $title="Compose Blog";
 
 @section('links')
 {!! Html::style('css/profile.css') !!}
-{!! Html::script('js/wysiwyg.js')!!}
+{!! Html::script('js/ckeditor.js')!!}
 @endsection
 
 @section('content')

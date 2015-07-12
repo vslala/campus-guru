@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use League\Flysystem\Exception;
@@ -46,6 +47,21 @@ class HomeController extends Controller {
 	{
 		$this->middleware('auth');
 	}
+
+    public function sendMailToAll($m, $link){
+
+        try{
+            Mail::send('emails.notification',['m'=>$m, 'link'=>$link], function($message){
+                $mails = User::all(['username', 'email']);
+                foreach($mails as $m){
+                    $message->to($m->email)->subject("New Notification From CampusGuru");
+                }
+            });
+            return true;
+        }catch (\Exception $ex){
+            return false;
+        }
+    }
 
 	/**
 	 * Show the application dashboard to the user.
@@ -233,6 +249,10 @@ class HomeController extends Controller {
 
     public function statusUpdate(Request $request)
     {
+        $m = "Check out the new Status update made to campus guru by one of your mate. Just click on the link to proceed! ";
+        $link = "http://www.campusguru.net";
+        $this->sendMailToAll($m, $link);
+
         /*
          * Form Input validation
          */
@@ -396,9 +416,9 @@ class HomeController extends Controller {
 
     public function profileVisit($username)
     {
+        $user = Profile::where("username", $username)->get()->toArray();
         $notifications = Notification::where("n_to", Auth::user()->username)->get();
         $realName = User::where("username",$username)->get(['name','username','created_at']);
-        $user = Profile::where("username", $username)->get()->toArray();
         $userImage = DisplayPicture::where("username", $username)->get()->toArray();
         $totalLikes = count(LikedAnswer::where("username", $username)->get());
         $questionAsked = count(Question::where("username", $username)->get());
@@ -411,8 +431,20 @@ class HomeController extends Controller {
             $userImage[0]['image_url'] = 'http://fc09.deviantart.net/fs71/f/2010/330/9/e/profile_icon_by_art311-d33mwsf.png';
             $userImage[0]['image_name'] = "No image";
         }
-//        dd($userImage);
 
+        // Sending email to the person whose profile has been visited!
+        try{
+            $m = $user[0]['username'] . " just visited your profile.";
+            $link = "http://www.campusguru.net/user/profile/visit/".$user[0]['username'];
+            $mailResponse =  Mail::queue('emails.notification', ['m'=>$m, 'link'=>$link], function($message) use ($username){
+                $visitedUserEmail = User::where("username", $username)->get(['email']);
+                $message->to($visitedUserEmail[0]->email)->subject("CampusGuru Profile Visit Alert!");
+            });
+        }catch(\Exception $ex){
+
+        }
+
+//        dd($userImage);
         return view('home.profileVisit', compact('user','realName', 'userImage', 'totalLikes',
             'questionAsked','status', 'questionAnswered', 'posts', 'discussionStarted', 'notifications'));
     }
