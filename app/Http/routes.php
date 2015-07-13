@@ -14,6 +14,12 @@
 Route::get('/', ["uses"=>'WelcomeController@index',
     "as"=>"index"
 ]);
+Route::get('/about', ["uses"=>'SiteController@about',
+    "as"=>"about"
+]);
+Route::put('/contact', ["uses"=>'SiteController@contact',
+    "as"=>"contact"
+]);
 Route::get('/password-recovery', ["uses"=>'WelcomeController@passwordRecovery',
     "as"=>"forgotPassword"
 ]);
@@ -114,7 +120,7 @@ Route::get('/user/show/blog/{id}/{heading}', [
     "as"=>"showSingleBlog"
 ]);
 Route::get('/user/show/all/blogs', [
-    'uses'=>"HomeController@showAllBlogs",
+    'uses'=>"BlogController@showAllBlogs",
     "as"=>"showAllBlogs"
 ]);
 Route::get('/user/status/delete/{id}', [

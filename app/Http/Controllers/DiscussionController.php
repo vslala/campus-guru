@@ -184,14 +184,19 @@ class DiscussionController extends Controller {
 	 */
 	public function showAll()
 	{
-        $this->middleware('auth');
-        $notifications = Notification::where("n_to", Auth::user()->username)->get();
+        if(Auth::guest()){
+            $setDiscussionsActive = 'active';
+            $show = false;
+        }else{
+            $show = true;
+            $notifications = Notification::where("n_to", Auth::user()->username)->get();
+        }
         $discussions = DB::table("discussions")
             ->leftJoin("display_pictures", "discussions.username", "=","display_pictures.username")
             ->select(['discussions.id','discussions.title','display_pictures.image_url','display_pictures.image_name'])
             ->get();
 //        dd($discussions);
-        return view('discussion.all', compact('discussions','notifications'));
+        return view('discussion.all', compact('discussions','notifications','show', 'setDiscussionsActive'));
 	}
 
     public function showAllByUsername()

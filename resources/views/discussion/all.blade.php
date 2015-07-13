@@ -16,7 +16,12 @@
 @endsection
 @section('content')
 
-@include('_top-nav')
+@if($show == true)
+    @include('_top-nav')
+@else
+    @include('_top_home_nav')
+@endif
+
 
 <div class="container-fluid">
         @include('_first_row')

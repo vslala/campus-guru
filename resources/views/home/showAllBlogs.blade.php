@@ -6,20 +6,28 @@ $title="CampusGuru Blogs";
 
 @section('links')
 {!! Html::style('css/profile.css') !!}
+<style>
+body{
+ padding-top: 100px;
+}
+</style>
 @endsection
 
 @section('content')
-@include('_top-nav')
-
-<div class="container-fluid">
-@include('_first_row')
-
+@if($show == true)
+    @include('_top-nav')
+    <div class="container-fluid">
+    @include('_first_row')
+@else
+    @include('_top_home_nav')
+@endif
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
         <div class="panel panel-default">
             <div class="panel-body">
             <br/>
+
 
                 @if(isset($blogs[0]))
 

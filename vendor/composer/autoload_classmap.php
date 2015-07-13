@@ -15,6 +15,7 @@ return array(
     'CreateCommentsTable' => $baseDir . '/database/migrations/2015_04_03_052400_create_comments_table.php',
     'CreateComplainsTable' => $baseDir . '/database/migrations/2015_04_07_115331_create_complains_table.php',
     'CreateConfessionsTable' => $baseDir . '/database/migrations/2015_04_07_164144_create_confessions_table.php',
+    'CreateContactsTable' => $baseDir . '/database/migrations/2015_07_13_115027_create_contacts_table.php',
     'CreateDiscussionTagsTable' => $baseDir . '/database/migrations/2015_04_05_162043_create_discussion_tags_table.php',
     'CreateDiscussionsTable' => $baseDir . '/database/migrations/2015_04_05_155616_create_discussions_table.php',
     'CreateDislikedAnswersTable' => $baseDir . '/database/migrations/2015_04_03_062551_create_disliked_answers_table.php',

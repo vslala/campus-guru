@@ -4,6 +4,7 @@ use App\Blog;
 use App\BlogComment;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Notification;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,24 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller {
+
+    public function showAllBlogs(){
+        $blogs = DB::table("blogs")
+            ->leftJoin("display_pictures", "blogs.username", "=", "display_pictures.username")
+            ->select(["blogs.id","blogs.username","blogs.heading","blogs.content","blogs.created_at",
+                "display_pictures.image_name","display_pictures.image_url"
+            ])
+            ->get();
+        if(Auth::guest()){
+            $show=false;
+            $setBlogActive = 'active';
+        }else{
+            $notifications = Notification::where("n_to", Auth::user()->username)->get();
+            $show=true;
+        }
+//        dd($blogs);
+        return view('home.showAllBlogs', compact('blogs','notifications','show','setBlogActive'));
+    }
 
 	public function addBlogComment(Request $request){
         /*

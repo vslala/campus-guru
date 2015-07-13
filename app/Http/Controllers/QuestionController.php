@@ -277,13 +277,19 @@ class QuestionController extends Controller {
 	 */
 	public function viewAllQuestions()
 	{
-        $notifications = Notification::where("n_to", Auth::user()->username)->get();
+        if(Auth::guest()){
+            $setQuestionsActive = 'active';
+            $show = false;
+        }else{
+            $show = true;
+            $notifications = Notification::where("n_to", Auth::user()->username)->get();
+        }
         $questions = DB::table("questions")
             ->leftJoin("display_pictures", "questions.username", "=","display_pictures.username")
             ->select(['questions.id','questions.title','display_pictures.image_url','display_pictures.image_name'])
             ->get();
 //        dd($questions);
-		return view('question.all', compact('questions','notifications'));
+		return view('question.all', compact('questions','notifications', 'show', 'setQuestionsActive'));
 	}
 	/**
 	 * Remove the specified resource from storage.

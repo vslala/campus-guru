@@ -39,7 +39,8 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+        $setHomeActive = 'active';
+		return view('welcome', compact('setHomeActive'));
 	}
 
     public function register(Request $request)

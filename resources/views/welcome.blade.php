@@ -5,11 +5,11 @@ $title="Campus Guru";
 @section('links')
 {!! Html::style('css/welcome.css') !!}
 {!! Html::script('js/myjs.js') !!}
-
 @endsection
 
 @section('content')
 		<div class="container">
+		@include('_top_home_nav')
 		@if(Session::get("flash_message"))
 		    <div class="alert-info">
 		        <span id="message" style="">{{ Session::get("flash_message") }}</span>
