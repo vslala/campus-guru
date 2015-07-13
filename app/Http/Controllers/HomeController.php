@@ -249,10 +249,6 @@ class HomeController extends Controller {
 
     public function statusUpdate(Request $request)
     {
-        $m = "Check out the new Status update made to campus guru by one of your mate. Just click on the link to proceed! ";
-        $link = "http://www.campusguru.net";
-        $this->sendMailToAll($m, $link);
-
         /*
          * Form Input validation
          */
