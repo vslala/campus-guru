@@ -210,6 +210,8 @@ class QuestionController extends Controller {
             $notifications = Notification::where("n_to", Auth::user()->username)->get();
             $username = Auth::user()->username;
             $image = DisplayPicture::where("username", $username)->get();
+        }else{
+            $setQuestionsActive = 'active';
         }
 
         $likes = new LikedAnswer();
@@ -238,7 +240,7 @@ class QuestionController extends Controller {
 //        dd($answers);
 
         return view('question.single', compact('question','answers','image', 'comments','likes',
-            'dislikes', 'attachment', 'notifications', 'username'));
+            'dislikes', 'attachment', 'notifications', 'username', 'setQuestionsActive'));
     }
 	public function showQuestionsByUsername()
 	{

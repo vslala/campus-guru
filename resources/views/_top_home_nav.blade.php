@@ -1,3 +1,10 @@
+   <style>
+   .brand-css{
+    /*color: #204d74;*/
+    font-weight: 700;
+    font-family: Tahoma, sans-serif;
+   }
+   </style>
    <div class="navbar navbar-default navbar-fixed-top" style="margin-top: 0px;">
          <div class="container">
            <div class="navbar-header">
@@ -7,7 +14,7 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
              </button>
-             <a class="navbar-brand" href="{{ route("index") }}" id="top_home_nav"><span class="brand-name">Campus Guru</span></a>
+             <a class="navbar-brand brand-css" href="{{ route("index") }}" id="top_home_nav"><span class="brand-name">Campus Guru</span></a>
            </div>
            <div class="collapse navbar-collapse" id="navbar-ex-collapse">
              <ul class="nav navbar-nav navbar-right">

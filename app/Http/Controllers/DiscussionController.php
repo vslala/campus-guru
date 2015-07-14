@@ -158,6 +158,8 @@ class DiscussionController extends Controller {
             $notifications = Notification::where("n_to", Auth::user()->username)->get();
             $username = Auth::user()->username;
             $image = DisplayPicture::where("username", Auth::user()->username)->get();
+        }else{
+            $setDiscussionsActive = 'active';
         }
         $likes = LikedDiscussion::all();
         $dislikes = DislikedDiscussion::all();
@@ -172,8 +174,7 @@ class DiscussionController extends Controller {
             ->get();
 //        dd($replies);
 
-
-        return view('discussion.single', compact('discussion','replies','image','likes','dislikes','notifications', 'username'));
+        return view('discussion.single', compact('discussion','replies','image','likes','dislikes','notifications', 'username', 'setDiscussionsActive'));
 	}
 
 	/**

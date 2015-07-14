@@ -23,9 +23,11 @@
 @section('content')
 
 <span id="userImage"></span>
-
-@include('_top-nav')
-
+@if($username)
+    @include('_top-nav')
+@else
+    @include('_top_home_nav')
+@endif
 <div class="container-fluid">
         @include('_first_row')
     <div class="row">
