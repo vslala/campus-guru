@@ -1,1 +1,0 @@
-This is a raw email for recovery <a href="{{ route(url) }}">click here to proceed</a>
